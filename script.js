@@ -26,6 +26,30 @@ name:"BasiGo",
 countries:["Kenya","Rwanda"],
 categories:["Bus"],
 energyModels:["Public Charging"]
+},
+  {
+name:"M-KOPA",
+countries:["Kenya"],
+categories:["Financing"],
+energyModels:[""]
+},
+  {
+name:"Enzi",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Arc Ride",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Zeno",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping","Public Charging"]
 }
 
 ];
