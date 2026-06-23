@@ -1,386 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Africa EV Map | Electric Mobility Ecosystem</title>
-
-<style>
-:root{
-    --electric:#00ff88;
-    --dark:#08110d;
-    --card:#111b16;
-    --text:#e8fcef;
-    --muted:#9eb4a5;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI, Arial, sans-serif;
-}
-
-body{
-    background:var(--dark);
-    color:var(--text);
-}
-
-header{
-    text-align:center;
-    padding:80px 20px;
-    background:
-    radial-gradient(circle at center,
-    rgba(0,255,136,.15),
-    transparent 60%);
-}
-
-h1{
-    font-size:3rem;
-    color:var(--electric);
-    margin-bottom:15px;
-}
-
-.hero-text{
-    max-width:700px;
-    margin:auto;
-    color:var(--muted);
-    line-height:1.6;
-}
-
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-}
-
-.section-title{
-    margin:50px 0 20px;
-    color:var(--electric);
-}
-
-.filters{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:30px;
-}
-
-.filters input,
-.filters select{
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#18241d;
-    color:white;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:var(--card);
-    border:1px solid rgba(0,255,136,.15);
-    border-radius:12px;
-    padding:20px;
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-    border-color:var(--electric);
-}
-
-.card h3{
-    color:var(--electric);
-    margin-bottom:10px;
-}
-
-.tag{
-    display:inline-block;
-    margin:4px;
-    padding:5px 10px;
-    border-radius:20px;
-    background:rgba(0,255,136,.12);
-    color:var(--electric);
-    font-size:.8rem;
-}
-
-.country{
-    color:#ffffff;
-    margin-bottom:10px;
-}
-
-.contact{
-    margin-top:60px;
-    background:var(--card);
-    padding:30px;
-    border-radius:12px;
-}
-
-.contact form{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.contact input,
-.contact textarea{
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#18241d;
-    color:white;
-}
-
-.contact button{
-    background:var(--electric);
-    color:black;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-footer{
-    margin-top:60px;
-    text-align:center;
-    padding:30px;
-    border-top:1px solid rgba(255,255,255,.08);
-    color:var(--muted);
-}
-
-.stats{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    margin-top:30px;
-    flex-wrap:wrap;
-}
-
-.stat{
-    text-align:center;
-}
-
-.stat h2{
-    color:var(--electric);
-}
-
-@media(max-width:768px){
-    h1{
-        font-size:2rem;
-    }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Mobility Africa</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
 
-<header>
-    <h1>AFRICA EV MAP</h1>
-    <p class="hero-text">
-        Discover electric mobility companies across Africa.
-        Explore EV manufacturers, charging infrastructure,
-        software platforms, fleet operators and innovative
-        energy access models powering the continent.
-    </p>
-
-    <div class="stats">
-        <div class="stat">
-            <h2>15+</h2>
-            <p>Countries</p>
+  <header class="hero">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">⚡</div>
+        <div>
+          <div class="brand-title">E-Mobility Africa</div>
+          <div class="brand-subtitle">Showcasing eMobility companies across Africa</div>
         </div>
+      </div>
+      <a class="form-link" href="https://forms.gle/your-google-form-link" target="_blank" rel="noopener noreferrer">
+        Submit Company via Google Form
+      </a>
+    </nav>
 
-        <div class="stat">
-            <h2>100+</h2>
-            <p>Companies</p>
-        </div>
+    <section class="hero-content">
+      <div class="hero-copy">
+        <span class="eyebrow">Africa-wide eMobility directory</span>
+        <h1>Find companies by country, category, and energy model.</h1>
+        <p>
+          Explore companies working across motorcycles, buses, cars, electric three wheelers,
+          electric trucks, and financing solutions. The data is company-driven, so each company can
+          appear in multiple countries and categories.
+        </p>
+      </div>
+      <div class="hero-panel">
+        <div class="panel-label">Live directory</div>
+        <div class="panel-value" id="visibleCount">0</div>
+        <div class="panel-caption">companies currently visible</div>
+      </div>
+    </section>
+  </header>
 
-        <div class="stat">
-            <h2>6</h2>
-            <p>Categories</p>
+  <main class="container">
+    <section class="stats-section">
+      <div class="section-head">
+        <h2>Key statistics</h2>
+        <p>Counts reflect the full sample dataset and update with filters.</p>
+      </div>
+
+      <div class="stats-grid" id="statsGrid"></div>
+    </section>
+
+    <section class="filters-section">
+      <div class="section-head">
+        <h2>Filter companies</h2>
+        <p>Use country and category together to narrow results.</p>
+      </div>
+
+      <div class="filters">
+        <label class="field">
+          <span>Search company</span>
+          <input id="searchInput" type="text" placeholder="Type a company name..." />
+        </label>
+
+        <label class="field">
+          <span>Category</span>
+          <select id="categoryFilter"></select>
+        </label>
+
+        <label class="field">
+          <span>Country</span>
+          <select id="countryFilter"></select>
+        </label>
+
+        <button id="resetBtn" class="reset-btn" type="button">Reset filters</button>
+      </div>
+    </section>
+
+    <section class="results-section">
+      <div class="results-head">
+        <h2>Companies</h2>
+        <div class="results-meta">
+          <span id="resultsLabel">Showing 0 companies</span>
         </div>
+      </div>
+
+      <div id="companyGrid" class="company-grid"></div>
+      <div id="emptyState" class="empty-state hidden">
+        No companies match the current filters.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>E-Mobility Africa</strong>
+      <p>Electric mobility directory for Africa.</p>
     </div>
-</header>
-
-<div class="container">
-
-    <h2 class="section-title">Explore Companies</h2>
-
-    <div class="filters">
-        <input type="text" id="searchInput" placeholder="Search company...">
-
-        <select id="categoryFilter">
-            <option value="">All Categories</option>
-            <option>Motorcycles</option>
-            <option>Cars</option>
-            <option>Buses</option>
-            <option>Trucks</option>
-            <option>Charging Infrastructure</option>
-            <option>Software Services</option>
-        </select>
-
-        <select id="chargingFilter">
-            <option value="">All Charging Methods</option>
-            <option>Battery Swap</option>
-            <option>Public Charging</option>
-            <option>Home Charging</option>
-        </select>
+    <div>
+      <p><strong>Email:</strong> info@emobilityafrica.example</p>
+      <p><strong>Phone:</strong> +254 700 000 000</p>
+      <p><strong>Location:</strong> Nairobi, Kenya</p>
     </div>
-
-    <div class="grid" id="companyGrid">
-
-        <div class="card">
-            <h3>Roam</h3>
-            <div class="country">Kenya</div>
-
-            <span class="tag">Motorcycles</span>
-            <span class="tag">Buses</span>
-            <span class="tag">Battery Swap</span>
-        </div>
-
-        <div class="card">
-            <h3>BasiGo</h3>
-            <div class="country">Kenya</div>
-
-            <span class="tag">Buses</span>
-            <span class="tag">Public Charging</span>
-        </div>
-
-        <div class="card">
-            <h3>Ampersand</h3>
-            <div class="country">Rwanda</div>
-
-            <span class="tag">Motorcycles</span>
-            <span class="tag">Battery Swap</span>
-        </div>
-
-        <div class="card">
-            <h3>Spiro</h3>
-            <div class="country">Benin</div>
-
-            <span class="tag">Motorcycles</span>
-            <span class="tag">Battery Swap</span>
-        </div>
-
-        <div class="card">
-            <h3>Jet Motor Company</h3>
-            <div class="country">Uganda</div>
-
-            <span class="tag">Motorcycles</span>
-            <span class="tag">Home Charging</span>
-        </div>
-
-        <div class="card">
-            <h3>EV Chaja</h3>
-            <div class="country">Kenya</div>
-
-            <span class="tag">Charging Infrastructure</span>
-            <span class="tag">Public Charging</span>
-        </div>
-
-        <div class="card">
-            <h3>GoMetro</h3>
-            <div class="country">South Africa</div>
-
-            <span class="tag">Software Services</span>
-        </div>
-
-        <div class="card">
-            <h3>MellowVans</h3>
-            <div class="country">South Africa</div>
-
-            <span class="tag">Cars</span>
-            <span class="tag">Home Charging</span>
-        </div>
-
+    <div>
+      <p><a href="https://forms.gle/your-google-form-link" target="_blank" rel="noopener noreferrer">Contact / Submit company</a></p>
+      <p>© <span id="year"></span> E-Mobility Africa</p>
     </div>
+  </footer>
 
-    <div class="contact">
-
-        <h2 class="section-title">Contact / Submit Company</h2>
-
-        <form>
-
-            <input type="text"
-                   placeholder="Company Name">
-
-            <input type="email"
-                   placeholder="Email Address">
-
-            <input type="text"
-                   placeholder="Country">
-
-            <textarea rows="5"
-            placeholder="Message or Company Details"></textarea>
-
-            <button type="submit">
-                Submit
-            </button>
-
-        </form>
-
-    </div>
-
-</div>
-
-<footer>
-
-    <h3>Africa EV Map</h3>
-
-    <p>
-        Mapping Electric Mobility Across Africa
-    </p>
-
-    <br>
-
-    <p>
-        Contact: info@africaevmap.org
-    </p>
-
-    <p>
-        Nairobi, Kenya
-    </p>
-
-    <br>
-
-    <p>
-        © 2026 Africa EV Map. All Rights Reserved.
-    </p>
-
-</footer>
-
-<script>
-
-const searchInput = document.getElementById("searchInput");
-
-searchInput.addEventListener("keyup", function() {
-
-    let filter =
-    searchInput.value.toLowerCase();
-
-    let cards =
-    document.querySelectorAll(".card");
-
-    cards.forEach(card => {
-
-        let text =
-        card.innerText.toLowerCase();
-
-        card.style.display =
-        text.includes(filter)
-        ? "block"
-        : "none";
-
-    });
-
-});
-
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
