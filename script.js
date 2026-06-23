@@ -17,7 +17,7 @@ energyModels:["Public Charging","Battery Swapping","Home Charging"]
 {
 name:"Spiro",
 countries:["Kenya","Rwanda","Benin","Togo"],
-categories:["Motorcycle","3 Wheeler"],
+categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
 
