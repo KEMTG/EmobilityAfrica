@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Mobility Africa - Directory of Electric Mobility Companies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">E-Mobility Africa</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#directory" class="nav-link">Directory</a></li>
+                <li><a href="#statistics" class="nav-link">Statistics</a></li>
+                <li><a href="#submit" class="nav-link btn-primary">List Your Company</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Driving Africa's Electric Future</h1>
+                <p class="hero-subtitle">Discover and connect with African e-mobility innovators, from charging infrastructure to financing solutions</p>
+                <div class="hero-buttons">
+                    <a href="#directory" class="btn btn-large btn-primary">Explore Companies</a>
+                    <a href="#submit" class="btn btn-large btn-secondary">Register Your Company</a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <div class="floating-icon icon-1">🔋</div>
+                <div class="floating-icon icon-2">🚗</div>
+                <div class="floating-icon icon-3">⚡</div>
+                <div class="floating-icon icon-4">🔌</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="statistics">
+        <div class="container">
+            <h2 class="section-title">E-Mobility Ecosystem at a Glance</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-companies">0</div>
+                    <div class="stat-label">Total Companies</div>
+                    <div class="stat-icon">🏢</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-countries">0</div>
+                    <div class="stat-label">African Countries</div>
+                    <div class="stat-icon">🌍</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-categories">7</div>
+                    <div class="stat-label">Business Categories</div>
+                    <div class="stat-icon">📊</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-charging">0</div>
+                    <div class="stat-label">Charging Solutions</div>
+                    <div class="stat-icon">🔌</div>
+                </div>
+            </div>
+
+            <!-- Breakdown by Category -->
+            <div class="category-breakdown">
+                <h3>Companies by Category</h3>
+                <div class="breakdown-grid">
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">🚗</div>
+                        <div class="breakdown-name">Cars</div>
+                        <div class="breakdown-count" id="count-cars">0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">🏍️</div>
+                        <div class="breakdown-name">Motorcycles</div>
+                        <div class="breakdown-count" id="count-motorcycles">0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">🚌</div>
+                        <div class="breakdown-name">Buses</div>
+                        <div class="breakdown-count" id="count-buses">0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">🚚</div>
+                        <div class="breakdown-name">Trucks</div>
+                        <div class="breakdown-count" id="count-trucks">0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">💻</div>
+                        <div class="breakdown-name">Software</div>
+                        <div class="breakdown-count" id="count-software">0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">💰</div>
+                        <div class="breakdown-name">Financing</div>
+                        <div class="breakdown-count" id="count-financing">0</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">🔌</div>
+                        <div class="breakdown-name">Infrastructure</div>
+                        <div class="breakdown-count" id="count-infrastructure">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Directory Section -->
+    <section id="directory" class="directory">
+        <div class="container">
+            <h2 class="section-title">Company Directory</h2>
+            
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="filter-input" 
+                        placeholder="Search by company name, country..."
+                    >
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Companies</button>
+                    <button class="filter-btn" data-filter="cars">🚗 Cars</button>
+                    <button class="filter-btn" data-filter="motorcycles">🏍️ Motorcycles</button>
+                    <button class="filter-btn" data-filter="buses">🚌 Buses</button>
+                    <button class="filter-btn" data-filter="trucks">🚚 Trucks</button>
+                    <button class="filter-btn" data-filter="software">💻 Software</button>
+                    <button class="filter-btn" data-filter="financing">💰 Financing</button>
+                    <button class="filter-btn" data-filter="infrastructure">🔌 Infrastructure</button>
+                </div>
+            </div>
+
+            <!-- Companies Grid -->
+            <div class="companies-grid" id="companiesGrid">
+                <!-- Companies will be populated here by JavaScript -->
+            </div>
+
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <p>No companies found. Be the first to list your company!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submit Form Section -->
+    <section id="submit" class="submit-section">
+        <div class="container">
+            <div class="form-wrapper">
+                <div class="form-header">
+                    <h2>List Your Company</h2>
+                    <p>Help us build Africa's e-mobility ecosystem by registering your company</p>
+                </div>
+
+                <form id="companyForm" class="company-form">
+                    <!-- Company Basic Info -->
+                    <fieldset class="form-section">
+                        <legend>Company Information</legend>
+                        
+                        <div class="form-group">
+                            <label for="companyName">Company Name *</label>
+                            <input 
+                                type="text" 
+                                id="companyName" 
+                                name="companyName" 
+                                required 
+                                placeholder="Enter your company name"
+                            >
+                            <small>Legal name of your company</small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hqCity">HQ City *</label>
+                                <input 
+                                    type="text" 
+                                    id="hqCity" 
+                                    name="hqCity" 
+                                    required 
+                                    placeholder="e.g., Nairobi, Lagos, Cairo"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="countries">Countries of Operation *</label>
+                                <input 
+                                    type="text" 
+                                    id="countries" 
+                                    name="countries" 
+                                    required 
+                                    placeholder="Separate multiple with commas"
+                                >
+                                <small>e.g., Kenya, Uganda, Nigeria</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input 
+                                type="url" 
+                                id="website" 
+                                name="website" 
+                                placeholder="https://yourcompany.com"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Contact Email *</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required 
+                                placeholder="contact@yourcompany.com"
+                            >
+                        </div>
+                    </fieldset>
+
+                    <!-- Categories -->
+                    <fieldset class="form-section">
+                        <legend>Business Categories</legend>
+                        <p class="form-hint">Select all that apply</p>
+                        
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="categories" value="cars">
+                                <span class="checkbox-label">🚗 Cars</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="categories" value="motorcycles">
+                                <span class="checkbox-label">🏍️ Motorcycles</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="categories" value="buses">
+                                <span class="checkbox-label">🚌 Buses</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="categories" value="trucks">
+                                <span class="checkbox-label">🚚 Trucks</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="categories" value="software">
+                                <span class="checkbox-label">💻 Software Services</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="categories" value="financing">
+                                <span class="checkbox-label">💰 Financing</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="categories" value="infrastructure">
+                                <span class="checkbox-label">🔌 Charging Infrastructure</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Charging Methods -->
+                    <fieldset class="form-section">
+                        <legend>Charging Methods (if applicable)</legend>
+                        <p class="form-hint">Select all that apply</p>
+                        
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="chargingMethods" value="home_charging">
+                                <span class="checkbox-label">🏠 Home Charging</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="chargingMethods" value="public_charging">
+                                <span class="checkbox-label">🌐 Public Charging</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="chargingMethods" value="battery_swap">
+                                <span class="checkbox-label">🔄 Battery Swap</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="chargingMethods" value="fast_charging">
+                                <span class="checkbox-label">⚡ Fast Charging</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="chargingMethods" value="wireless">
+                                <span class="checkbox-label">📡 Wireless Charging</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Company Details -->
+                    <fieldset class="form-section">
+                        <legend>Company Details</legend>
+                        
+                        <div class="form-group">
+                            <label for="description">Company Description</label>
+                            <textarea 
+                                id="description" 
+                                name="description" 
+                                rows="4" 
+                                placeholder="Tell us about your company and what you do in the e-mobility space..."
+                            ></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="yearFounded">Year Founded</label>
+                                <input 
+                                    type="number" 
+                                    id="yearFounded" 
+                                    name="yearFounded" 
+                                    min="2000" 
+                                    max="2026"
+                                    placeholder="e.g., 2020"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="employees">Number of Employees</label>
+                                <select id="employees" name="employees">
+                                    <option value="">Select range</option>
+                                    <option value="1-10">1-10</option>
+                                    <option value="11-50">11-50</option>
+                                    <option value="51-100">51-100</option>
+                                    <option value="101-500">101-500</option>
+                                    <option value="500+">500+</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPerson">Contact Person Name</label>
+                            <input 
+                                type="text" 
+                                id="contactPerson" 
+                                name="contactPerson" 
+                                placeholder="Name of point of contact"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone" 
+                                placeholder="+254..."
+                            >
+                        </div>
+                    </fieldset>
+
+                    <!-- Agreement -->
+                    <fieldset class="form-section">
+                        <div class="checkbox-item terms">
+                            <input 
+                                type="checkbox" 
+                                id="agreement" 
+                                name="agreement" 
+                                required
+                            >
+                            <label for="agreement" class="checkbox-label">
+                                I confirm that the information provided is accurate and I consent to have my company listed on the E-Mobility Africa Directory. I understand this directory is for informational purposes only.
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-large btn-primary">Submit Company Information</button>
+                        <button type="reset" class="btn btn-large btn-secondary">Clear Form</button>
+                    </div>
+
+                    <div class="form-message" id="formMessage"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About E-Mobility Africa</h4>
+                    <p>Building a comprehensive directory of African e-mobility companies driving sustainable transportation across the continent.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#directory">Directory</a></li>
+                        <li><a href="#statistics">Statistics</a></li>
+                        <li><a href="#submit">List Company</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>info@emobilityafrica.com</p>
+                    <p>+254 XXX XXX XXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 E-Mobility Africa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
