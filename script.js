@@ -9,22 +9,22 @@ energyModels:["Battery Swapping"]
 
 {
 name:"Roam",
-countries:["Kenya","Uganda","Tanzania"],
-categories:["Motorcycle","Bus","Car"],
-energyModels:["Public Charging"]
+countries:["Kenya"],
+categories:["Motorcycle","Bus"],
+energyModels:["Public Charging","Home Charging"]
 },
 
 {
 name:"Spiro",
-countries:["Kenya","Rwanda","Nigeria","Benin","Togo"],
-categories:["Motorcycle","3 Wheeler","Financing"],
+countries:["Kenya","Rwanda","Benin","Togo"],
+categories:["Motorcycle","3 Wheeler"],
 energyModels:["Battery Swapping"]
 },
 
 {
 name:"BasiGo",
 countries:["Kenya","Rwanda"],
-categories:["Bus","Financing"],
+categories:["Bus"],
 energyModels:["Public Charging"]
 }
 
