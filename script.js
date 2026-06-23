@@ -50,8 +50,25 @@ name:"Zeno",
 countries:["Kenya"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping","Public Charging"]
+},
+  {
+name:"Kofa",
+countries:["Kenya","Ghana"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Alpha Mobility",
+countries:["Kenya"],
+categories:["3 Wheelers"],
+energyModels:["Battery Swapping"]
 }
-
+    {
+name:"Moja EV",
+countries:["Kenya"],
+categories:["Cars"],
+energyModels:["Public Charging","Home Charging"]
+}
 ];
 
 const categoryFilter =
