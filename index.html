@@ -25,20 +25,26 @@
     </nav>
 
     <section class="hero-content">
-      <div class="hero-copy">
+    <div class="hero-copy">
         <span class="eyebrow">Africa-wide eMobility directory</span>
         <h1>Explore Electric Mobility Companies in Africa</h1>
         <p>
-          Explore companies working across motorcycles, buses, cars, electric three wheelers,
-          electric trucks,Software, infrastructure and financing solutions.
+            Explore companies working across motorcycles, buses,
+            cars, electric three wheelers, electric trucks,
+            software, charging infrastructure and financing solutions.
         </p>
-      </div>
-      <div class="hero-panel">
-        <div class="panel-label">Live directory</div>
-        <div class="panel-value" id="visibleCount">0</div>
-        <div class="panel-caption">eMobility companies visible</div>
-      </div>
-    </section>
+        <div class="hero-actions">
+            <a href="#companyGrid" class="hero-btn">
+                Explore Directory
+            </a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img
+            src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1400&auto=format&fit=crop"
+            alt="Electric Mobility Africa">
+    </div>
+</section>
   </header>
 
   <main class="container">
@@ -52,30 +58,39 @@
     </section>
 
     <section class="filters-section">
-      <div class="section-head">
-        <h2>Filter companies</h2>
-        <p>Use country and category together to narrow results.</p>
-      </div>
+    <div class="section-head">
+        <h2>Filter Companies</h2>
+        <p>Filter by country, category and energy model.</p>
+    </div>
 
-      <div class="filters">
+    <div class="filters">
+
         <label class="field">
-          <span>Search company</span>
-          <input id="searchInput" type="text" placeholder="Type a company name..." />
+            <span>Search Company</span>
+            <input id="searchInput" type="text" placeholder="Type company name..." />
         </label>
 
         <label class="field">
-          <span>Category</span>
-          <select id="categoryFilter"></select>
+            <span>Category</span>
+            <select id="categoryFilter"></select>
         </label>
 
         <label class="field">
-          <span>Country</span>
-          <select id="countryFilter"></select>
+            <span>Country</span>
+            <select id="countryFilter"></select>
         </label>
 
-        <button id="resetBtn" class="reset-btn" type="button">Reset filters</button>
-      </div>
-    </section>
+        <label class="field">
+            <span>Energy Model</span>
+            <select id="energyFilter"></select>
+        </label>
+
+        <button id="resetBtn" class="reset-btn">
+            Reset Filters
+        </button>
+
+    </div>
+</section>
 
     <section class="results-section">
       <div class="results-head">
