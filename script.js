@@ -60,13 +60,13 @@ energyModels:["Battery Swapping"]
   {
 name:"Alpha Mobility",
 countries:["Kenya"],
-categories:["3 Wheelers"],
+categories:["3 Wheeler"],
 energyModels:["Battery Swapping"]
 },
     {
 name:"Moja EV",
 countries:["Kenya"],
-categories:["Cars"],
+categories:["Car"],
 energyModels:["Public Charging","Home Charging"]
 }
 ];
