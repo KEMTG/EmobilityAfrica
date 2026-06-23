@@ -10,8 +10,8 @@ energyModels:["Battery Swapping"]
 {
 name:"Roam",
 countries:["Kenya"],
-categories:["Motorcycle","Bus"],
-energyModels:["Public Charging","Home Charging"]
+categories:["Motorcycle"],
+energyModels:["Public Charging","Battery Swapping","Home Charging"]
 },
 
 {
