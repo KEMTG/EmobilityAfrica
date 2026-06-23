@@ -1,300 +1,250 @@
-const countries = [
-  "All Countries",
-  "Algeria","Angola","Benin","Botswana","Burkina Faso","Burundi","Cabo Verde","Cameroon","Central African Republic",
-  "Chad","Comoros","Congo","Côte d’Ivoire","Djibouti","Democratic Republic of the Congo","Egypt","Equatorial Guinea",
-  "Eritrea","Eswatini","Ethiopia","Gabon","Gambia","Ghana","Guinea","Guinea-Bissau","Kenya","Lesotho","Liberia",
-  "Libya","Madagascar","Malawi","Mali","Mauritania","Mauritius","Morocco","Mozambique","Namibia","Niger","Nigeria",
-  "Rwanda","São Tomé and Príncipe","Senegal","Seychelles","Sierra Leone","Somalia","South Africa","South Sudan",
-  "Sudan","Tanzania","Togo","Tunisia","Uganda","Zambia","Zimbabwe"
-];
-
-const categories = [
-    "All Categories",
-    "Motorcycle Companies",
-    "Bus Companies",
-    "Car Companies",
-    "Electric 3 Wheelers",
-    "Electric Trucks",
-    "Charging Infrastructure",
-    "Software",
-    "Financing Companies"
-];
-const energyModels = [
-    "All Energy Models",
-    "Battery Swapping",
-    "Public Charging",
-    "Home Charging",
-    "Charging + Battery Systems",
-    "Charging + Leasing / Pay-As-You-Drive",
-    "Battery Swapping + Financing"
-];
-
 const companies = [
+
 {
-    name:"Ampersand Energy",
-    countries:[
-        "Kenya",
-        "Rwanda"
-    ],
-    categories:[
-        "Motorcycle Companies"
-    ],
-    energyModel:[
-        "Battery Swapping"
-    ],
-    description:
-    "Electric motorcycle ecosystem with battery swapping."
+name:"Ampersand Energy",
+countries:["Kenya","Rwanda"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
 },
 
 {
-    name:"Roam",
-    countries:[
-        "Kenya",
-        "Uganda",
-        "Tanzania"
-    ],
-    categories:[
-        "Motorcycle Companies",
-        "Bus Companies",
-        "Car Companies"
-    ],
-    energyModel:[
-        "Public Charging",
-        "Charging + Battery Systems"
-    ],
-    description:
-    "Electric mobility manufacturing and transport solutions."
+name:"Roam",
+countries:["Kenya","Uganda","Tanzania"],
+categories:["Motorcycle","Bus","Car"],
+energyModels:["Public Charging"]
 },
 
 {
-    name:"Spiro",
-    countries:[
-        "Kenya",
-        "Uganda",
-        "Rwanda",
-        "Nigeria",
-        "Benin",
-        "Togo"
-    ],
-    categories:[
-        "Motorcycle Companies",
-        "Electric 3 Wheelers",
-        "Financing Companies"
-    ],
-    energyModel:[
-        "Battery Swapping",
-        "Battery Swapping + Financing"
-    ],
-    description:
-    "Battery swapping ecosystem and vehicle financing."
+name:"Spiro",
+countries:["Kenya","Rwanda","Nigeria","Benin","Togo"],
+categories:["Motorcycle","3 Wheeler","Financing"],
+energyModels:["Battery Swapping"]
 },
+
 {
-    name:"BasiGo",
-    countries:[
-        "Kenya",
-        "Rwanda"
-    ],
-    categories:[
-        "Bus Companies",
-        "Financing Companies"
-    ],
-    energyModel:[
-        "Charging + Leasing / Pay-As-You-Drive"
-    ],
-    description:
-    "Electric buses for public transport operators."
-}
-];
-const els = {
-  statsGrid: document.getElementById("statsGrid"),
-  visibleCount: document.getElementById("visibleCount"),
-  companyGrid: document.getElementById("companyGrid"),
-  emptyState: document.getElementById("emptyState"),
-  resultsLabel: document.getElementById("resultsLabel"),
-  categoryFilter: document.getElementById("categoryFilter"),
-  countryFilter: document.getElementById("countryFilter"),
-  searchInput: document.getElementById("searchInput"),
-  resetBtn: document.getElementById("resetBtn"),
-  energyFilter:document.getElementById("energyFilter"),
-  year: document.getElementById("year")
-};
-
-els.year.textContent = new Date().getFullYear();
-
-function countByCategory(cat) {
-  return companies.filter(company => company.categories.includes(cat)).length;
+name:"BasiGo",
+countries:["Kenya","Rwanda"],
+categories:["Bus","Financing"],
+energyModels:["Public Charging"]
 }
 
-function buildStats() {
-const stats = [
-{
-label:"Total Companies",
-value:companies.length
-},
-{
-label:"Motorcycle Companies",
-value:countByCategory(
-"Motorcycle Companies"
-)
-},
-{
-label:"Bus Companies",
-value:countByCategory(
-"Bus Companies"
-)
-},
-{
-label:"Car Companies",
-value:countByCategory(
-"Car Companies"
-)
-},
-{
-label:"Electric 3 Wheelers",
-value:countByCategory(
-"Electric 3 Wheelers"
-)
-},
-{
-label:"Electric Trucks",
-value:countByCategory(
-"Electric Trucks"
-)
-},
-{
-label:"Software",
-value:countByCategory(
-"Software"
-)
-},
-
-{
-label:"Charging Infrastructure",
-value:countByCategory(
-"Charging Infrastructure"
-)
-},
-
-{
-label:"Financing Companies",
-value:countByCategory(
-"Financing Companies"
-)
-}
 ];
 
-  els.statsGrid.innerHTML = stats.map(stat => `
-    <article class="stat-card">
-      <div class="stat-label">${stat.label}</div>
-      <div class="stat-value">${stat.value}</div>
-    </article>
-  `).join("");
-}
+const categoryFilter =
+document.getElementById("categoryFilter");
 
-function populateFilters() {
-  els.categoryFilter.innerHTML = categories.map(category =>
-    `<option value="${category}">${category}</option>`
-  ).join("");
+const countryFilter =
+document.getElementById("countryFilter");
 
-  els.countryFilter.innerHTML = countries.map(country =>
-    `<option value="${country}">${country}</option>`
-  ).join("");
+const energyFilter =
+document.getElementById("energyFilter");
 
-  els.energyFilter.innerHTML =energyModels.map(model =>
-`<option value="${model}">${model}</option>`
-).join("");
-}
+const searchInput =
+document.getElementById("searchInput");
 
-function matchesFilters(company){
-    const category =
-        els.categoryFilter.value;
-    const country =
-        els.countryFilter.value;
-    const energy =
-        els.energyFilter.value;
-    const search =
-        els.searchInput.value
-        .toLowerCase()
-        .trim();
-    const categoryMatch =
-        category === "All Categories" ||
-        company.categories.includes(category);
-    const countryMatch =
-        country === "All Countries" ||
-        company.countries.includes(country);
-    const energyMatch =
-        energy === "All Energy Models" ||
-        company.energyModel.includes(energy);
-    const searchMatch =
-        search === "" ||
-        company.name.toLowerCase().includes(search);
-    return (
-        categoryMatch &&
-        countryMatch &&
-        energyMatch &&
-        searchMatch
-    );
-}
+const container =
+document.getElementById("companyContainer");
 
-function renderCompanies() {
-  const filtered = companies.filter(matchesFilters);
+const resultsCount =
+document.getElementById("resultsCount");
 
-  els.visibleCount.textContent = String(filtered.length);
-  els.resultsLabel.textContent = `Showing ${filtered.length} compan${filtered.length === 1 ? "y" : "ies"}`;
-  els.companyGrid.innerHTML = filtered.map(company => `
-    <article class="card">
-      <div class="card-top">
-        <div>
-          <h3>${company.name}</h3>
-          <div class="country-list">${company.countries.join(", ")}</div>
-        </div>
-      </div>
-      <div class="badges">
-        ${company.categories.map(category => `<span class="badge">${category}</span>`).join("")}
-      </div>
-      <div class="meta">
-    <div>
-        <strong>Energy Model:</strong>
-        ${company.energyModel.join(", ")}
-    </div>
-    <div>
-        <strong>Countries:</strong>
-        ${company.countries.join(", ")}
-    </div>
-    <div>
-        ${company.description}
-    </div>
-</div>
+function populateFilters(){
 
-      <div class="meta">
-        <div><strong>Energy model:</strong> ${company.energyModel}</div>
-        <div><strong>About:</strong> ${company.description}</div>
-      </div>
-    </article>
-  `).join("");
+const countries =
+[...new Set(companies.flatMap(c=>c.countries))]
+.sort();
 
-  els.emptyState.classList.toggle("hidden", filtered.length !== 0);
-}
+countryFilter.innerHTML=
+'<option value="">All Countries</option>';
 
-function resetFilters(){
-    els.categoryFilter.value =
-    "All Categories";
-    els.countryFilter.value =
-    "All Countries";
-    els.energyFilter.value =
-    "All Energy Models";
-    els.searchInput.value = "";
-    renderCompanies();
-}
-
-["change", "input"].forEach(evt => {
-  els.categoryFilter.addEventListener(evt, renderCompanies);
-  els.countryFilter.addEventListener(evt, renderCompanies);
-  els.searchInput.addEventListener(evt, renderCompanies);
+countries.forEach(country=>{
+countryFilter.innerHTML+=
+`<option>${country}</option>`;
 });
 
-els.resetBtn.addEventListener("click", resetFilters);
+const categories =
+[...new Set(companies.flatMap(c=>c.categories))]
+.sort();
 
-buildStats();
+categoryFilter.innerHTML=
+'<option value="">All Categories</option>';
+
+categories.forEach(cat=>{
+categoryFilter.innerHTML+=
+`<option>${cat}</option>`;
+});
+
+const energies =
+[...new Set(companies.flatMap(c=>c.energyModels))]
+.sort();
+
+energyFilter.innerHTML=
+'<option value="">All Energy Models</option>';
+
+energies.forEach(model=>{
+energyFilter.innerHTML+=
+`<option>${model}</option>`;
+});
+
+}
+
+function renderCompanies(){
+
+const search =
+searchInput.value.toLowerCase();
+
+const country =
+countryFilter.value;
+
+const category =
+categoryFilter.value;
+
+const energy =
+energyFilter.value;
+
+const filtered =
+companies.filter(company=>{
+
+const searchMatch =
+company.name.toLowerCase()
+.includes(search);
+
+const countryMatch =
+!country ||
+company.countries.includes(country);
+
+const categoryMatch =
+!category ||
+company.categories.includes(category);
+
+const energyMatch =
+!energy ||
+company.energyModels.includes(energy);
+
+return searchMatch &&
+countryMatch &&
+categoryMatch &&
+energyMatch;
+
+});
+
+container.innerHTML="";
+
+filtered.forEach(company=>{
+
+const card =
+document.createElement("div");
+
+card.className =
+"company-card";
+
+card.innerHTML=`
+
+<h3>${company.name}</h3>
+
+<p>
+<strong>Countries:</strong>
+${company.countries.join(", ")}
+</p>
+
+<p>
+<strong>Categories:</strong>
+</p>
+
+${company.categories.map(cat=>
+`<span class="badge">${cat}</span>`
+).join("")}
+
+<p style="margin-top:15px;">
+<strong>Energy Model:</strong>
+${company.energyModels.join(", ")}
+</p>
+
+`;
+
+container.appendChild(card);
+
+});
+
+resultsCount.innerText =
+`${filtered.length} Companies Found`;
+
+updateStats();
+}
+
+function countCategory(name){
+
+return companies.filter(
+c=>c.categories.includes(name)
+).length;
+
+}
+
+function updateStats(){
+
+document.getElementById(
+"totalCompanies"
+).innerText=
+companies.length;
+
+document.getElementById(
+"motorcycleCount"
+).innerText=
+countCategory("Motorcycle");
+
+document.getElementById(
+"busCount"
+).innerText=
+countCategory("Bus");
+
+document.getElementById(
+"carCount"
+).innerText=
+countCategory("Car");
+
+document.getElementById(
+"threeCount"
+).innerText=
+countCategory("3 Wheeler");
+
+document.getElementById(
+"financeCount"
+).innerText=
+countCategory("Financing");
+
+}
+
+searchInput.addEventListener(
+"input",
+renderCompanies
+);
+
+countryFilter.addEventListener(
+"change",
+renderCompanies
+);
+
+categoryFilter.addEventListener(
+"change",
+renderCompanies
+);
+
+energyFilter.addEventListener(
+"change",
+renderCompanies
+);
+
+document.getElementById("resetBtn")
+.addEventListener("click",()=>{
+
+searchInput.value="";
+countryFilter.value="";
+categoryFilter.value="";
+energyFilter.value="";
+
+renderCompanies();
+
+});
+
 populateFilters();
-resetFilters();
+renderCompanies();
