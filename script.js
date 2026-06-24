@@ -248,6 +248,11 @@ document.getElementById(
 "carCount"
 ).innerText=
 countCategory("Car");
+  
+document.getElementById(
+"chargingCount"
+).innerText=
+countCategory("EV Charging");
 
 document.getElementById(
 "threeCount"
@@ -258,14 +263,11 @@ document.getElementById(
 "financeCount"
 ).innerText=
 countCategory("Financing");
-
 }
-
 searchInput.addEventListener(
 "input",
 renderCompanies
 );
-
 countryFilter.addEventListener(
 "change",
 renderCompanies
