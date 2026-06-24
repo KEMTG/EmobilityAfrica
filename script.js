@@ -30,7 +30,7 @@ energyModels:["Public Charging"]
   {
 name:"Kabisa EV",
 countries:["Kenya","Rwanda"],
-categories:["Suv","Commercial Vehicles","EV Charging"],
+categories:["Car","Commercial Vehicles","EV Charging"],
 energyModels:["Public Charging"]
 },
   {
@@ -256,6 +256,10 @@ document.getElementById(
 ).innerText=
 countCategory("Bus");
 
+document.getElementById(
+"carCount"
+).innerText=
+countCategory("Car");
 document.getElementById(
 "carCount"
 ).innerText=
