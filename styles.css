@@ -147,7 +147,7 @@ font-weight:bold;
 footer{
 margin-top:40px;
 padding:30px;
-background:#0b1a10;
+background:linear-gradient(135deg, #0F5132, #0B172A);
 text-align:center;
 }
 
