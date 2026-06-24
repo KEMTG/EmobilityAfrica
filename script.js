@@ -260,10 +260,16 @@ document.getElementById(
 "carCount"
 ).innerText=
 countCategory("Car");
+  
 document.getElementById(
 "carCount"
 ).innerText=
 countCategory("Car");
+  
+document.getElementById(
+"commercialCount"
+).innerText=
+countCategory("Commercial Vehicles");
   
 document.getElementById(
 "chargingCount"
