@@ -20,12 +20,6 @@ countries:["Kenya","Rwanda","Benin","Togo"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
-  {
-name:"EVChaja",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["Public Charging"]
-},
 
 {
 name:"BasiGo",
@@ -74,7 +68,19 @@ name:"Moja EV",
 countries:["Kenya"],
 categories:["Car"],
 energyModels:["Public Charging","Home Charging"]
-}
+},
+   {
+name:"EVChaja",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"Powerhive",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Battery Swapping"]
+},
 ];
 
 const categoryFilter =
