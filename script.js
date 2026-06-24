@@ -28,6 +28,12 @@ categories:["Bus"],
 energyModels:["Public Charging"]
 },
   {
+name:"Kabisa EV",
+countries:["Kenya","Rwanda"],
+categories:["Suv","Commercial Vehicles","EV Charging"],
+energyModels:["Public Charging"]
+},
+  {
 name:"M-KOPA",
 countries:["Kenya"],
 categories:["Financing"],
@@ -80,7 +86,7 @@ name:"Powerhive",
 countries:["Kenya"],
 categories:["EV Charging"],
 energyModels:["Battery Swapping"]
-},
+}
 ];
 
 const categoryFilter =
