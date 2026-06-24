@@ -63,6 +63,12 @@ countries:["Kenya"],
 categories:["Financing"],
 energyModels:[""]
 },
+    {
+name:"Watu Credit",
+countries:["Kenya","Sierra Leone","Nigeria","Uganda","Rwanda","Tanzania","DRC","South Africa"],
+categories:["Financing"],
+energyModels:[""]
+},
   {
 name:"Enzi",
 countries:["Kenya"],
