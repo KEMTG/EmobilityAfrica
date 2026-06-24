@@ -20,6 +20,29 @@ countries:["Kenya","Rwanda","Benin","Togo"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
+  {
+name:"Zembo",
+countries:["Uganda"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+   {
+name:"Mazi Mobility",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+     {
+name:"Kibo",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  name:"Songa Mobility",
+countries:["Kenya"],
+categories:["3 Wheeler","EV Charging"],
+energyModels:["Public Charging"]
+},
 
 {
 name:"BasiGo",
