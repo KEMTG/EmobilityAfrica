@@ -26,6 +26,12 @@ countries:["Uganda"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
+  {
+name:"Gogo Electric",
+countries:["Uganda"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
    {
 name:"Mazi Mobility",
 countries:["Kenya"],
