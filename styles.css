@@ -146,8 +146,9 @@ font-weight:bold;
 
 footer{
 background: linear-gradient(135deg, #00E676, #00C853);
-    color: #0B172A;
-    padding: 3rem 0;
+color: #0B172A;
+padding: 3rem 0;
+text-align: center;
 }
 
 footer a{
