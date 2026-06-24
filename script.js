@@ -20,6 +20,12 @@ countries:["Kenya","Rwanda","Benin","Togo"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
+  {
+name:"EVChaja",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
 
 {
 name:"BasiGo",
