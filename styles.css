@@ -145,10 +145,17 @@ font-weight:bold;
 }
 
 footer{
-margin-top:40px;
-padding:30px;
-background:linear-gradient(135deg, #0F5132, #0B172A);
-text-align:center;
+footer {
+    background: linear-gradient(
+        135deg,
+        #00E676 0%,
+        #00C853 50%,
+        #00BCD4 100%
+    );
+    color: #0B172A;
+    padding: 3rem 0;
+    box-shadow: 0 -10px 30px rgba(0, 230, 118, 0.25);
+}
 }
 
 footer a{
