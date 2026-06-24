@@ -38,7 +38,8 @@ countries:["Kenya"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
-  name:"Songa Mobility",
+{
+name:"Songa Mobility",
 countries:["Kenya"],
 categories:["3 Wheeler","EV Charging"],
 energyModels:["Public Charging"]
