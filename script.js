@@ -13,6 +13,12 @@ countries:["Kenya"],
 categories:["Motorcycle"],
 energyModels:["Public Charging","Battery Swapping","Home Charging"]
 },
+  {
+name:"Dodai",
+countries:["Ethiopia"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
 
 {
 name:"Spiro",
