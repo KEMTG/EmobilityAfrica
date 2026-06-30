@@ -101,13 +101,19 @@ energyModels:["Public Charging"]
    {
 name:"GIZ Kenya",
 countries:["Kenya"],
-categories:["Development Partners"],
+categories:["Development Partners & Foundations"],
 energyModels:["NA"]
 },
    {
 name:"Siemens Stiftung",
 countries:["Kenya"],
-categories:["Development Partners"],
+categories:["Development Partners & Foundations"],
+energyModels:["NA"]
+},
+  {
+name:"United Nations Environment Programme",
+countries:["Kenya"],
+categories:["Development Partners & Foundations"],
 energyModels:["NA"]
 },
   {
