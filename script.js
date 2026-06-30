@@ -6,6 +6,12 @@ countries:["Kenya","Rwanda"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
+  {
+name:"Wahu Mobility",
+countries:["Ghana"],
+categories:["eBikes"],
+energyModels:["Battery Swapping","Home Charging"]
+},
 
 {
 name:"Roam",
