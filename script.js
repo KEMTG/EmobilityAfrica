@@ -12,6 +12,12 @@ countries:["Ghana"],
 categories:["eBikes"],
 energyModels:["Battery Swapping","Home Charging"]
 },
+  {
+name:"eBee Africa",
+countries:["Kenya","Rwanda","Uganda"],
+categories:["eBikes"],
+energyModels:["Battery Swapping","Home Charging"]
+},
 
 {
 name:"Roam",
