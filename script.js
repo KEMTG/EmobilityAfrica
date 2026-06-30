@@ -8,7 +8,7 @@ energyModels:["Battery Swapping"]
 },
   {
 name:"Wahu Mobility",
-countries:["Ghana"],
+countries:["Ghana","Togo"],
 categories:["eBikes"],
 energyModels:["Battery Swapping","Home Charging"]
 },
@@ -16,7 +16,7 @@ energyModels:["Battery Swapping","Home Charging"]
 name:"eBee Africa",
 countries:["Kenya","Rwanda","Uganda"],
 categories:["eBikes"],
-energyModels:["Battery Swapping","Home Charging"]
+energyModels:["Home Charging"]
 },
 
 {
