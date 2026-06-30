@@ -113,8 +113,7 @@ energyModels:["NA"]
   {
 name:"United Nations Environment Programme",
 countries:["Kenya"],
-categories:["Development Partners & Foundations"],
-energyModels:["NA"]
+categories:["Development Partners & Foundations"]
 },
   {
 name:"M-KOPA",
