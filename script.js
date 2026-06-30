@@ -98,23 +98,106 @@ countries:["Kenya","Rwanda"],
 categories:["Car","Commercial Vehicles","EV Charging"],
 energyModels:["Public Charging"]
 },
+   {
+name:"GIZ Kenya",
+countries:["Kenya"],
+categories:["Development Partners"],
+energyModels:["NA"]
+},
+   {
+name:"Siemens Stiftung",
+countries:["Kenya"],
+categories:["Development Partners"],
+energyModels:["NA"]
+},
   {
 name:"M-KOPA",
 countries:["Kenya"],
 categories:["Financing","Motorcycle"],
-energyModels:[""]
+energyModels:["NA"]
+},
+    {
+name:"Fortune Credit",
+countries:["Kenya"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
+    {
+name:"Equator Mobility",
+countries:["Kenya"],
+categories:["Leasing","Car","EV Maintenance"],
+energyModels:["Public Charging"]
+},
+    {
+name:"Drivelectric",
+countries:["Kenya"],
+categories:["Leasing","Financing","Car"],
+energyModels:["Public Charging"]
+},
+     {
+name:"Izi Electric",
+countries:["Rwanda"],
+categories:["Leasing","Bus"],
+energyModels:["Public Charging"]
+},
+    {
+name:"EMAK",
+countries:["Kenya"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+  {
+name:"TAEMA",
+countries:["Tanzania"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+  {
+name:"ZEMIA",
+countries:["Zambia"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+   {
+name:"UEA",
+countries:["Uganda"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+     {
+name:"EOA",
+countries:["Ethiopia"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+  {
+name:"Advance Mobility Centre",
+countries:["Kenya"],
+categories:["Training"],
+energyModels:["NA"]
+},
+   {
+name:"NITA",
+countries:["Kenya"],
+categories:["Training"],
+energyModels:["NA"]
+},
+  name:"WTS",
+countries:["Kenya"],
+categories:["Training"],
+energyModels:["NA"]
 },
    {
 name:"MAX",
 countries:["Nigeria"],
 categories:["Financing","Motorcycle"],
-energyModels:[""]
+energyModels:["NA"]
 },
     {
 name:"Watu Credit",
 countries:["Kenya","Sierra Leone","Nigeria","Uganda","Rwanda","Tanzania","DRC","South Africa"],
-categories:["Financing"],
-energyModels:[""]
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
 },
   {
 name:"Enzi",
