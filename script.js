@@ -182,7 +182,7 @@ countries:["Kenya"],
 categories:["Training"],
 energyModels:["NA"]
 },
-  name:"WTS",
+  {name:"WTS",
 countries:["Kenya"],
 categories:["Training"],
 energyModels:["NA"]
