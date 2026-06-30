@@ -26,6 +26,12 @@ categories:["Motorcycle"],
 energyModels:["Public Charging","Battery Swapping","Home Charging"]
 },
   {
+name:"Kiri EV",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
 name:"Dodai",
 countries:["Ethiopia"],
 categories:["Motorcycle"],
@@ -34,7 +40,7 @@ energyModels:["Battery Swapping"]
 
 {
 name:"Spiro",
-countries:["Kenya","Rwanda","Benin","Togo"],
+countries:["Kenya","Rwanda","Benin","Togo","Uganda","Tanzania","Nigeria","Cameroon"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
@@ -74,7 +80,12 @@ countries:["Kenya"],
 categories:["3 Wheeler","EV Charging"],
 energyModels:["Public Charging"]
 },
-
+{
+name:"Emergi",
+countries:["Liberia"],
+categories:["3 Wheeler"],
+energyModels:["tbc"]
+},
 {
 name:"BasiGo",
 countries:["Kenya","Rwanda"],
@@ -90,7 +101,13 @@ energyModels:["Public Charging"]
   {
 name:"M-KOPA",
 countries:["Kenya"],
-categories:["Financing"],
+categories:["Financing","Motorcycle"],
+energyModels:[""]
+},
+   {
+name:"MAX",
+countries:["Nigeria"],
+categories:["Financing","Motorcycle"],
 energyModels:[""]
 },
     {
@@ -134,6 +151,12 @@ name:"Moja EV",
 countries:["Kenya"],
 categories:["Car"],
 energyModels:["Public Charging","Home Charging"]
+},
+  {
+name:"Neo Motors",
+countries:["Morocco"],
+categories:["Car"],
+energyModels:["tbc"]
 },
    {
 name:"EVChaja",
