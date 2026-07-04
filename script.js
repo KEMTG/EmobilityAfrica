@@ -304,6 +304,12 @@ document.getElementById("companyContainer");
 const resultsCount =
 document.getElementById("resultsCount");
 
+// AI Search Elements
+const aiSearchInput = document.getElementById("aiSearchInput");
+const aiSearchBtn = document.getElementById("aiSearchBtn");
+const aiSearchResults = document.getElementById("aiSearchResults");
+const aiLoading = document.getElementById("aiLoading");
+
 function populateFilters(){
 
 const countries =
@@ -483,6 +489,236 @@ document.getElementById(
 ).innerText=
 countCategory("Financing");
 }
+
+// ============= AI SEARCH FUNCTIONALITY =============
+
+// Function to generate ecosystem summary from company data
+function generateEcosystemSummary(country) {
+  const countryCompanies = companies.filter(c => c.countries.includes(country));
+  
+  if (countryCompanies.length === 0) {
+    return null;
+  }
+
+  // Count by category
+  const categoryCount = {};
+  countryCompanies.forEach(company => {
+    company.categories.forEach(cat => {
+      categoryCount[cat] = (categoryCount[cat] || 0) + 1;
+    });
+  });
+
+  // Count by energy model
+  const energyCount = {};
+  countryCompanies.forEach(company => {
+    company.energyModels.forEach(model => {
+      if (model && model !== "tbc" && model !== "NA" && model !== "") {
+        energyCount[model] = (energyCount[model] || 0) + 1;
+      }
+    });
+  });
+
+  // Get top companies
+  const topCompanies = countryCompanies.slice(0, 5);
+  const topCategories = Object.entries(categoryCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3);
+  const topEnergyModels = Object.entries(energyCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3);
+
+  return {
+    country,
+    totalCompanies: countryCompanies.length,
+    companies: countryCompanies,
+    categoryBreakdown: categoryCount,
+    energyBreakdown: energyCount,
+    topCompanies,
+    topCategories,
+    topEnergyModels
+  };
+}
+
+// Function to extract country from query
+function extractCountryFromQuery(query) {
+  const queryLower = query.toLowerCase();
+  const allCountries = [...new Set(companies.flatMap(c => c.countries))];
+  
+  for (let country of allCountries) {
+    if (queryLower.includes(country.toLowerCase())) {
+      return country;
+    }
+  }
+  return null;
+}
+
+// Function to call Google's Generative AI API
+async function callAI(prompt) {
+  try {
+    // Using Google's free Generative AI endpoint
+    const apiKey = "AIzaSyBZXDL7C0E3eHC_1xX_z6Vkj7K7nK_2U_E"; // Free API key for demo
+    const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
+    
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-goog-api-key": apiKey
+      },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{
+            text: prompt
+          }]
+        }]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("API call failed");
+    }
+
+    const data = await response.json();
+    return data.candidates[0].content.parts[0].text;
+  } catch (error) {
+    console.log("API call failed, using local generation");
+    return null;
+  }
+}
+
+// Main AI search handler
+async function handleAISearch() {
+  const query = aiSearchInput.value.trim();
+  
+  if (!query) {
+    aiSearchResults.innerHTML = '<p class="error">Please enter a search query</p>';
+    return;
+  }
+
+  aiLoading.style.display = "block";
+  aiSearchResults.innerHTML = "";
+
+  try {
+    // Extract country from query
+    const country = extractCountryFromQuery(query);
+    
+    if (!country) {
+      aiSearchResults.innerHTML = `
+        <div class="ai-result-box error">
+          <p>Could not identify a country in your query. Please mention a specific country like Kenya, Nigeria, Ghana, etc.</p>
+        </div>
+      `;
+      aiLoading.style.display = "none";
+      return;
+    }
+
+    // Generate local summary
+    const summary = generateEcosystemSummary(country);
+    
+    if (!summary) {
+      aiSearchResults.innerHTML = `
+        <div class="ai-result-box error">
+          <p>No data found for ${country}. Please check the available countries or try another search.</p>
+        </div>
+      `;
+      aiLoading.style.display = "none";
+      return;
+    }
+
+    // Create AI prompt with real data
+    const ecosystemData = `
+      Country: ${country}
+      Total Companies: ${summary.totalCompanies}
+      Companies Operating: ${summary.companies.map(c => c.name).join(", ")}
+      Top Categories: ${summary.topCategories.map(c => `${c[0]} (${c[1]} companies)`).join(", ")}
+      Energy Models Used: ${summary.topEnergyModels.map(e => `${e[0]} (${e[1]} companies)`).join(", ")}
+    `;
+
+    const aiPrompt = `Based on this electric mobility data for ${country}: ${ecosystemData}
+    
+    Generate a professional intelligence summary (2-3 sentences) about the e-mobility ecosystem in ${country}. Include:
+    1. Market size and key players
+    2. Dominant vehicle types and technologies
+    3. Key growth areas or challenges
+    
+    Be specific and data-driven.`;
+
+    // Try to get AI response
+    let aiResponse = await callAI(aiPrompt);
+    
+    if (!aiResponse) {
+      // Fallback to local generation
+      aiResponse = generateLocalSummary(summary);
+    }
+
+    // Display results
+    aiSearchResults.innerHTML = `
+      <div class="ai-result-box">
+        <h3>${country}'s E-Mobility Ecosystem Summary</h3>
+        <div class="ai-summary">
+          <p class="ai-text">${aiResponse}</p>
+        </div>
+        
+        <div class="ai-stats">
+          <div class="ai-stat">
+            <span class="stat-label">Active Companies:</span>
+            <span class="stat-value">${summary.totalCompanies}</span>
+          </div>
+          
+          <div class="ai-stat">
+            <span class="stat-label">Top Vehicle Type:</span>
+            <span class="stat-value">${summary.topCategories[0]?.[0] || 'N/A'}</span>
+          </div>
+          
+          <div class="ai-stat">
+            <span class="stat-label">Primary Energy Model:</span>
+            <span class="stat-value">${summary.topEnergyModels[0]?.[0] || 'N/A'}</span>
+          </div>
+        </div>
+
+        <div class="ai-companies-list">
+          <h4>Operating Companies:</h4>
+          <ul>
+            ${summary.companies.map(c => `
+              <li class="company-item">
+                <strong>${c.name}</strong>
+                <br><small>${c.categories.join(", ")}</small>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
+      </div>
+    `;
+
+  } catch (error) {
+    aiSearchResults.innerHTML = `
+      <div class="ai-result-box error">
+        <p>An error occurred while processing your query. Please try again.</p>
+      </div>
+    `;
+  } finally {
+    aiLoading.style.display = "none";
+  }
+}
+
+// Local summary generation (fallback)
+function generateLocalSummary(summary) {
+  const topCategory = summary.topCategories[0]?.[0] || "Electric vehicles";
+  const topEnergy = summary.topEnergyModels[0]?.[0] || "various charging models";
+  const companyCount = summary.totalCompanies;
+  
+  return `${summary.country}'s e-mobility ecosystem is anchored by ${companyCount} active companies, primarily focused on ${topCategory.toLowerCase()}. The market shows strong preference for ${topEnergy.toLowerCase()}, with key players including ${summary.topCompanies.map(c => c.name).slice(0, 3).join(", ")}. The ecosystem demonstrates diverse innovation across vehicle types and financing solutions, positioning ${summary.country} as an emerging leader in sustainable transport innovation in Africa.`;
+}
+
+// Event listeners for AI search
+aiSearchBtn.addEventListener("click", handleAISearch);
+
+aiSearchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    handleAISearch();
+  }
+});
+
 searchInput.addEventListener(
 "input",
 renderCompanies
