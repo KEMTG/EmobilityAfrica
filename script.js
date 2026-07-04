@@ -4,7 +4,8 @@ const companies = [
 name:"Ampersand Energy",
 countries:["Kenya","Rwanda"],
 categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
+energyModels:["Battery Swapping"],
+description:"Builds electric motorcycles and battery swapping network."
 },
   {
 name:"Wahu Mobility",
