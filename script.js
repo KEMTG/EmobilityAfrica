@@ -286,29 +286,34 @@ energyModels:["Battery Swapping"]
 }
 ];
 
-const categoryFilter =
-document.getElementById("categoryFilter");
-
-const countryFilter =
-document.getElementById("countryFilter");
-
-const energyFilter =
-document.getElementById("energyFilter");
-
-const searchInput =
-document.getElementById("searchInput");
-
-const container =
-document.getElementById("companyContainer");
-
-const resultsCount =
-document.getElementById("resultsCount");
+const categoryFilter = document.getElementById("categoryFilter");
+const countryFilter = document.getElementById("countryFilter");
+const energyFilter = document.getElementById("energyFilter");
+const searchInput = document.getElementById("searchInput");
+const container = document.getElementById("companyContainer");
+const resultsCount = document.getElementById("resultsCount");
 
 // AI Search Elements
-const aiSearchInput = document.getElementById("aiSearchInput");
-const aiSearchBtn = document.getElementById("aiSearchBtn");
-const aiSearchResults = document.getElementById("aiSearchResults");
-const aiLoading = document.getElementById("aiLoading");
+let aiSearchInput, aiSearchBtn, aiSearchResults, aiLoading;
+
+// Initialize AI elements when DOM is ready
+function initializeAIElements() {
+  aiSearchInput = document.getElementById("aiSearchInput");
+  aiSearchBtn = document.getElementById("aiSearchBtn");
+  aiSearchResults = document.getElementById("aiSearchResults");
+  aiLoading = document.getElementById("aiLoading");
+  
+  if (aiSearchBtn) {
+    aiSearchBtn.addEventListener("click", handleAISearch);
+  }
+  if (aiSearchInput) {
+    aiSearchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        handleAISearch();
+      }
+    });
+  }
+}
 
 function populateFilters(){
 
@@ -465,11 +470,6 @@ document.getElementById(
 countCategory("Car");
   
 document.getElementById(
-"carCount"
-).innerText=
-countCategory("Car");
-  
-document.getElementById(
 "commercialCount"
 ).innerText=
 countCategory("Commercial Vehicles");
@@ -552,172 +552,128 @@ function extractCountryFromQuery(query) {
   return null;
 }
 
-// Function to call Google's Generative AI API
-async function callAI(prompt) {
-  try {
-    // Using Google's free Generative AI endpoint
-    const apiKey = "AIzaSyBZXDL7C0E3eHC_1xX_z6Vkj7K7nK_2U_E"; // Free API key for demo
-    const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
-    
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": apiKey
-      },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{
-            text: prompt
-          }]
-        }]
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error("API call failed");
-    }
-
-    const data = await response.json();
-    return data.candidates[0].content.parts[0].text;
-  } catch (error) {
-    console.log("API call failed, using local generation");
-    return null;
-  }
-}
-
-// Main AI search handler
-async function handleAISearch() {
-  const query = aiSearchInput.value.trim();
-  
-  if (!query) {
-    aiSearchResults.innerHTML = '<p class="error">Please enter a search query</p>';
-    return;
-  }
-
-  aiLoading.style.display = "block";
-  aiSearchResults.innerHTML = "";
-
-  try {
-    // Extract country from query
-    const country = extractCountryFromQuery(query);
-    
-    if (!country) {
-      aiSearchResults.innerHTML = `
-        <div class="ai-result-box error">
-          <p>Could not identify a country in your query. Please mention a specific country like Kenya, Nigeria, Ghana, etc.</p>
-        </div>
-      `;
-      aiLoading.style.display = "none";
-      return;
-    }
-
-    // Generate local summary
-    const summary = generateEcosystemSummary(country);
-    
-    if (!summary) {
-      aiSearchResults.innerHTML = `
-        <div class="ai-result-box error">
-          <p>No data found for ${country}. Please check the available countries or try another search.</p>
-        </div>
-      `;
-      aiLoading.style.display = "none";
-      return;
-    }
-
-    // Create AI prompt with real data
-    const ecosystemData = `
-      Country: ${country}
-      Total Companies: ${summary.totalCompanies}
-      Companies Operating: ${summary.companies.map(c => c.name).join(", ")}
-      Top Categories: ${summary.topCategories.map(c => `${c[0]} (${c[1]} companies)`).join(", ")}
-      Energy Models Used: ${summary.topEnergyModels.map(e => `${e[0]} (${e[1]} companies)`).join(", ")}
-    `;
-
-    const aiPrompt = `Based on this electric mobility data for ${country}: ${ecosystemData}
-    
-    Generate a professional intelligence summary (2-3 sentences) about the e-mobility ecosystem in ${country}. Include:
-    1. Market size and key players
-    2. Dominant vehicle types and technologies
-    3. Key growth areas or challenges
-    
-    Be specific and data-driven.`;
-
-    // Try to get AI response
-    let aiResponse = await callAI(aiPrompt);
-    
-    if (!aiResponse) {
-      // Fallback to local generation
-      aiResponse = generateLocalSummary(summary);
-    }
-
-    // Display results
-    aiSearchResults.innerHTML = `
-      <div class="ai-result-box">
-        <h3>${country}'s E-Mobility Ecosystem Summary</h3>
-        <div class="ai-summary">
-          <p class="ai-text">${aiResponse}</p>
-        </div>
-        
-        <div class="ai-stats">
-          <div class="ai-stat">
-            <span class="stat-label">Active Companies:</span>
-            <span class="stat-value">${summary.totalCompanies}</span>
-          </div>
-          
-          <div class="ai-stat">
-            <span class="stat-label">Top Vehicle Type:</span>
-            <span class="stat-value">${summary.topCategories[0]?.[0] || 'N/A'}</span>
-          </div>
-          
-          <div class="ai-stat">
-            <span class="stat-label">Primary Energy Model:</span>
-            <span class="stat-value">${summary.topEnergyModels[0]?.[0] || 'N/A'}</span>
-          </div>
-        </div>
-
-        <div class="ai-companies-list">
-          <h4>Operating Companies:</h4>
-          <ul>
-            ${summary.companies.map(c => `
-              <li class="company-item">
-                <strong>${c.name}</strong>
-                <br><small>${c.categories.join(", ")}</small>
-              </li>
-            `).join("")}
-          </ul>
-        </div>
-      </div>
-    `;
-
-  } catch (error) {
-    aiSearchResults.innerHTML = `
-      <div class="ai-result-box error">
-        <p>An error occurred while processing your query. Please try again.</p>
-      </div>
-    `;
-  } finally {
-    aiLoading.style.display = "none";
-  }
-}
-
 // Local summary generation (fallback)
 function generateLocalSummary(summary) {
   const topCategory = summary.topCategories[0]?.[0] || "Electric vehicles";
   const topEnergy = summary.topEnergyModels[0]?.[0] || "various charging models";
   const companyCount = summary.totalCompanies;
+  const topCompaniesNames = summary.topCompanies.slice(0, 2).map(c => c.name).join(", ");
   
-  return `${summary.country}'s e-mobility ecosystem is anchored by ${companyCount} active companies, primarily focused on ${topCategory.toLowerCase()}. The market shows strong preference for ${topEnergy.toLowerCase()}, with key players including ${summary.topCompanies.map(c => c.name).slice(0, 3).join(", ")}. The ecosystem demonstrates diverse innovation across vehicle types and financing solutions, positioning ${summary.country} as an emerging leader in sustainable transport innovation in Africa.`;
+  return `${summary.country}'s e-mobility ecosystem is anchored by ${companyCount} active companies, primarily focused on ${topCategory.toLowerCase()}. The market shows strong preference for ${topEnergy.toLowerCase()}, with key players including ${topCompaniesNames}. The ecosystem demonstrates diverse innovation across vehicle types and financing solutions, positioning ${summary.country} as an emerging leader in sustainable transport innovation in Africa.`;
 }
 
-// Event listeners for AI search
-aiSearchBtn.addEventListener("click", handleAISearch);
-
-aiSearchInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    handleAISearch();
+// Main AI search handler
+async function handleAISearch() {
+  console.log("AI Search triggered");
+  
+  if (!aiSearchInput) {
+    console.error("AI search input element not found");
+    return;
   }
-});
+  
+  const query = aiSearchInput.value.trim();
+  console.log("Query:", query);
+  
+  if (!query) {
+    if (aiSearchResults) {
+      aiSearchResults.innerHTML = '<div class="ai-result-box error"><p style="color: #ff6666;">Please enter a search query</p></div>';
+    }
+    return;
+  }
+
+  if (aiLoading) aiLoading.style.display = "block";
+  if (aiSearchResults) aiSearchResults.innerHTML = "";
+
+  try {
+    // Extract country from query
+    const country = extractCountryFromQuery(query);
+    console.log("Extracted country:", country);
+    
+    if (!country) {
+      if (aiSearchResults) {
+        aiSearchResults.innerHTML = `
+          <div class="ai-result-box error">
+            <p>Could not identify a country in your query. Please mention a specific country like Kenya, Nigeria, Ghana, Tanzania, Uganda, Rwanda, Ethiopia, Malawi, Zambia, DRC, or Liberia.</p>
+          </div>
+        `;
+      }
+      if (aiLoading) aiLoading.style.display = "none";
+      return;
+    }
+
+    // Generate local summary
+    const summary = generateEcosystemSummary(country);
+    console.log("Summary:", summary);
+    
+    if (!summary) {
+      if (aiSearchResults) {
+        aiSearchResults.innerHTML = `
+          <div class="ai-result-box error">
+            <p>No data found for ${country}. Please check the available countries or try another search.</p>
+          </div>
+        `;
+      }
+      if (aiLoading) aiLoading.style.display = "none";
+      return;
+    }
+
+    // Generate summary
+    const aiResponse = generateLocalSummary(summary);
+
+    // Display results
+    if (aiSearchResults) {
+      aiSearchResults.innerHTML = `
+        <div class="ai-result-box">
+          <h3>${country}'s E-Mobility Ecosystem Summary</h3>
+          <div class="ai-summary">
+            <p class="ai-text">${aiResponse}</p>
+          </div>
+          
+          <div class="ai-stats">
+            <div class="ai-stat">
+              <span class="stat-label">Active Companies:</span>
+              <span class="stat-value">${summary.totalCompanies}</span>
+            </div>
+            
+            <div class="ai-stat">
+              <span class="stat-label">Top Vehicle Type:</span>
+              <span class="stat-value">${summary.topCategories[0]?.[0] || 'N/A'}</span>
+            </div>
+            
+            <div class="ai-stat">
+              <span class="stat-label">Primary Energy Model:</span>
+              <span class="stat-value">${summary.topEnergyModels[0]?.[0] || 'N/A'}</span>
+            </div>
+          </div>
+
+          <div class="ai-companies-list">
+            <h4>Operating Companies:</h4>
+            <ul>
+              ${summary.companies.map(c => `
+                <li class="company-item">
+                  <strong>${c.name}</strong>
+                  <br><small>${c.categories.join(", ")}</small>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+    if (aiSearchResults) {
+      aiSearchResults.innerHTML = `
+        <div class="ai-result-box error">
+          <p>An error occurred while processing your query. Please try again.</p>
+        </div>
+      `;
+    }
+  } finally {
+    if (aiLoading) aiLoading.style.display = "none";
+  }
+}
 
 searchInput.addEventListener(
 "input",
@@ -750,5 +706,23 @@ renderCompanies();
 
 });
 
-populateFilters();
-renderCompanies();
+// Initialize everything when DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM loaded, initializing...");
+  initializeAIElements();
+  populateFilters();
+  renderCompanies();
+});
+
+// Also call in case DOM is already loaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    initializeAIElements();
+    populateFilters();
+    renderCompanies();
+  });
+} else {
+  initializeAIElements();
+  populateFilters();
+  renderCompanies();
+}
