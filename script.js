@@ -286,44 +286,29 @@ energyModels:["Battery Swapping"]
 }
 ];
 
-// Region mappings
-const regions = {
-  "East Africa": ["Kenya", "Rwanda", "Uganda", "Tanzania", "Ethiopia", "Malawi", "DRC", "Zambia"],
-  "West Africa": ["Ghana", "Nigeria", "Togo", "Benin", "Cameroon", "Sierra Leone"],
-  "Southern Africa": ["South Africa", "Zambia"],
-  "Central Africa": ["DRC", "Cameroon"],
-  "Horn of Africa": ["Ethiopia", "Kenya", "Uganda"],
-  "Sahel": ["Nigeria", "Ghana", "Benin", "Togo"]
-};
+const categoryFilter =
+document.getElementById("categoryFilter");
 
-const categoryFilter = document.getElementById("categoryFilter");
-const countryFilter = document.getElementById("countryFilter");
-const energyFilter = document.getElementById("energyFilter");
-const searchInput = document.getElementById("searchInput");
-const container = document.getElementById("companyContainer");
-const resultsCount = document.getElementById("resultsCount");
+const countryFilter =
+document.getElementById("countryFilter");
 
-// AI Search Elements
-let aiSearchInput, aiSearchBtn, aiSearchResults, aiLoading;
+const energyFilter =
+document.getElementById("energyFilter");
 
-// Initialize AI elements when DOM is ready
-function initializeAIElements() {
-  aiSearchInput = document.getElementById("aiSearchInput");
-  aiSearchBtn = document.getElementById("aiSearchBtn");
-  aiSearchResults = document.getElementById("aiSearchResults");
-  aiLoading = document.getElementById("aiLoading");
-  
-  if (aiSearchBtn) {
-    aiSearchBtn.addEventListener("click", handleAISearch);
-  }
-  if (aiSearchInput) {
-    aiSearchInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        handleAISearch();
-      }
-    });
-  }
-}
+const searchInput =
+document.getElementById("searchInput");
+
+const container =
+document.getElementById("companyContainer");
+
+const resultsCount =
+document.getElementById("resultsCount");
+
+// AI Search elements
+const aiSearchInput = document.getElementById("aiSearchInput");
+const aiSearchBtn = document.getElementById("aiSearchBtn");
+const aiResultsContainer = document.getElementById("aiResultsContainer");
+const aiSummary = document.getElementById("aiSummary");
 
 function populateFilters(){
 
@@ -480,6 +465,11 @@ document.getElementById(
 countCategory("Car");
   
 document.getElementById(
+"carCount"
+).innerText=
+countCategory("Car");
+  
+document.getElementById(
 "commercialCount"
 ).innerText=
 countCategory("Commercial Vehicles");
@@ -500,510 +490,136 @@ document.getElementById(
 countCategory("Financing");
 }
 
-// ============= AI SEARCH FUNCTIONALITY =============
-
-// Detect region from query
-function extractRegionFromQuery(query) {
+// AI Search Function
+function generateEcosystemSummary(query) {
   const queryLower = query.toLowerCase();
-  for (let [region, countries] of Object.entries(regions)) {
-    if (queryLower.includes(region.toLowerCase())) {
-      return { type: "region", name: region, countries };
-    }
-  }
-  return null;
-}
-
-// Detect country from query
-function extractCountryFromQuery(query) {
-  const queryLower = query.toLowerCase();
-  const allCountries = [...new Set(companies.flatMap(c => c.countries))];
   
-  for (let country of allCountries) {
+  // Extract country from query
+  let targetCountry = null;
+  const countries = [...new Set(companies.flatMap(c => c.countries))];
+  
+  for (let country of countries) {
     if (queryLower.includes(country.toLowerCase())) {
-      return { type: "country", name: country };
+      targetCountry = country;
+      break;
     }
   }
-  return null;
-}
-
-// Detect category from query (Car, Bus, Financing, etc.)
-function extractCategoryFromQuery(query) {
-  const queryLower = query.toLowerCase();
-  const allCategories = [...new Set(companies.flatMap(c => c.categories))];
   
-  for (let category of allCategories) {
-    if (queryLower.includes(category.toLowerCase()) || 
-        (category === "Financing" && (queryLower.includes("finance") || queryLower.includes("financing") || queryLower.includes("lending") || queryLower.includes("credit"))) ||
-        (category === "EV Charging" && (queryLower.includes("charging") || queryLower.includes("charge") || queryLower.includes("charger"))) ||
-        (category === "Bus" && (queryLower.includes("bus") || queryLower.includes("buses")))) {
-      return category;
-    }
+  if (!targetCountry) {
+    return `<p style="color:#ff6b6b;">❌ Country not found. Please ask about one of these countries: ${countries.join(", ")}</p>`;
   }
-  return null;
-}
-
-// Generate Africa-wide ecosystem summary
-function generateAfricaWideSummary(filter = {}) {
-  let filtered = companies;
   
-  if (filter.category) {
-    filtered = filtered.filter(c => c.categories.includes(filter.category));
+  // Get companies for this country
+  const countryCompanies = companies.filter(c => c.countries.includes(targetCountry));
+  
+  if (countryCompanies.length === 0) {
+    return `<p>No companies found for ${targetCountry}.</p>`;
   }
-  if (filter.energyModel) {
-    filtered = filtered.filter(c => c.energyModels.includes(filter.energyModel));
-  }
-
-  const allCountriesInvolved = [...new Set(filtered.flatMap(c => c.countries))].sort();
+  
+  // Extract categories and energy models
+  const categories = [...new Set(countryCompanies.flatMap(c => c.categories))];
+  const energyModels = [...new Set(countryCompanies.flatMap(c => c.energyModels))].filter(e => e && e !== "tbc" && e !== "NA" && e !== "");
   
   // Count by category
   const categoryCount = {};
-  filtered.forEach(company => {
-    company.categories.forEach(cat => {
-      categoryCount[cat] = (categoryCount[cat] || 0) + 1;
-    });
+  categories.forEach(cat => {
+    categoryCount[cat] = countryCompanies.filter(c => c.categories.includes(cat)).length;
   });
-
-  // Count by energy model
-  const energyCount = {};
-  filtered.forEach(company => {
-    company.energyModels.forEach(model => {
-      if (model && model !== "tbc" && model !== "NA" && model !== "") {
-        energyCount[model] = (energyCount[model] || 0) + 1;
-      }
-    });
-  });
-
-  // Count by country
-  const countryCount = {};
-  filtered.forEach(company => {
-    company.countries.forEach(country => {
-      countryCount[country] = (countryCount[country] || 0) + 1;
-    });
-  });
-
-  const topCategories = Object.entries(categoryCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
   
-  const topEnergyModels = Object.entries(energyCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
-
-  const topCountries = Object.entries(countryCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
-
-  return {
-    scope: "Africa-wide",
-    totalCompanies: filtered.length,
-    companies: filtered,
-    countriesInvolved: allCountriesInvolved,
-    categoryBreakdown: categoryCount,
-    energyBreakdown: energyCount,
-    countryBreakdown: countryCount,
-    topCategories,
-    topEnergyModels,
-    topCountries,
-    filter
-  };
-}
-
-// Generate ecosystem summary for a region
-function generateRegionalSummary(region, regionCountries, filter = {}) {
-  let filtered = companies.filter(c => 
-    c.countries.some(country => regionCountries.includes(country))
-  );
-  
-  if (filter.category) {
-    filtered = filtered.filter(c => c.categories.includes(filter.category));
-  }
-  if (filter.energyModel) {
-    filtered = filtered.filter(c => c.energyModels.includes(filter.energyModel));
-  }
-
-  const countriesInRegion = [...new Set(filtered.flatMap(c => c.countries))].sort();
-  
-  // Count by category
-  const categoryCount = {};
-  filtered.forEach(company => {
-    company.categories.forEach(cat => {
-      categoryCount[cat] = (categoryCount[cat] || 0) + 1;
-    });
-  });
-
-  // Count by energy model
-  const energyCount = {};
-  filtered.forEach(company => {
-    company.energyModels.forEach(model => {
-      if (model && model !== "tbc" && model !== "NA" && model !== "") {
-        energyCount[model] = (energyCount[model] || 0) + 1;
-      }
-    });
-  });
-
-  const topCategories = Object.entries(categoryCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
-  
-  const topEnergyModels = Object.entries(energyCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
-
-  return {
-    scope: region,
-    totalCompanies: filtered.length,
-    companies: filtered,
-    countriesInRegion,
-    categoryBreakdown: categoryCount,
-    energyBreakdown: energyCount,
-    topCategories,
-    topEnergyModels,
-    filter
-  };
-}
-
-// Generate country ecosystem summary
-function generateCountrySummary(country, filter = {}) {
-  let filtered = companies.filter(c => c.countries.includes(country));
-  
-  if (filter.category) {
-    filtered = filtered.filter(c => c.categories.includes(filter.category));
-  }
-  if (filter.energyModel) {
-    filtered = filtered.filter(c => c.energyModels.includes(filter.energyModel));
-  }
-
-  if (filtered.length === 0) {
-    return null;
-  }
-
-  // Count by category
-  const categoryCount = {};
-  filtered.forEach(company => {
-    company.categories.forEach(cat => {
-      categoryCount[cat] = (categoryCount[cat] || 0) + 1;
-    });
-  });
-
-  // Count by energy model
-  const energyCount = {};
-  filtered.forEach(company => {
-    company.energyModels.forEach(model => {
-      if (model && model !== "tbc" && model !== "NA" && model !== "") {
-        energyCount[model] = (energyCount[model] || 0) + 1;
-      }
-    });
-  });
-
-  const topCategories = Object.entries(categoryCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
-  
-  const topEnergyModels = Object.entries(energyCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
-
-  return {
-    scope: country,
-    totalCompanies: filtered.length,
-    companies: filtered,
-    categoryBreakdown: categoryCount,
-    energyBreakdown: energyCount,
-    topCategories,
-    topEnergyModels,
-    filter
-  };
-}
-
-// Generate intelligent summary text
-function generateSummaryText(summary) {
-  const scope = summary.scope;
-  const count = summary.totalCompanies;
-  
-  if (summary.filter?.category) {
-    const category = summary.filter.category;
-    const categoryCompanies = summary.companies.length;
-    const topCountry = Object.entries(summary.countryBreakdown || summary.categoryBreakdown)
-      .sort((a, b) => b[1] - a[1])[0];
+  // Generate summary
+  let summary = `
+    <h3>🚗 ${targetCountry} E-Mobility Ecosystem Summary</h3>
     
-    return `${scope}'s ${category.toLowerCase()} landscape includes ${categoryCompanies} active companies. The segment is characterized by ${summary.topEnergyModels[0]?.[0] ? 'a focus on ' + summary.topEnergyModels[0][0].toLowerCase() : 'diverse technology adoption'}. Key innovation hubs include businesses operating across multiple countries, with strong presence in urban markets. Financing and fleet solutions are emerging as critical enablers for market growth.`;
+    <p><strong>Overview:</strong> ${targetCountry} has <strong>${countryCompanies.length} active companies</strong> in the electric mobility sector.</p>
+    
+    <h3>📊 Market Breakdown:</h3>
+    <ul>
+  `;
+  
+  Object.entries(categoryCount)
+    .sort((a, b) => b[1] - a[1])
+    .forEach(([cat, count]) => {
+      const companies_list = countryCompanies.filter(c => c.categories.includes(cat)).map(c => c.name).join(", ");
+      summary += `<li><strong>${cat}:</strong> ${count} companies (${companies_list})</li>`;
+    });
+  
+  summary += `</ul>`;
+  
+  if (energyModels.length > 0) {
+    summary += `
+      <h3>⚡ Energy Models:</h3>
+      <ul>
+    `;
+    energyModels.forEach(model => {
+      const count = countryCompanies.filter(c => c.energyModels.includes(model)).length;
+      summary += `<li><strong>${model}:</strong> ${count} companies</li>`;
+    });
+    summary += `</ul>`;
   }
   
-  const topCategory = summary.topCategories[0]?.[0] || "Electric vehicles";
-  const topEnergy = summary.topEnergyModels[0]?.[0] || "various charging models";
-  const topCountriesStr = (summary.topCountries || []).slice(0, 2).map(c => c[0]).join(" and ");
-  const countriesStr = summary.countriesInRegion ? summary.countriesInRegion.join(", ") : scope;
+  summary += `
+    <h3>🎯 Key Insights:</h3>
+    <ul>
+      <li>Dominant segment: <strong>${Object.entries(categoryCount).sort((a, b) => b[1] - a[1])[0][0]}</strong></li>
+      <li>Total market players: <strong>${countryCompanies.length}</strong></li>
+      <li>Diversity: <strong>${categories.length}</strong> different vehicle/service categories</li>
+    </ul>
+  `;
   
-  if (summary.topCountries) {
-    // Africa-wide summary
-    return `Africa's e-mobility ecosystem is anchored by ${count} active companies across ${summary.countriesInvolved.length} countries. The market is dominated by ${topCategory.toLowerCase()} solutions powered primarily by ${topEnergy.toLowerCase()}. Leading markets include ${topCountriesStr}, which collectively drive innovation in sustainable transport. The ecosystem shows diverse business models from manufacturing to financing, positioning Africa as a critical frontier for electric mobility innovation.`;
-  } else if (summary.countriesInRegion) {
-    // Regional summary
-    return `The ${scope} e-mobility ecosystem comprises ${count} companies operating across ${summary.countriesInRegion.length} countries (${countriesStr}). ${topCategory.charAt(0).toUpperCase() + topCategory.slice(1).toLowerCase()} dominates the market, with ${topEnergy.toLowerCase()} as the preferred energy model. The region demonstrates strong innovation capacity with companies expanding across multiple countries, indicating a maturing and interconnected market. Key growth drivers include last-mile mobility solutions and cross-border financing networks.`;
-  } else {
-    // Single country summary
-    const companies = summary.companies.slice(0, 3).map(c => c.name).join(", ");
-    return `${scope}'s e-mobility ecosystem includes ${count} active companies, primarily focused on ${topCategory.toLowerCase()}. The market demonstrates strong preference for ${topEnergy.toLowerCase()} with key players including ${companies}. The ecosystem shows diverse innovation across vehicle types, financing solutions, and charging infrastructure, positioning ${scope} as a key hub in Africa's sustainable transport transition.`;
-  }
+  return summary;
 }
 
-// Comparison analysis between countries
-function generateComparisonAnalysis(countries) {
-  const summaries = countries.map(country => ({
-    country,
-    summary: generateCountrySummary(country)
-  })).filter(s => s.summary !== null);
-
-  if (summaries.length === 0) {
-    return null;
-  }
-
-  const comparison = {
-    type: "comparison",
-    countries: summaries.map(s => s.country),
-    summaries: summaries,
-    largest: summaries.reduce((max, s) => 
-      s.summary.totalCompanies > max.summary.totalCompanies ? s : max
-    ),
-    analysis: `Comparative analysis across ${summaries.length} countries shows significant variation in market maturity. ${summaries[0].summary.totalCompanies > summaries[summaries.length-1].summary.totalCompanies ? summaries[0].country + ' leads with ' + summaries[0].summary.totalCompanies + ' companies' : summaries[summaries.length-1].country + ' leads with ' + summaries[summaries.length-1].summary.totalCompanies + ' companies'}. Each market demonstrates unique strengths aligned with local transportation needs and economic conditions. Cross-country collaborations through companies like Spiro and Watu Credit indicate growing regional integration.`
-  };
-
-  return comparison;
-}
-
-// Main AI search handler
-async function handleAISearch() {
-  console.log("AI Search triggered");
-  
-  if (!aiSearchInput) {
-    console.error("AI search input element not found");
-    return;
-  }
-  
+// AI Search Event Listeners
+aiSearchBtn.addEventListener("click", () => {
   const query = aiSearchInput.value.trim();
-  console.log("Query:", query);
   
   if (!query) {
-    if (aiSearchResults) {
-      aiSearchResults.innerHTML = '<div class="ai-result-box error"><p style="color: #ff6666;">Please enter a search query</p></div>';
-    }
+    aiSummary.innerHTML = '<p style="color:#ff6b6b;">Please enter a search query</p>';
+    aiResultsContainer.style.display = "block";
     return;
   }
-
-  if (aiLoading) aiLoading.style.display = "block";
-  if (aiSearchResults) aiSearchResults.innerHTML = "";
-
-  try {
-    // Extract filter criteria
-    const category = extractCategoryFromQuery(query);
-    const energyModel = null; // Can be extended for energy model queries
-    
-    let summary = null;
-    let comparisonResult = null;
-
-    // Check for comparison keywords (between, vs, versus, compare)
-    const isComparison = /\b(between|vs|versus|compare|comparing)\b/i.test(query);
-    
-    if (isComparison) {
-      // Extract multiple countries
-      const allCountries = [...new Set(companies.flatMap(c => c.countries))];
-      const mentionedCountries = allCountries.filter(country => 
-        query.toLowerCase().includes(country.toLowerCase())
-      );
-      
-      if (mentionedCountries.length >= 2) {
-        comparisonResult = generateComparisonAnalysis(mentionedCountries);
-        console.log("Comparison analysis generated for:", mentionedCountries);
-      }
-    }
-
-    if (!comparisonResult) {
-      // Check for region
-      const region = extractRegionFromQuery(query);
-      if (region) {
-        summary = generateRegionalSummary(region.name, region.countries, { category });
-        console.log("Region detected:", region.name);
-      } else {
-        // Check for specific country
-        const country = extractCountryFromQuery(query);
-        if (country) {
-          summary = generateCountrySummary(country.name, { category });
-          console.log("Country detected:", country.name);
-        } else {
-          // Africa-wide query
-          summary = generateAfricaWideSummary({ category });
-          console.log("Africa-wide summary generated");
-        }
-      }
-    }
-
-    // Generate and display results
-    if (comparisonResult) {
-      displayComparisonResults(comparisonResult, category);
-    } else if (summary) {
-      displaySummaryResults(summary);
-    } else {
-      if (aiSearchResults) {
-        aiSearchResults.innerHTML = `
-          <div class="ai-result-box error">
-            <p>No data found for your query. Try searching for specific countries, regions, or categories like "Financing", "Buses", "EV Charging", etc.</p>
-          </div>
-        `;
-      }
-    }
-
-  } catch (error) {
-    console.error("Error:", error);
-    if (aiSearchResults) {
-      aiSearchResults.innerHTML = `
-        <div class="ai-result-box error">
-          <p>An error occurred while processing your query. Please try again.</p>
-        </div>
-      `;
-    }
-  } finally {
-    if (aiLoading) aiLoading.style.display = "none";
-  }
-}
-
-// Display summary results
-function displaySummaryResults(summary) {
-  if (!aiSearchResults) return;
-
-  const summaryText = generateSummaryText(summary);
   
-  aiSearchResults.innerHTML = `
-    <div class="ai-result-box">
-      <h3>${summary.scope} E-Mobility Ecosystem ${summary.filter?.category ? '- ' + summary.filter.category : ''}</h3>
-      <div class="ai-summary">
-        <p class="ai-text">${summaryText}</p>
-      </div>
-      
-      <div class="ai-stats">
-        <div class="ai-stat">
-          <span class="stat-label">Active Companies:</span>
-          <span class="stat-value">${summary.totalCompanies}</span>
-        </div>
-        
-        ${summary.topCategories[0] ? `
-          <div class="ai-stat">
-            <span class="stat-label">Top Vehicle Type:</span>
-            <span class="stat-value">${summary.topCategories[0][0]}</span>
-          </div>
-        ` : ''}
-        
-        ${summary.topEnergyModels[0] ? `
-          <div class="ai-stat">
-            <span class="stat-label">Primary Energy Model:</span>
-            <span class="stat-value">${summary.topEnergyModels[0][0]}</span>
-          </div>
-        ` : ''}
+  const summary = generateEcosystemSummary(query);
+  aiSummary.innerHTML = summary;
+  aiResultsContainer.style.display = "block";
+});
 
-        ${summary.countriesInRegion ? `
-          <div class="ai-stat">
-            <span class="stat-label">Countries Covered:</span>
-            <span class="stat-value">${summary.countriesInRegion.length}</span>
-          </div>
-        ` : ''}
-      </div>
+aiSearchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    aiSearchBtn.click();
+  }
+});
 
-      ${summary.topCategories.length > 0 ? `
-        <div style="background: rgba(0, 255, 136, 0.05); padding: 16px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #00ff88;">
-          <strong style="color: #00ff88;">Market Breakdown:</strong>
-          <ul style="list-style: none; margin: 8px 0 0 0; padding: 0;">
-            ${Object.entries(summary.categoryBreakdown).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([cat, count]) => 
-              `<li style="padding: 4px 0;"><span style="color: #aaa;">${cat}:</span> <strong>${count}</strong></li>`
-            ).join("")}
-          </ul>
-        </div>
-      ` : ''}
+searchInput.addEventListener(
+"input",
+renderCompanies
+);
+countryFilter.addEventListener(
+"change",
+renderCompanies
+);
 
-      <div class="ai-companies-list">
-        <h4>Operating Companies:</h4>
-        <ul>
-          ${summary.companies.slice(0, 15).map(c => `
-            <li class="company-item">
-              <strong>${c.name}</strong>
-              <br><small>${c.categories.join(", ")}</small>
-            </li>
-          `).join("")}
-          ${summary.companies.length > 15 ? `<li class="company-item"><em>... and ${summary.companies.length - 15} more companies</em></li>` : ''}
-        </ul>
-      </div>
-    </div>
-  `;
-}
+categoryFilter.addEventListener(
+"change",
+renderCompanies
+);
 
-// Display comparison results
-function displayComparisonResults(comparisonResult, category) {
-  if (!aiSearchResults) return;
-
-  aiSearchResults.innerHTML = `
-    <div class="ai-result-box">
-      <h3>E-Mobility Comparison: ${comparisonResult.countries.join(" vs ")}</h3>
-      <div class="ai-summary">
-        <p class="ai-text">${comparisonResult.analysis}</p>
-      </div>
-      
-      <div class="ai-stats">
-        ${comparisonResult.summaries.map(s => `
-          <div class="ai-stat">
-            <span class="stat-label">${s.country}</span>
-            <span class="stat-value">${s.summary.totalCompanies} cos</span>
-          </div>
-        `).join("")}
-      </div>
-
-      <div style="background: rgba(0, 255, 136, 0.05); padding: 16px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #00ff88;">
-        <strong style="color: #00ff88;">Market Details:</strong>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 12px;">
-          ${comparisonResult.summaries.map(s => `
-            <div style="border: 1px solid rgba(0, 255, 136, 0.3); padding: 12px; border-radius: 6px;">
-              <h5 style="color: #00ff88; margin: 0 0 8px 0;">${s.country}</h5>
-              <p style="font-size: 13px; color: #aaa; margin: 0;">
-                <strong>${s.summary.totalCompanies}</strong> companies<br>
-                Top: <strong>${s.summary.topCategories[0]?.[0] || 'N/A'}</strong><br>
-                Energy: <strong>${s.summary.topEnergyModels[0]?.[0] || 'N/A'}</strong>
-              </p>
-            </div>
-          `).join("")}
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-searchInput.addEventListener("input", renderCompanies);
-countryFilter.addEventListener("change", renderCompanies);
-categoryFilter.addEventListener("change", renderCompanies);
-energyFilter.addEventListener("change", renderCompanies);
+energyFilter.addEventListener(
+"change",
+renderCompanies
+);
 
 document.getElementById("resetBtn")
 .addEventListener("click",()=>{
-  searchInput.value="";
-  countryFilter.value="";
-  categoryFilter.value="";
-  energyFilter.value="";
-  renderCompanies();
+
+searchInput.value="";
+countryFilter.value="";
+categoryFilter.value="";
+energyFilter.value="";
+
+renderCompanies();
+
 });
 
-// Initialize everything when DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM loaded, initializing...");
-  initializeAIElements();
-  populateFilters();
-  renderCompanies();
-});
-
-// Also call in case DOM is already loaded
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    initializeAIElements();
-    populateFilters();
-    renderCompanies();
-  });
-} else {
-  initializeAIElements();
-  populateFilters();
-  renderCompanies();
-}
+populateFilters();
+renderCompanies();
