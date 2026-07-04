@@ -19,6 +19,18 @@ countries:["Kenya","Rwanda","DRC","Malawi"],
 categories:["eBikes","Motorcycle"],
 energyModels:["tbc"]
 },
+  {
+name:"BEV Ltd",
+countries:["Kenya"],
+categories:["All EVs","Distributor"],
+energyModels:["tbc"]
+},
+   {
+name:"Car and General",
+countries:["Kenya","Tanzania","Uganda"],
+categories:["3 Wheeler"],
+energyModels:["tbc"]
+},
     {
 name:"SGV Electric Mobility",
 countries:["Malawi"],
@@ -35,7 +47,7 @@ energyModels:["Home Charging"]
 {
 name:"Roam",
 countries:["Kenya"],
-categories:["Motorcycle"],
+categories:["Motorcycle","Bus"],
 energyModels:["Public Charging","Battery Swapping","Home Charging"]
 },
   {
@@ -50,11 +62,41 @@ countries:["Kenya","Nigeria","Tanzania","Ethiopia","Uganda"],
 categories:["Motorcycle","3 Wheeler"],
 energyModels:["tbc"]
 },
+   {
+name:"STIMA Mobility",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+   {
+name:"Transboda",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["tbc"]
+},
+  {
+name:"Yna Kenya",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"KVM",
+countries:["Kenya"],
+categories:["Car","Bus"],
+energyModels:["Assembly Services"]
+},
   {
 name:"Kiri EV",
 countries:["Kenya"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
+},
+    {
+name:"WeTu",
+countries:["Kenya"],
+categories:["Motorcycle","3 Wheeler"],
+energyModels:["Battery Swapping","Home Charging"]
 },
   {
 name:"Dodai",
@@ -99,6 +141,36 @@ countries:["Kenya"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
+    {
+name:"Fika Mobility",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+      {
+name:"Frontier Links",
+countries:["Kenya"],
+categories:["Logistics Services"],
+energyModels:["NA"]
+},
+    {
+name:"GECSS INVESTMENT",
+countries:["Kenya"],
+categories:["Retrofitting","Motorcycle"],
+energyModels:["NA"]
+},
+     {
+name:"Go-Electric/UTU Cars",
+countries:["Kenya"],
+categories:["Leasing","Distributor","Car","3 Wheeler"],
+energyModels:["NA"]
+},
+   {
+name:"ecobodaa",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
 {
 name:"Songa Mobility",
 countries:["Kenya"],
@@ -118,11 +190,48 @@ categories:["Bus"],
 energyModels:["Public Charging"]
 },
   {
+name:"BYD/Loxea",
+countries:["Kenya"],
+categories:["Bus","Distributor"],
+energyModels:["Public Charging","Home Charging"]
+},
+  {
 name:"Kabisa EV",
 countries:["Kenya","Rwanda"],
 categories:["Car","Commercial Vehicles","EV Charging"],
 energyModels:["Public Charging"]
 },
+   {
+name:"EcoTrify",
+countries:["Kenya"],
+categories:["Leasing","EV Charging"],
+energyModels:["Public Charging"]
+},
+  {
+name:"Caetano",
+countries:["Kenya"],
+categories:["Car","EV Charging","Distributor"],
+energyModels:["Public Charging"]
+},
+    {
+name:"Autopax",
+countries:["Kenya"],
+categories:["Car","EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"ChargeNet",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"SupaChaja",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+
    {
 name:"GIZ Kenya",
 countries:["Kenya"],
@@ -147,11 +256,23 @@ countries:["Kenya"],
 categories:["Financing","Motorcycle"],
 energyModels:["NA"]
 },
+  {
+name:"MOGO Financing",
+countries:["Kenya"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
     {
 name:"Fortune Credit",
 countries:["Kenya"],
 categories:["Financing","Motorcycle"],
 energyModels:["NA"]
+},
+  {
+name:"Power Governors Ltd",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
 },
     {
 name:"Equator Mobility",
@@ -159,11 +280,59 @@ countries:["Kenya"],
 categories:["Leasing","Car","EV Maintenance"],
 energyModels:["Public Charging"]
 },
+  {
+name:"ePure Rides",
+countries:["Kenya"],
+categories:["Leasing"],
+energyModels:["Public Charging"]
+},
     {
 name:"Drivelectric",
 countries:["Kenya"],
-categories:["Leasing","Financing","Car"],
+categories:["Leasing","Financing","Car","EV Charging","Research"],
 energyModels:["Public Charging"]
+},
+   {
+name:"Strathmore Energy Research Centre (SERC)",
+countries:["Kenya"],
+categories:["Research","Training"],
+energyModels:["NA"]
+},
+     {
+name:"University of Nairobi",
+countries:["Kenya"],
+categories:["Research"],
+energyModels:["NA"]
+},
+  {
+name:"Africa E-Mobility Alliance (AfEMA)",
+countries:["Kenya"],
+categories:["Research"],
+energyModels:["NA"]
+},
+    {
+name:"E-Safiri",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging","Battery Swapping"]
+},
+    {
+name:"Schneider Electric",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["tbc"]
+},
+  {
+name:"Eaton",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["tbc"]
+},
+   {
+name:"Kenya Power",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["tbc"]
 },
      {
 name:"Izi Electric",
@@ -265,6 +434,18 @@ name:"Moja EV",
 countries:["Kenya"],
 categories:["Car"],
 energyModels:["Public Charging","Home Charging"]
+},
+    {
+name:"Simba Corp",
+countries:["Kenya"],
+categories:["Car","Bus","Assembly Services","Distributor"],
+energyModels:["Public Charging","Home Charging"]
+},
+  {
+name:"Rideence Africa Limited",
+countries:["Kenya"],
+categories:["Car"],
+energyModels:["tbc"]
 },
   {
 name:"Neo Motors",
