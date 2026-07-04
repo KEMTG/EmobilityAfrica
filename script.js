@@ -108,7 +108,7 @@ energyModels:["Public Charging"]
 name:"Emergi",
 countries:["Liberia"],
 categories:["3 Wheeler"],
-energyModels:["tbc"]
+energyModels:[""]
 },
 {
 name:"BasiGo",
