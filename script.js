@@ -81,10 +81,10 @@ categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
   {
-name:"KVM",
+name:"Kenya Vehicle Manufacturers",
 countries:["Kenya"],
-categories:["Car","Bus"],
-energyModels:["Assembly Services"]
+categories:["Car","Bus","Assembly Services"],
+energyModels:["NA"]
 },
   {
 name:"Kiri EV",
