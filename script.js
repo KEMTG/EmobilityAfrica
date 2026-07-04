@@ -81,7 +81,7 @@ categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
   {
-name:"Kenya Vehicle Manufacturers",
+name:"Kenya Vehicle Manufacturers(KVM)",
 countries:["Kenya"],
 categories:["Car","Bus","Assembly Services"],
 energyModels:["NA"]
