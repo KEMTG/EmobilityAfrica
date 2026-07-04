@@ -30,7 +30,7 @@
                 Connecting innovators, businesses, investors, policymakers, researchers, and communities accelerating the transition to sustainable transport across Africa.
             </p>
 
-            <a href="#filters" class="explore-btn">
+            <a href="#ai-search" class="explore-btn">
                 Explore Here 🔎
             </a>
         </div>
@@ -44,6 +44,29 @@
 </header>
 
 <main>
+
+<!-- AI Search Section -->
+<section id="ai-search" class="ai-search-section">
+    <div class="ai-search-container">
+        <h2>🤖 AI Ecosystem Intelligence</h2>
+        <p>Ask about any country's e-mobility ecosystem. For example: "Give me a summary of Kenya's emobility ecosystem" or "What companies operate in Nigeria?"</p>
+        
+        <div class="ai-search-input-group">
+            <input 
+                type="text" 
+                id="aiSearchInput" 
+                placeholder="Ask about an e-mobility ecosystem (e.g., 'Kenya emobility ecosystem summary')"
+                class="ai-search-input"
+            >
+            <button id="aiSearchBtn" class="ai-search-btn">Search 🔍</button>
+        </div>
+
+        <div id="aiSearchResults" class="ai-search-results"></div>
+        <div id="aiLoading" class="ai-loading" style="display:none;">
+            <p>Generating intelligent summary...</p>
+        </div>
+    </div>
+</section>
 
 <section class="stats">
 
