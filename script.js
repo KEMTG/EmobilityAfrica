@@ -13,6 +13,18 @@ categories:["eBikes"],
 energyModels:["Battery Swapping","Home Charging"]
 },
   {
+name:"eWAKA",
+countries:["Kenya","Rwanda","DRC","Malawi"],
+categories:["eBikes","Motorcycle"],
+energyModels:["tbc"]
+},
+    {
+name:"SGV Electric Mobility",
+countries:["Malawi"],
+categories:["Motorcycle","Commercial Vehicles","3 Wheeler"],
+energyModels:["tbc"]
+},
+  {
 name:"eBee Africa",
 countries:["Kenya","Rwanda","Uganda"],
 categories:["eBikes"],
@@ -24,6 +36,18 @@ name:"Roam",
 countries:["Kenya"],
 categories:["Motorcycle"],
 energyModels:["Public Charging","Battery Swapping","Home Charging"]
+},
+  {
+name:"SUN Mobility",
+countries:["Kenya"],
+categories:["Motorcycle","3 Wheeler"],
+energyModels:["tbc"]
+},
+  {
+name:"TankVolt",
+countries:["Kenya","Nigeria","Tanzania","Ethiopia","Uganda"],
+categories:["Motorcycle","3 Wheeler"],
+energyModels:["tbc"]
 },
   {
 name:"Kiri EV",
