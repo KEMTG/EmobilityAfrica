@@ -20,6 +20,18 @@ categories:["eBikes","Motorcycle"],
 energyModels:["tbc"]
 },
   {
+name:"Vine Mobility",
+countries:["Nigeria"],
+categories:["Software Platforms"],
+energyModels:["tbc"]
+},
+  {
+name:"Yourrider Energies",
+countries:["Nigeria"],
+categories:["EV Charging","EV Maintenance"],
+energyModels:["Battery Swapping","Public Charging"]
+},
+  {
 name:"BEV Ltd",
 countries:["Kenya"],
 categories:["All EVs","Distributor"],
