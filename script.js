@@ -22,7 +22,7 @@ energyModels:["tbc"]
   {
 name:"Vine Mobility",
 countries:["Nigeria"],
-categories:["Software Platforms"],
+categories:["Software Platform"],
 energyModels:["tbc"]
 },
   {
