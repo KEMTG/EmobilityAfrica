@@ -407,7 +407,7 @@ energyModels:["Battery Swapping"]
 },
   {
 name:"Arc Ride",
-countries:["Kenya"],
+countries:["Kenya","South Africa"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
