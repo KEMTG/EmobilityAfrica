@@ -32,6 +32,19 @@ categories:["EV Charging","EV Maintenance"],
 energyModels:["Battery Swapping","Public Charging"]
 },
   {
+name:"First Electric",
+countries:["Nigeria"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"Zimi Charge",
+countries:["South Africa"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+  
+  {
 name:"BEV Ltd",
 countries:["Kenya"],
 categories:["All EVs","Distributor"],
@@ -419,7 +432,7 @@ energyModels:["Battery Swapping"]
 },
   {
 name:"Arc Ride",
-countries:["Kenya","South Africa"],
+countries:["Kenya","South Africa","Ghana"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
