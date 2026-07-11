@@ -137,6 +137,12 @@ categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
   {
+name:"Fleevigo",
+countries:["Nigeria"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
 name:"Zembo",
 countries:["Uganda"],
 categories:["Motorcycle"],
