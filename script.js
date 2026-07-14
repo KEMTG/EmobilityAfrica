@@ -243,6 +243,18 @@ countries:["Kenya"],
 categories:["Circularity"],
 energyModels:["NA"]
 },
+  {
+name:"REVLOG",
+countries:["Kenya"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
+  {
+name:"SLS Energy",
+countries:["Rwanda"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
    {
 name:"AceleAfrica",
 countries:["Kenya","Uganda"],
@@ -385,7 +397,7 @@ energyModels:["Public Charging"]
     {
 name:"Drivelectric",
 countries:["Kenya"],
-categories:["Leasing","Financing","Car","EV Charging","Research"],
+categories:["Leasing","Financing","Car","EV Charging","Research","Circularity"],
 energyModels:["Public Charging"]
 },
    {
