@@ -213,6 +213,24 @@ countries:["Kenya"],
 categories:["Retrofitting","EV Maintenance"],
 energyModels:["NA"]
 },
+  {
+name:"Silent Savannah",
+countries:["Kenya"],
+categories:["Retrofitting"],
+energyModels:["Offgrid Solar Charging"]
+},
+   {
+name:"Ecowaka",
+countries:["Nigeria"],
+categories:["Retrofitting","3 Wheeler"],
+energyModels:["Offgrid Solar Charging"]
+},
+   {
+name:"Makasi Swap",
+countries:["Tanzania"],
+categories:["Retrofitting","3 Wheeler","Motorcycle"],
+energyModels:["Battery Swap"]
+},
    {
 name:"Ecomobilus Technologies",
 countries:["Kenya"],
