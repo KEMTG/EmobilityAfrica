@@ -237,6 +237,24 @@ countries:["Kenya"],
 categories:["Retrofitting"],
 energyModels:["NA"]
 },
+  {
+name:"Enviroserve Kenya",
+countries:["Kenya"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
+   {
+name:"AceleAfrica",
+countries:["Kenya","Uganda"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
+   {
+name:"WEEE Centre",
+countries:["Kenya","Uganda"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
      {
 name:"Go-Electric/UTU Cars",
 countries:["Kenya"],
