@@ -5,7 +5,6 @@ name:"Ampersand Energy",
 countries:["Kenya","Rwanda"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"],
-description:"Builds electric motorcycles and battery swapping network."
 },
   {
 name:"Wahu Mobility",
@@ -18,6 +17,12 @@ name:"eWAKA",
 countries:["Kenya","Rwanda","DRC","Malawi"],
 categories:["eBikes","Motorcycle"],
 energyModels:["tbc"]
+},
+  {
+name:"Kazzi",
+countries:["Kenya"],
+categories:["eBikes"],
+energyModels:["Home Charging"]
 },
   {
 name:"Vine Mobility",
@@ -54,6 +59,12 @@ energyModels:["tbc"]
 name:"Car and General",
 countries:["Kenya","Tanzania","Uganda"],
 categories:["3 Wheeler"],
+energyModels:["tbc"]
+},
+  {
+name:"PlugNRide",
+countries:["Tanzania"],
+categories:["3 Wheeler","Motorcycle"],
 energyModels:["tbc"]
 },
     {
@@ -155,6 +166,12 @@ categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
   {
+name:"Revoo",
+countries:["Nigeria"],
+categories:["Electric Scooter"],
+energyModels:["Home Charging"]
+},
+  {
 name:"Gogo Electric",
 countries:["Uganda"],
 categories:["Motorcycle"],
@@ -188,6 +205,18 @@ energyModels:["NA"]
 name:"GECSS INVESTMENT",
 countries:["Kenya"],
 categories:["Retrofitting","Motorcycle"],
+energyModels:["NA"]
+},
+      {
+name:"QTRON Industries",
+countries:["Kenya"],
+categories:["Retrofitting","EV Maintenance"],
+energyModels:["NA"]
+},
+   {
+name:"Ecomobilus Technologies",
+countries:["Kenya"],
+categories:["Retrofitting"],
 energyModels:["NA"]
 },
      {
