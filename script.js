@@ -229,7 +229,7 @@ energyModels:["Offgrid Solar Charging"]
 name:"Makasi Swap",
 countries:["Tanzania"],
 categories:["Retrofitting","3 Wheeler","Motorcycle"],
-energyModels:["Battery Swapping"]
+energyModels:["Battery Swap"]
 },
    {
 name:"Ecomobilus Technologies",
@@ -584,6 +584,7 @@ const resultsCount = document.getElementById("resultsCount");
 
 // AI Insights Elements
 const insightsBody = document.getElementById("insightsBody");
+const segmentChips = document.getElementById("segmentChips");
 
 function populateFilters(){
 
@@ -611,6 +612,8 @@ categoryFilter.innerHTML+=
 `<option>${cat}</option>`;
 });
 
+renderSegmentChips(categories);
+
 const energies =
 [...new Set(companies.flatMap(c=>c.energyModels))]
 .sort();
@@ -623,6 +626,44 @@ energyFilter.innerHTML+=
 `<option>${model}</option>`;
 });
 
+}
+
+// Builds the "Cars / Motorcycles / EV Charging / ..." clickable chip row.
+// Counts shown are against the full directory (a stable reference number for
+// browsing), independent of whatever the search/country/energy filters are
+// currently doing — clicking a chip always sets categoryFilter and re-renders.
+function renderSegmentChips(categories){
+
+  const chipsHtml = ['<button type="button" class="segment-chip" data-category="">All</button>']
+    .concat(categories.map(cat => {
+      const count = countCategory(cat);
+      return `<button type="button" class="segment-chip" data-category="${cat}">${cat} <span class="chip-count">${count}</span></button>`;
+    }));
+
+  segmentChips.innerHTML = chipsHtml.join("");
+
+  syncSegmentChips();
+}
+
+// Keeps the chip row's highlighted state in sync with categoryFilter,
+// whether it was changed by a chip click or the dropdown itself.
+function syncSegmentChips(){
+  if (!segmentChips) return;
+  const active = categoryFilter.value;
+  segmentChips.querySelectorAll(".segment-chip").forEach(chip => {
+    chip.classList.toggle("active", chip.dataset.category === active);
+  });
+}
+
+if (segmentChips) {
+  segmentChips.addEventListener("click", (e) => {
+    const chip = e.target.closest(".segment-chip");
+    if (!chip) return;
+    categoryFilter.value = chip.dataset.category;
+    renderCompanies();
+    document.getElementById("ai-insights")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 }
 
 function renderCompanies(){
@@ -709,6 +750,7 @@ resultsCount.innerText =
 updateStats();
 
 renderInsights(filtered, { search, country, category, energy });
+syncSegmentChips();
 }
 
 function countCategory(name){

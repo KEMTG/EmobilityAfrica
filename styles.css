@@ -124,6 +124,43 @@ font-size:14px;
 max-width:640px;
 }
 
+/* ---- segment chips (click-to-drill-in) ---- */
+.segment-chips{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:22px;
+}
+
+.segment-chip{
+background:transparent;
+color:#c9e8d6;
+border:1px solid rgba(0,255,136,0.4);
+padding:8px 14px;
+border-radius:20px;
+font-size:13px;
+font-weight:bold;
+cursor:pointer;
+transition:all .15s ease;
+}
+
+.segment-chip:hover{
+background:rgba(0,255,136,0.12);
+border-color:#00ff88;
+}
+
+.segment-chip.active{
+background:#00ff88;
+color:#07130b;
+border-color:#00ff88;
+}
+
+.segment-chip .chip-count{
+opacity:0.7;
+font-weight:normal;
+margin-left:4px;
+}
+
 .insights-body{
 display:grid;
 grid-template-columns:1.1fr 1fr;
