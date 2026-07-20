@@ -226,7 +226,7 @@ categories:["Retrofitting","3 Wheeler"],
 energyModels:["Offgrid Solar Charging"]
 },
    {
-name:"Makasi Swap",
+name:"Makasi Swapping",
 countries:["Tanzania"],
 categories:["Retrofitting","3 Wheeler","Motorcycle"],
 energyModels:["Battery Swap"]
