@@ -229,7 +229,7 @@ energyModels:["Offgrid Solar Charging"]
 name:"Makasi Swap",
 countries:["Tanzania"],
 categories:["Retrofitting","3 Wheeler","Motorcycle"],
-energyModels:["Battery Swap"]
+energyModels:["Battery Swapping"]
 },
    {
 name:"Ecomobilus Technologies",
