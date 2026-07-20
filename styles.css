@@ -69,203 +69,161 @@ width:100%;
 border-radius:20px;
 }
 
-/* ========== AI SEARCH SECTION ========== */
-.ai-search-section {
-  padding: 40px 30px;
-  background: linear-gradient(135deg, #0f2515, #0a1f0f);
-  border-top: 2px solid #00ff88;
-  border-bottom: 2px solid #00ff88;
-  margin: 30px 0;
+/* ========== AI INSIGHTS PANEL ========== */
+.insights{
+padding:30px;
+margin:10px 30px 30px;
+background:#0a1c11;
+border:1px solid rgba(0,255,136,0.35);
+border-radius:16px;
 }
 
-.ai-search-container {
-  max-width: 900px;
-  margin: 0 auto;
+.insights-head{
+margin-bottom:22px;
 }
 
-.ai-search-section h2 {
-  color: #00ff88;
-  margin-bottom: 10px;
-  font-size: 1.8rem;
+.insights-eyebrow{
+display:inline-block;
+color:#00ff88;
+font-size:11px;
+font-weight:bold;
+letter-spacing:1.5px;
+text-transform:uppercase;
+background:rgba(0,255,136,0.1);
+border:1px solid rgba(0,255,136,0.4);
+padding:4px 10px;
+border-radius:20px;
+margin-bottom:10px;
 }
 
-.ai-search-section > p {
-  color: #aaa;
-  margin-bottom: 20px;
-  font-size: 14px;
+.insights-eyebrow::before{
+content:"";
+display:inline-block;
+width:7px;
+height:7px;
+border-radius:50%;
+background:#00ff88;
+margin-right:6px;
+box-shadow:0 0 6px 1px rgba(0,255,136,0.8);
+animation:pulseDot 1.8s ease-in-out infinite;
 }
 
-.ai-search-input-group {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+@keyframes pulseDot{
+0%,100%{opacity:1;}
+50%{opacity:0.35;}
 }
 
-.ai-search-input {
-  flex: 1;
-  padding: 14px 16px;
-  border: 2px solid #00ff88;
-  border-radius: 8px;
-  background: #0a1f0f;
-  color: white;
-  font-size: 14px;
+.insights-head h2{
+font-size:1.6rem;
+margin-bottom:6px;
 }
 
-.ai-search-input::placeholder {
-  color: #666;
+.insights-head p{
+color:#9db8a9;
+font-size:14px;
+max-width:640px;
 }
 
-.ai-search-input:focus {
-  outline: none;
-  background: #102417;
-  border-color: #00ff88;
-  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+.insights-body{
+display:grid;
+grid-template-columns:1.1fr 1fr;
+gap:24px;
 }
 
-.ai-search-btn {
-  padding: 14px 24px;
-  background: #00ff88;
-  color: black;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.insights-empty{
+color:#9db8a9;
+font-style:italic;
+grid-column:1/-1;
 }
 
-.ai-search-btn:hover {
-  background: #00dd77;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
+.insights-narrative{
+background:rgba(0,255,136,0.06);
+border-left:3px solid #00ff88;
+border-radius:8px;
+padding:18px 20px;
+font-size:15px;
+line-height:1.7;
+color:#e6f5ec;
+grid-column:1/-1;
 }
 
-.ai-search-btn:active {
-  transform: translateY(0);
+.insights-narrative strong{
+color:#00ff88;
 }
 
-.ai-loading {
-  text-align: center;
-  padding: 20px;
-  color: #00ff88;
-  font-style: italic;
+.signal-metrics{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+gap:12px;
+align-content:start;
 }
 
-.ai-search-results {
-  margin-top: 20px;
+.signal-metric{
+background:#0f2517;
+border:1px solid rgba(0,255,136,0.25);
+border-radius:10px;
+padding:14px;
+text-align:center;
 }
 
-.ai-result-box {
-  background: #102417;
-  border: 2px solid #00ff88;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 20px;
-  animation: slideIn 0.4s ease;
+.signal-metric .value{
+display:block;
+color:#00ff88;
+font-size:1.6rem;
+font-weight:bold;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.signal-metric .label{
+display:block;
+color:#9db8a9;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:.5px;
+margin-top:4px;
 }
 
-.ai-result-box.error {
-  border-color: #ff4444;
-  background: #1a0f0f;
+.signal-breakdown h4{
+color:#00ff88;
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:.5px;
+margin-bottom:12px;
 }
 
-.ai-result-box.error p {
-  color: #ff6666;
+.signal-row{
+display:grid;
+grid-template-columns:120px 1fr 40px;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+font-size:13px;
 }
 
-.ai-result-box h3 {
-  color: #00ff88;
-  margin-bottom: 16px;
-  font-size: 1.4rem;
+.signal-row .signal-name{
+color:#e6f5ec;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
 }
 
-.ai-summary {
-  background: rgba(0, 255, 136, 0.05);
-  border-left: 4px solid #00ff88;
-  padding: 16px;
-  border-radius: 6px;
-  margin-bottom: 20px;
+.signal-track{
+height:8px;
+background:rgba(255,255,255,0.06);
+border-radius:6px;
+overflow:hidden;
 }
 
-.ai-text {
-  color: #ddd;
-  line-height: 1.7;
-  font-size: 15px;
+.signal-fill{
+height:100%;
+background:linear-gradient(90deg,#00994d,#00ff88);
+border-radius:6px;
+transition:width .5s ease;
 }
 
-.ai-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.ai-stat {
-  background: rgba(0, 255, 136, 0.1);
-  padding: 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 255, 136, 0.3);
-  text-align: center;
-}
-
-.stat-label {
-  display: block;
-  color: #aaa;
-  font-size: 12px;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.stat-value {
-  display: block;
-  color: #00ff88;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.ai-companies-list {
-  margin-top: 20px;
-}
-
-.ai-companies-list h4 {
-  color: #00ff88;
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-}
-
-.ai-companies-list ul {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
-}
-
-.company-item {
-  background: rgba(0, 255, 136, 0.08);
-  padding: 12px;
-  border-radius: 6px;
-  border-left: 3px solid #00ff88;
-  font-size: 13px;
-}
-
-.company-item strong {
-  color: #00ff88;
-}
-
-.company-item small {
-  color: #999;
-  display: block;
-  margin-top: 4px;
+.signal-row .signal-count{
+color:#9db8a9;
+text-align:right;
+font-variant-numeric:tabular-nums;
 }
 
 /* ========== STATS SECTION ========== */
@@ -369,12 +327,17 @@ grid-template-columns:1fr;
 font-size:2rem;
 }
 
-.ai-search-input-group {
-  flex-direction: column;
+.insights{
+margin:10px 15px 20px;
+padding:20px;
 }
 
-.ai-search-section {
-  padding: 30px 20px;
+.insights-body{
+grid-template-columns:1fr;
+}
+
+.signal-row{
+grid-template-columns:90px 1fr 32px;
 }
 
 }

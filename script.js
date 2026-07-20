@@ -582,27 +582,8 @@ const searchInput = document.getElementById("searchInput");
 const container = document.getElementById("companyContainer");
 const resultsCount = document.getElementById("resultsCount");
 
-// AI Search Elements
-let aiSearchInput, aiSearchBtn, aiSearchResults, aiLoading;
-
-// Initialize AI elements when DOM is ready
-function initializeAIElements() {
-  aiSearchInput = document.getElementById("aiSearchInput");
-  aiSearchBtn = document.getElementById("aiSearchBtn");
-  aiSearchResults = document.getElementById("aiSearchResults");
-  aiLoading = document.getElementById("aiLoading");
-  
-  if (aiSearchBtn) {
-    aiSearchBtn.addEventListener("click", handleAISearch);
-  }
-  if (aiSearchInput) {
-    aiSearchInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        handleAISearch();
-      }
-    });
-  }
-}
+// AI Insights Elements
+const insightsBody = document.getElementById("insightsBody");
 
 function populateFilters(){
 
@@ -726,6 +707,8 @@ resultsCount.innerText =
 `${filtered.length} Companies Found`;
 
 updateStats();
+
+renderInsights(filtered, { search, country, category, energy });
 }
 
 function countCategory(name){
@@ -779,189 +762,132 @@ document.getElementById(
 countCategory("Financing");
 }
 
-// ============= AI SEARCH FUNCTIONALITY =============
+// ============= AI INSIGHTS PANEL =============
+// Pure client-side "intelligence": no chatbot, no query box, no network calls.
+// It reads whatever renderCompanies() already filtered and turns that array
+// into a plain-language read plus a couple of live distribution bars.
+// This runs on every filter/search change, always describing exactly what's
+// on screen right now.
 
-// Function to generate ecosystem summary from company data
-function generateEcosystemSummary(country) {
-  const countryCompanies = companies.filter(c => c.countries.includes(country));
-  
-  if (countryCompanies.length === 0) {
-    return null;
-  }
+const VALID_ENERGY = m => m && m !== "tbc" && m !== "NA" && m !== "";
 
-  // Count by category
-  const categoryCount = {};
-  countryCompanies.forEach(company => {
-    company.categories.forEach(cat => {
-      categoryCount[cat] = (categoryCount[cat] || 0) + 1;
+// Tally occurrences of every value in a field (categories / energyModels / countries)
+// across a list of companies, sorted highest first.
+function tally(list, field, { validate } = {}) {
+  const counts = {};
+  list.forEach(company => {
+    company[field].forEach(value => {
+      if (validate && !validate(value)) return;
+      counts[value] = (counts[value] || 0) + 1;
     });
   });
-
-  // Count by energy model
-  const energyCount = {};
-  countryCompanies.forEach(company => {
-    company.energyModels.forEach(model => {
-      if (model && model !== "tbc" && model !== "NA" && model !== "") {
-        energyCount[model] = (energyCount[model] || 0) + 1;
-      }
-    });
-  });
-
-  // Get top companies
-  const topCompanies = countryCompanies.slice(0, 5);
-  const topCategories = Object.entries(categoryCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
-  const topEnergyModels = Object.entries(energyCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3);
-
-  return {
-    country,
-    totalCompanies: countryCompanies.length,
-    companies: countryCompanies,
-    categoryBreakdown: categoryCount,
-    energyBreakdown: energyCount,
-    topCompanies,
-    topCategories,
-    topEnergyModels
-  };
+  return Object.entries(counts).sort((a, b) => b[1] - a[1]);
 }
 
-// Function to extract country from query
-function extractCountryFromQuery(query) {
-  const queryLower = query.toLowerCase();
-  const allCountries = [...new Set(companies.flatMap(c => c.countries))];
-  
-  for (let country of allCountries) {
-    if (queryLower.includes(country.toLowerCase())) {
-      return country;
-    }
+function describeActiveFilters({ search, country, category, energy }) {
+  const parts = [];
+  if (country) parts.push(country);
+  if (category) parts.push(category.toLowerCase());
+  if (energy) parts.push(energy.toLowerCase());
+  if (search) parts.push(`matching "${search}"`);
+  return parts.length ? parts.join(", ") : "the full directory";
+}
+
+// Builds the plain-language narrative for whatever is currently filtered.
+function buildNarrative(filtered, filters, categoryTally, energyTally, countryTally) {
+  const scope = describeActiveFilters(filters);
+  const total = filtered.length;
+
+  if (total === 0) {
+    return `No companies match <strong>${scope}</strong>. Try loosening a filter — there may be an adjacent segment worth a look.`;
   }
-  return null;
-}
 
-// Local summary generation (fallback)
-function generateLocalSummary(summary) {
-  const topCategory = summary.topCategories[0]?.[0] || "Electric vehicles";
-  const topEnergy = summary.topEnergyModels[0]?.[0] || "various charging models";
-  const companyCount = summary.totalCompanies;
-  const topCompaniesNames = summary.topCompanies.slice(0, 2).map(c => c.name).join(", ");
-  
-  return `${summary.country}'s e-mobility ecosystem is anchored by ${companyCount} active companies, primarily focused on ${topCategory.toLowerCase()}. The market shows strong preference for ${topEnergy.toLowerCase()}, with key players including ${topCompaniesNames}. The ecosystem demonstrates diverse innovation across vehicle types and financing solutions, positioning ${summary.country} as an emerging leader in sustainable transport innovation in Africa.`;
-}
+  const [topCatName, topCatCount] = categoryTally[0] || [];
+  const [topEnergyName, topEnergyCount] = energyTally[0] || [];
+  const catShare = topCatCount ? Math.round((topCatCount / total) * 100) : null;
+  const countrySpan = countryTally.length;
 
-// Main AI search handler
-async function handleAISearch() {
-  console.log("AI Search triggered");
-  
-  if (!aiSearchInput) {
-    console.error("AI search input element not found");
-    return;
+  let sentence = `<strong>${total}</strong> ${total === 1 ? "company matches" : "companies match"} <strong>${scope}</strong>.`;
+
+  if (topCatName) {
+    sentence += ` <strong>${topCatName}</strong> is the leading segment (${catShare}% of this view)${(filters.category || filters.country) ? "" : `, spread across <strong>${countrySpan}</strong> ${countrySpan === 1 ? "country" : "countries"}`}.`;
   }
-  
-  const query = aiSearchInput.value.trim();
-  console.log("Query:", query);
-  
-  if (!query) {
-    if (aiSearchResults) {
-      aiSearchResults.innerHTML = '<div class="ai-result-box error"><p style="color: #ff6666;">Please enter a search query</p></div>';
-    }
+
+  if (topEnergyName) {
+    sentence += ` Where an energy model is known, <strong>${topEnergyName}</strong> is the dominant approach (${topEnergyCount} of the matching companies).`;
+  } else {
+    sentence += ` Most matching companies haven't disclosed an energy model yet — a gap worth flagging.`;
+  }
+
+  return sentence;
+}
+
+// Renders the small horizontal "signal bars" for a breakdown (category/energy/country).
+function renderSignalRows(entries, total) {
+  return entries.slice(0, 5).map(([name, count]) => {
+    const pct = Math.max(4, Math.round((count / total) * 100));
+    return `
+      <div class="signal-row">
+        <span class="signal-name" title="${name}">${name}</span>
+        <div class="signal-track"><div class="signal-fill" style="width:${pct}%"></div></div>
+        <span class="signal-count">${count}</span>
+      </div>
+    `;
+  }).join("");
+}
+
+// Main entry point — called from renderCompanies() with the exact same
+// filtered array and filter values already computed there.
+function renderInsights(filtered, filters) {
+  if (!insightsBody) return;
+
+  const total = filtered.length;
+
+  if (total === 0) {
+    insightsBody.innerHTML = `
+      <p class="insights-narrative">${buildNarrative(filtered, filters, [], [], [])}</p>
+    `;
     return;
   }
 
-  if (aiLoading) aiLoading.style.display = "block";
-  if (aiSearchResults) aiSearchResults.innerHTML = "";
+  const categoryTally = tally(filtered, "categories");
+  const energyTally = tally(filtered, "energyModels", { validate: VALID_ENERGY });
+  const countryTally = tally(filtered, "countries");
 
-  try {
-    // Extract country from query
-    const country = extractCountryFromQuery(query);
-    console.log("Extracted country:", country);
-    
-    if (!country) {
-      if (aiSearchResults) {
-        aiSearchResults.innerHTML = `
-          <div class="ai-result-box error">
-            <p>Could not identify a country in your query. Please mention a specific country like Kenya, Nigeria, Ghana, Tanzania, Uganda, Rwanda, Ethiopia, Malawi, Zambia, DRC, or Liberia.</p>
-          </div>
-        `;
-      }
-      if (aiLoading) aiLoading.style.display = "none";
-      return;
-    }
+  const narrative = buildNarrative(filtered, filters, categoryTally, energyTally, countryTally);
 
-    // Generate local summary
-    const summary = generateEcosystemSummary(country);
-    console.log("Summary:", summary);
-    
-    if (!summary) {
-      if (aiSearchResults) {
-        aiSearchResults.innerHTML = `
-          <div class="ai-result-box error">
-            <p>No data found for ${country}. Please check the available countries or try another search.</p>
-          </div>
-        `;
-      }
-      if (aiLoading) aiLoading.style.display = "none";
-      return;
-    }
+  insightsBody.innerHTML = `
+    <p class="insights-narrative">${narrative}</p>
 
-    // Generate summary
-    const aiResponse = generateLocalSummary(summary);
+    <div class="signal-metrics">
+      <div class="signal-metric">
+        <span class="value">${total}</span>
+        <span class="label">Companies in view</span>
+      </div>
+      <div class="signal-metric">
+        <span class="value">${categoryTally.length}</span>
+        <span class="label">Segments represented</span>
+      </div>
+      <div class="signal-metric">
+        <span class="value">${countryTally.length}</span>
+        <span class="label">Countries covered</span>
+      </div>
+      <div class="signal-metric">
+        <span class="value">${energyTally.length}</span>
+        <span class="label">Energy models in play</span>
+      </div>
+    </div>
 
-    // Display results
-    if (aiSearchResults) {
-      aiSearchResults.innerHTML = `
-        <div class="ai-result-box">
-          <h3>${country}'s E-Mobility Ecosystem Summary</h3>
-          <div class="ai-summary">
-            <p class="ai-text">${aiResponse}</p>
-          </div>
-          
-          <div class="ai-stats">
-            <div class="ai-stat">
-              <span class="stat-label">Active Companies:</span>
-              <span class="stat-value">${summary.totalCompanies}</span>
-            </div>
-            
-            <div class="ai-stat">
-              <span class="stat-label">Top Vehicle Type:</span>
-              <span class="stat-value">${summary.topCategories[0]?.[0] || 'N/A'}</span>
-            </div>
-            
-            <div class="ai-stat">
-              <span class="stat-label">Primary Energy Model:</span>
-              <span class="stat-value">${summary.topEnergyModels[0]?.[0] || 'N/A'}</span>
-            </div>
-          </div>
+    <div class="signal-breakdown">
+      <h4>Top segments</h4>
+      ${renderSignalRows(categoryTally, total)}
+    </div>
 
-          <div class="ai-companies-list">
-            <h4>Operating Companies:</h4>
-            <ul>
-              ${summary.companies.map(c => `
-                <li class="company-item">
-                  <strong>${c.name}</strong>
-                  <br><small>${c.categories.join(", ")}</small>
-                </li>
-              `).join("")}
-            </ul>
-          </div>
-        </div>
-      `;
-    }
-
-  } catch (error) {
-    console.error("Error:", error);
-    if (aiSearchResults) {
-      aiSearchResults.innerHTML = `
-        <div class="ai-result-box error">
-          <p>An error occurred while processing your query. Please try again.</p>
-        </div>
-      `;
-    }
-  } finally {
-    if (aiLoading) aiLoading.style.display = "none";
-  }
+    <div class="signal-breakdown">
+      <h4>Top energy models</h4>
+      ${energyTally.length ? renderSignalRows(energyTally, total) : '<p style="color:#9db8a9;font-size:13px;">No disclosed energy models in this view.</p>'}
+    </div>
+  `;
 }
 
 searchInput.addEventListener(
@@ -998,7 +924,6 @@ renderCompanies();
 // Initialize everything when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM loaded, initializing...");
-  initializeAIElements();
   populateFilters();
   renderCompanies();
 });
@@ -1006,12 +931,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // Also call in case DOM is already loaded
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
-    initializeAIElements();
     populateFilters();
     renderCompanies();
   });
 } else {
-  initializeAIElements();
   populateFilters();
   renderCompanies();
 }
