@@ -1,84 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Electric Mobility Africa</title>
-  <!-- The previous update accidentally placed the assets in the opposite files. -->
-  <link rel="stylesheet" href="script.js">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electric Mobility Africa</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <header class="hero">
+
+<header class="hero">
+
     <nav class="navbar">
-      <div class="logo">⚡ Electric Mobility Africa</div>
-      <a href="https://forms.gle/2LNfFtyoCbxsjDcj7" class="submit-btn">Get Listed</a>
+        <div class="logo">
+            ⚡ Electric Mobility Africa
+        </div>
+
+        <a href="https://forms.gle/2LNfFtyoCbxsjDcj7" class="submit-btn">
+            Get Listed
+        </a>
     </nav>
 
     <div class="hero-content">
-      <div class="hero-text">
-        <span class="hero-kicker">Africa's electric mobility directory</span>
-        <h1>Discover Africa's Electric Mobility Ecosystem</h1>
-        <p>Connecting innovators, businesses, investors, policymakers, researchers, communities, and suppliers accelerating the transition to sustainable transport across Africa.</p>
-        <a href="#filters" class="explore-btn">Explore the directory 🔎</a>
-      </div>
-      <div class="hero-image">
-        <img src="hero.png" alt="Electric mobility in Africa">
-      </div>
+
+        <div class="hero-text">
+            <h1>Discover Africa's Electric Mobility Ecosystem</h1>
+
+            <p>
+                Connecting innovators, businesses, investors, policymakers, researchers, and communities accelerating the transition to sustainable transport across Africa.
+            </p>
+
+            <a href="#ai-insights" class="explore-btn">
+                Explore Here 🔎
+            </a>
+        </div>
+
+        <div class="hero-image">
+    <img src="hero.png" alt="EV Africa">
+</div>
+
     </div>
-  </header>
 
-  <main>
-    <section class="stats" aria-label="Directory statistics">
-      <div class="stat-card"><h2 id="totalCompanies">0</h2><p>Total Companies</p></div>
-      <div class="stat-card stat-card--supplier"><h2 id="supplierCount">0</h2><p>Emobility Suppliers</p></div>
-      <div class="stat-card"><h2 id="motorcycleCount">0</h2><p>EV Two-Wheeler Companies</p></div>
-      <div class="stat-card"><h2 id="busCount">0</h2><p>EV Bus Companies</p></div>
-      <div class="stat-card"><h2 id="carCount">0</h2><p>EV Car Companies</p></div>
-      <div class="stat-card"><h2 id="threeCount">0</h2><p>EV Three-Wheeler Companies</p></div>
-      <div class="stat-card"><h2 id="financeCount">0</h2><p>EV Financing Companies</p></div>
-      <div class="stat-card"><h2 id="chargingCount">0</h2><p>EV Charging Companies</p></div>
-      <div class="stat-card"><h2 id="commercialCount">0</h2><p>Commercial EV Companies</p></div>
-    </section>
+</header>
 
-    <section class="supplier-banner" aria-labelledby="supplier-title">
-      <div class="supplier-banner__content">
-        <span class="supplier-tag">New category</span>
-        <h2 id="supplier-title">Emobility Suppliers</h2>
-        <p>Explore mostly Asian suppliers of batteries, drivetrain components, CKDs, SKDs, software, chargers, and supporting infrastructure for Africa's electric mobility market.</p>
-      </div>
-    </section>
+<main>
 
-    <section id="filters" class="filters" aria-label="Directory filters">
-      <input type="search" id="searchInput" placeholder="Search company or description" aria-label="Search company or description">
-      <select id="countryFilter" aria-label="Filter by country"></select>
-      <select id="categoryFilter" aria-label="Filter by category"></select>
-      <select id="energyFilter" aria-label="Filter by energy model"></select>
-      <button id="resetBtn" type="button">Reset filters</button>
-    </section>
+<section class="stats">
 
-    <section id="ai-insights" class="insights">
-      <div class="insights-head">
-        <span class="insights-eyebrow">Live market read</span>
-        <h2>Insights on your filtered view</h2>
-        <p>Click a segment for its own intelligence, or use the filters above. Results update instantly.</p>
-      </div>
-      <div id="segmentChips" class="segment-chips"></div>
-      <div id="insightsBody" class="insights-body"></div>
-    </section>
+<div class="stat-card">
+<h2 id="totalCompanies">0</h2>
+<p>Total Companies</p>
+</div>
 
-    <section class="results-header"><h2 id="resultsCount"></h2></section>
-    <section id="companyContainer" class="company-grid" aria-live="polite"></section>
-  </main>
+<div class="stat-card">
+<h2 id="motorcycleCount">0</h2>
+<p>EV TwoWheeler Companies</p>
+</div>
 
-  <footer>
-    <h3>Electric Mobility Africa</h3>
-    <p><i>Powered by KEMTG</i></p>
-    <p>Email: evstodayafrica@gmail.com</p>
-    <p>Nairobi, Kenya</p>
-  </footer>
+<div class="stat-card">
+<h2 id="busCount">0</h2>
+<p>EV Bus Companies</p>
+</div>
 
-  <!-- The previous commit swapped the CSS and JavaScript file contents; load each by its actual content. -->
-  <script src="styles.css"></script>
+<div class="stat-card">
+<h2 id="carCount">0</h2>
+<p>EV Car Companies</p>
+</div>
+
+<div class="stat-card">
+<h2 id="threeCount">0</h2>
+<p>EV Three Wheeler Companies</p>
+</div>
+
+<div class="stat-card">
+<h2 id="financeCount">0</h2>
+<p>EV Financing Companies</p>
+</div>
+<div class="stat-card">
+<h2 id="chargingCount">0</h2>
+<p>EV Charging Companies</p>
+</div>
+<div class="stat-card">
+<h2 id="commercialCount">0</h2>
+<p>Commercial EV Vehicle Companies</p>
+</div>
+
+</section>
+
+<section id="filters" class="filters">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search Company">
+
+<select id="countryFilter"></select>
+
+<select id="categoryFilter"></select>
+
+<select id="energyFilter"></select>
+
+<button id="resetBtn">
+Reset
+</button>
+
+</section>
+
+<section id="ai-insights" class="insights">
+
+    <div class="insights-head">
+        <span class="insights-eyebrow">Live Market Read</span>
+        <h2>AI Insights on Your Filtered View</h2>
+        <p>Click a segment for its own intelligence, or filter above — either way this updates instantly.</p>
+    </div>
+
+    <div id="segmentChips" class="segment-chips">
+        <!-- populated by script.js -->
+    </div>
+
+    <div id="insightsBody" class="insights-body">
+        <!-- populated by script.js -->
+    </div>
+
+</section>
+
+<section class="results-header">
+<h2 id="resultsCount"></h2>
+</section>
+
+<section id="companyContainer" class="company-grid">
+
+</section>
+
+</main>
+
+<footer>
+
+<h3>Electric Mobility Africa</h3>
+
+<p><i>Powered by KEMTG</i></p>
+
+<p>Email: evstodayafrica@gmail.com</p>
+
+<!-- <p>Phone: +254700000000</p> -->
+
+<p>Nairobi, Kenya</p>
+
+</footer>
+
+<script src="script.js"></script>
+
 </body>
 </html>
