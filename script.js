@@ -1,982 +1,455 @@
-const companies = [
-
-{
-name:"Ampersand Energy",
-countries:["Kenya","Rwanda"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"],
-},
-  {
-name:"Wahu Mobility",
-countries:["Ghana","Togo"],
-categories:["eBikes"],
-energyModels:["Battery Swapping","Home Charging"]
-},
-  {
-name:"eWAKA",
-countries:["Kenya","Rwanda","DRC","Malawi"],
-categories:["eBikes","Motorcycle"],
-energyModels:["tbc"]
-},
-  {
-name:"Kazzi",
-countries:["Kenya"],
-categories:["eBikes"],
-energyModels:["Home Charging"]
-},
-  {
-name:"Vine Mobility",
-countries:["Nigeria"],
-categories:["Software Platform"],
-energyModels:["tbc"]
-},
-  {
-name:"Yourrider Energies",
-countries:["Nigeria"],
-categories:["EV Charging","EV Maintenance"],
-energyModels:["Battery Swapping","Public Charging"]
-},
-  {
-name:"First Electric",
-countries:["Nigeria"],
-categories:["EV Charging"],
-energyModels:["Public Charging"]
-},
-   {
-name:"Zimi Charge",
-countries:["South Africa"],
-categories:["EV Charging"],
-energyModels:["Public Charging"]
-},
-  
-  {
-name:"BEV Ltd",
-countries:["Kenya"],
-categories:["All EVs","Distributor"],
-energyModels:["tbc"]
-},
-   {
-name:"Car and General",
-countries:["Kenya","Tanzania","Uganda"],
-categories:["3 Wheeler"],
-energyModels:["tbc"]
-},
-  {
-name:"PlugNRide",
-countries:["Tanzania"],
-categories:["3 Wheeler","Motorcycle"],
-energyModels:["tbc"]
-},
-    {
-name:"SGV Electric Mobility",
-countries:["Malawi"],
-categories:["Motorcycle","Commercial Vehicles","3 Wheeler"],
-energyModels:["tbc"]
-},
-  {
-name:"eBee Africa",
-countries:["Kenya","Rwanda","Uganda"],
-categories:["eBikes"],
-energyModels:["Home Charging"]
-},
-
-{
-name:"Roam",
-countries:["Kenya"],
-categories:["Motorcycle","Bus"],
-energyModels:["Public Charging","Battery Swapping","Home Charging"]
-},
-  {
-name:"SUN Mobility",
-countries:["Kenya"],
-categories:["Motorcycle","3 Wheeler"],
-energyModels:["tbc"]
-},
-  {
-name:"TankVolt",
-countries:["Kenya","Nigeria","Tanzania","Ethiopia","Uganda"],
-categories:["Motorcycle","3 Wheeler"],
-energyModels:["tbc"]
-},
-   {
-name:"STIMA Mobility",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-   {
-name:"Transboda",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["tbc"]
-},
-  {
-name:"Yna Kenya",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-  {
-name:"Kenya Vehicle Manufacturers(KVM)",
-countries:["Kenya"],
-categories:["Car","Bus","Assembly Services"],
-energyModels:["NA"]
-},
-  {
-name:"Kiri EV",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-    {
-name:"WeTu",
-countries:["Kenya"],
-categories:["Motorcycle","3 Wheeler"],
-energyModels:["Battery Swapping","Home Charging"]
-},
-  {
-name:"Dodai",
-countries:["Ethiopia"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-
-{
-name:"Spiro",
-countries:["Kenya","Rwanda","Benin","Togo","Uganda","Tanzania","Nigeria","Cameroon"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-  {
-name:"Fleevigo",
-countries:["Nigeria"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-  {
-name:"Zembo",
-countries:["Uganda"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-{
-name:"Orbit Electric",
-countries:["Nigeria"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-  {
-name:"Revoo",
-countries:["Nigeria"],
-categories:["Electric Scooter"],
-energyModels:["Home Charging"]
-},
-  {
-name:"Gogo Electric",
-countries:["Uganda"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-   {
-name:"Mazi Mobility",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-     {
-name:"Kibo",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-    {
-name:"Fika Mobility",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-      {
-name:"Frontier Links",
-countries:["Kenya"],
-categories:["Logistics Services"],
-energyModels:["NA"]
-},
-    {
-name:"GECSS INVESTMENT",
-countries:["Kenya"],
-categories:["Retrofitting","Motorcycle"],
-energyModels:["NA"]
-},
-      {
-name:"QTRON Industries",
-countries:["Kenya"],
-categories:["Retrofitting","EV Maintenance"],
-energyModels:["NA"]
-},
-  {
-name:"Silent Savannah",
-countries:["Kenya"],
-categories:["Retrofitting"],
-energyModels:["Offgrid Solar Charging"]
-},
-   {
-name:"Ecowaka",
-countries:["Nigeria"],
-categories:["Retrofitting","3 Wheeler"],
-energyModels:["Offgrid Solar Charging"]
-},
-   {
-name:"Makasi Swapping",
-countries:["Tanzania"],
-categories:["Retrofitting","3 Wheeler","Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-   {
-name:"Ecomobilus Technologies",
-countries:["Kenya"],
-categories:["Retrofitting"],
-energyModels:["NA"]
-},
-  {
-name:"Enviroserve Kenya",
-countries:["Kenya"],
-categories:["Circularity"],
-energyModels:["NA"]
-},
-  {
-name:"REVLOG",
-countries:["Kenya"],
-categories:["Circularity"],
-energyModels:["NA"]
-},
-  {
-name:"SLS Energy",
-countries:["Rwanda"],
-categories:["Circularity"],
-energyModels:["NA"]
-},
-   {
-name:"AceleAfrica",
-countries:["Kenya","Uganda"],
-categories:["Circularity"],
-energyModels:["NA"]
-},
-   {
-name:"WEEE Centre",
-countries:["Kenya","Uganda"],
-categories:["Circularity"],
-energyModels:["NA"]
-},
-     {
-name:"Go-Electric/UTU Cars",
-countries:["Kenya"],
-categories:["Leasing","Distributor","Car","3 Wheeler"],
-energyModels:["NA"]
-},
-   {
-name:"ecobodaa",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-{
-name:"Songa Mobility",
-countries:["Kenya"],
-categories:["3 Wheeler","EV Charging"],
-energyModels:["Public Charging"]
-},
-{
-name:"Emergi",
-countries:["Liberia"],
-categories:["3 Wheeler"],
-energyModels:[""]
-},
-{
-name:"BasiGo",
-countries:["Kenya","Rwanda"],
-categories:["Bus"],
-energyModels:["Public Charging"]
-},
-  {
-name:"BYD/Loxea",
-countries:["Kenya"],
-categories:["Bus","Distributor"],
-energyModels:["Public Charging","Home Charging"]
-},
-  {
-name:"Kabisa EV",
-countries:["Kenya","Rwanda"],
-categories:["Car","Commercial Vehicles","EV Charging"],
-energyModels:["Public Charging"]
-},
-   {
-name:"EcoTrify",
-countries:["Kenya"],
-categories:["Leasing","EV Charging"],
-energyModels:["Public Charging"]
-},
-  {
-name:"Caetano",
-countries:["Kenya"],
-categories:["Car","EV Charging","Distributor"],
-energyModels:["Public Charging"]
-},
-    {
-name:"Autopax",
-countries:["Kenya"],
-categories:["Car","EV Charging"],
-energyModels:["Public Charging"]
-},
-   {
-name:"ChargeNet",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["Public Charging"]
-},
-   {
-name:"SupaChaja",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["Public Charging"]
-},
-
-   {
-name:"GIZ Kenya",
-countries:["Kenya"],
-categories:["Development Partners & Foundations"],
-energyModels:["NA"]
-},
-   {
-name:"Siemens Stiftung",
-countries:["Kenya"],
-categories:["Development Partners & Foundations"],
-energyModels:["NA"]
-},
-  {
-name:"United Nations Environment Programme",
-countries:["Kenya"],
-categories:["Development Partners & Foundations"],
-energyModels:["NA"]
-},
-  {
-name:"M-KOPA",
-countries:["Kenya"],
-categories:["Financing","Motorcycle"],
-energyModels:["NA"]
-},
-  {
-name:"MOGO Financing",
-countries:["Kenya"],
-categories:["Financing","Motorcycle"],
-energyModels:["NA"]
-},
-    {
-name:"Fortune Credit",
-countries:["Kenya"],
-categories:["Financing","Motorcycle"],
-energyModels:["NA"]
-},
-  {
-name:"Power Governors Ltd",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["Public Charging"]
-},
-    {
-name:"Equator Mobility",
-countries:["Kenya"],
-categories:["Leasing","Car","EV Maintenance"],
-energyModels:["Public Charging"]
-},
-  {
-name:"ePure Rides",
-countries:["Kenya"],
-categories:["Leasing"],
-energyModels:["Public Charging"]
-},
-    {
-name:"Drivelectric",
-countries:["Kenya"],
-categories:["Leasing","Financing","Car","EV Charging","Research","Circularity"],
-energyModels:["Public Charging"]
-},
-   {
-name:"Strathmore Energy Research Centre (SERC)",
-countries:["Kenya"],
-categories:["Research","Training"],
-energyModels:["NA"]
-},
-     {
-name:"University of Nairobi",
-countries:["Kenya"],
-categories:["Research"],
-energyModels:["NA"]
-},
-  {
-name:"Africa E-Mobility Alliance (AfEMA)",
-countries:["Kenya"],
-categories:["Research"],
-energyModels:["NA"]
-},
-    {
-name:"E-Safiri",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["Public Charging","Battery Swapping"]
-},
-    {
-name:"Schneider Electric",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["tbc"]
-},
-  {
-name:"Eaton",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["tbc"]
-},
-   {
-name:"Kenya Power",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["tbc"]
-},
-     {
-name:"Izi Electric",
-countries:["Rwanda"],
-categories:["Leasing","Bus"],
-energyModels:["Public Charging"]
-},
-    {
-name:"EMAK",
-countries:["Kenya"],
-categories:["Industry Associations"],
-energyModels:["NA"]
-},
-  {
-name:"TAEMA",
-countries:["Tanzania"],
-categories:["Industry Associations"],
-energyModels:["NA"]
-},
-  {
-name:"ZEMIA",
-countries:["Zambia"],
-categories:["Industry Associations"],
-energyModels:["NA"]
-},
-   {
-name:"UEA",
-countries:["Uganda"],
-categories:["Industry Associations"],
-energyModels:["NA"]
-},
-     {
-name:"EOA",
-countries:["Ethiopia"],
-categories:["Industry Associations"],
-energyModels:["NA"]
-},
-  {
-name:"Advance Mobility Centre",
-countries:["Kenya"],
-categories:["Training"],
-energyModels:["NA"]
-},
-   {
-name:"NITA",
-countries:["Kenya"],
-categories:["Training"],
-energyModels:["NA"]
-},
-  {name:"WTS",
-countries:["Kenya"],
-categories:["Training"],
-energyModels:["NA"]
-},
-   {
-name:"MAX",
-countries:["Nigeria"],
-categories:["Financing","Motorcycle"],
-energyModels:["NA"]
-},
-    {
-name:"Watu Credit",
-countries:["Kenya","Sierra Leone","Nigeria","Uganda","Rwanda","Tanzania","DRC","South Africa"],
-categories:["Financing","Motorcycle"],
-energyModels:["NA"]
-},
-  {
-name:"Enzi",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-  {
-name:"Arc Ride",
-countries:["Kenya","South Africa","Ghana"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-  {
-name:"Zeno",
-countries:["Kenya"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping","Public Charging"]
-},
-  {
-name:"Kofa",
-countries:["Kenya","Ghana"],
-categories:["Motorcycle"],
-energyModels:["Battery Swapping"]
-},
-  {
-name:"Alpha Mobility",
-countries:["Kenya"],
-categories:["3 Wheeler"],
-energyModels:["Battery Swapping"]
-},
-    {
-name:"Moja EV",
-countries:["Kenya"],
-categories:["Car"],
-energyModels:["Public Charging","Home Charging"]
-},
-    {
-name:"Simba Corp",
-countries:["Kenya"],
-categories:["Car","Bus","Assembly Services","Distributor"],
-energyModels:["Public Charging","Home Charging"]
-},
-  {
-name:"Rideence Africa Limited",
-countries:["Kenya"],
-categories:["Car"],
-energyModels:["tbc"]
-},
-  {
-name:"Neo Motors",
-countries:["Morocco"],
-categories:["Car"],
-energyModels:["tbc"]
-},
-   {
-name:"EVChaja",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["Public Charging"]
-},
-   {
-name:"Powerhive",
-countries:["Kenya"],
-categories:["EV Charging"],
-energyModels:["Battery Swapping"]
-}
-];
-
-const categoryFilter = document.getElementById("categoryFilter");
-const countryFilter = document.getElementById("countryFilter");
-const energyFilter = document.getElementById("energyFilter");
-const searchInput = document.getElementById("searchInput");
-const container = document.getElementById("companyContainer");
-const resultsCount = document.getElementById("resultsCount");
-
-// AI Insights Elements
-const insightsBody = document.getElementById("insightsBody");
-const segmentChips = document.getElementById("segmentChips");
-
-function populateFilters(){
-
-const countries =
-[...new Set(companies.flatMap(c=>c.countries))]
-.sort();
-
-countryFilter.innerHTML=
-'<option value="">All Countries</option>';
-
-countries.forEach(country=>{
-countryFilter.innerHTML+=
-`<option>${country}</option>`;
-});
-
-const categories =
-[...new Set(companies.flatMap(c=>c.categories))]
-.sort();
-
-categoryFilter.innerHTML=
-'<option value="">All Categories</option>';
-
-categories.forEach(cat=>{
-categoryFilter.innerHTML+=
-`<option>${cat}</option>`;
-});
-
-renderSegmentChips(categories);
-
-const energies =
-[...new Set(companies.flatMap(c=>c.energyModels))]
-.sort();
-
-energyFilter.innerHTML=
-'<option value="">All Energy Models</option>';
-
-energies.forEach(model=>{
-energyFilter.innerHTML+=
-`<option>${model}</option>`;
-});
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-// Builds the "Cars / Motorcycles / EV Charging / ..." clickable chip row.
-// Counts shown are against the full directory (a stable reference number for
-// browsing), independent of whatever the search/country/energy filters are
-// currently doing — clicking a chip always sets categoryFilter and re-renders.
-function renderSegmentChips(categories){
-
-  const chipsHtml = ['<button type="button" class="segment-chip" data-category="">All</button>']
-    .concat(categories.map(cat => {
-      const count = countCategory(cat);
-      return `<button type="button" class="segment-chip" data-category="${cat}">${cat} <span class="chip-count">${count}</span></button>`;
-    }));
-
-  segmentChips.innerHTML = chipsHtml.join("");
-
-  syncSegmentChips();
+body {
+  background: #07130b;
+  color: white;
 }
 
-// Keeps the chip row's highlighted state in sync with categoryFilter,
-// whether it was changed by a chip click or the dropdown itself.
-function syncSegmentChips(){
-  if (!segmentChips) return;
-  const active = categoryFilter.value;
-  segmentChips.querySelectorAll(".segment-chip").forEach(chip => {
-    chip.classList.toggle("active", chip.dataset.category === active);
-  });
+.hero {
+  padding: 30px;
+  background: linear-gradient(135deg, #07130b, #0f2515);
 }
 
-if (segmentChips) {
-  segmentChips.addEventListener("click", (e) => {
-    const chip = e.target.closest(".segment-chip");
-    if (!chip) return;
-    categoryFilter.value = chip.dataset.category;
-    renderCompanies();
-    document.getElementById("ai-insights")
-      .scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
-function renderCompanies(){
-
-const search =
-searchInput.value.toLowerCase();
-
-const country =
-countryFilter.value;
-
-const category =
-categoryFilter.value;
-
-const energy =
-energyFilter.value;
-
-const filtered =
-companies.filter(company=>{
-
-const searchMatch =
-company.name.toLowerCase()
-.includes(search);
-
-const countryMatch =
-!country ||
-company.countries.includes(country);
-
-const categoryMatch =
-!category ||
-company.categories.includes(category);
-
-const energyMatch =
-!energy ||
-company.energyModels.includes(energy);
-
-return searchMatch &&
-countryMatch &&
-categoryMatch &&
-energyMatch;
-
-});
-
-container.innerHTML="";
-
-filtered.forEach(company=>{
-
-const card =
-document.createElement("div");
-
-card.className =
-"company-card";
-
-card.innerHTML=`
-
-<h3>${company.name}</h3>
-
-<p>
-<strong>Countries:</strong>
-${company.countries.join(", ")}
-</p>
-
-<p>
-<strong>Categories:</strong>
-</p>
-
-${company.categories.map(cat=>
-`<span class="badge">${cat}</span>`
-).join("")}
-
-<p style="margin-top:15px;">
-<strong>Energy Model:</strong>
-${company.energyModels.join(", ")}
-</p>
-
-`;
-
-container.appendChild(card);
-
-});
-
-resultsCount.innerText =
-`${filtered.length} Companies Found`;
-
-updateStats();
-
-renderInsights(filtered, { search, country, category, energy });
-syncSegmentChips();
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ff88;
 }
 
-function countCategory(name){
-
-return companies.filter(
-c=>c.categories.includes(name)
-).length;
-
+.submit-btn {
+  background: #00ff88;
+  padding: 12px 20px;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
 }
 
-function updateStats(){
-
-document.getElementById(
-"totalCompanies"
-).innerText=
-companies.length;
-
-document.getElementById(
-"motorcycleCount"
-).innerText=
-countCategory("Motorcycle");
-
-document.getElementById(
-"busCount"
-).innerText=
-countCategory("Bus");
-
-document.getElementById(
-"carCount"
-).innerText=
-countCategory("Car");
-  
-document.getElementById(
-"commercialCount"
-).innerText=
-countCategory("Commercial Vehicles");
-  
-document.getElementById(
-"chargingCount"
-).innerText=
-countCategory("EV Charging");
-
-document.getElementById(
-"threeCount"
-).innerText=
-countCategory("3 Wheeler");
-
-document.getElementById(
-"financeCount"
-).innerText=
-countCategory("Financing");
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
 }
 
-// ============= AI INSIGHTS PANEL =============
-// Pure client-side "intelligence": no chatbot, no query box, no network calls.
-// It reads whatever renderCompanies() already filtered and turns that array
-// into a plain-language read plus a couple of live distribution bars.
-// This runs on every filter/search change, always describing exactly what's
-// on screen right now.
-
-const VALID_ENERGY = m => m && m !== "tbc" && m !== "NA" && m !== "";
-
-// Tally occurrences of every value in a field (categories / energyModels / countries)
-// across a list of companies, sorted highest first.
-function tally(list, field, { validate } = {}) {
-  const counts = {};
-  list.forEach(company => {
-    company[field].forEach(value => {
-      if (validate && !validate(value)) return;
-      counts[value] = (counts[value] || 0) + 1;
-    });
-  });
-  return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
-function describeActiveFilters({ search, country, category, energy }) {
-  const parts = [];
-  if (country) parts.push(country);
-  if (category) parts.push(category.toLowerCase());
-  if (energy) parts.push(energy.toLowerCase());
-  if (search) parts.push(`matching "${search}"`);
-  return parts.length ? parts.join(", ") : "the full directory";
+.hero-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-// Builds the plain-language narrative for whatever is currently filtered.
-function buildNarrative(filtered, filters, categoryTally, energyTally, countryTally) {
-  const scope = describeActiveFilters(filters);
-  const total = filtered.length;
+.explore-btn {
+  background: #00ff88;
+  color: black;
+  padding: 14px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-  if (total === 0) {
-    return `No companies match <strong>${scope}</strong>. Try loosening a filter — there may be an adjacent segment worth a look.`;
+.hero-image img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.supplier-banner {
+  padding: 0 30px 10px;
+}
+
+.supplier-banner__content {
+  background: linear-gradient(135deg, rgba(0,255,136,0.12), rgba(24,79,55,0.7));
+  border: 1px solid rgba(0,255,136,0.35);
+  border-radius: 18px;
+  padding: 22px 24px;
+}
+
+.supplier-tag {
+  display: inline-block;
+  background: rgba(0,255,136,0.12);
+  color: #00ff88;
+  border: 1px solid rgba(0,255,136,0.4);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.supplier-banner__content h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: #ecfff3;
+}
+
+.supplier-banner__content p {
+  max-width: 760px;
+  color: #d2eadd;
+  line-height: 1.7;
+}
+
+/* ========== AI INSIGHTS PANEL ========== */
+.insights {
+  padding: 30px;
+  margin: 10px 30px 30px;
+  background: #0a1c11;
+  border: 1px solid rgba(0,255,136,0.35);
+  border-radius: 16px;
+}
+
+.insights-head {
+  margin-bottom: 22px;
+}
+
+.insights-eyebrow {
+  display: inline-block;
+  color: #00ff88;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: rgba(0,255,136,0.1);
+  border: 1px solid rgba(0,255,136,0.4);
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.insights-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ff88;
+  margin-right: 6px;
+  box-shadow: 0 0 6px 1px rgba(0,255,136,0.8);
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.insights-head h2 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+
+.insights-head p {
+  color: #9db8a9;
+  font-size: 14px;
+  max-width: 640px;
+}
+
+/* ---- segment chips (click-to-drill-in) ---- */
+.segment-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.segment-chip {
+  background: transparent;
+  color: #c9e8d6;
+  border: 1px solid rgba(0,255,136,0.4);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.segment-chip:hover {
+  background: rgba(0,255,136,0.12);
+  border-color: #00ff88;
+}
+
+.segment-chip.active {
+  background: #00ff88;
+  color: #07130b;
+  border-color: #00ff88;
+}
+
+.segment-chip .chip-count {
+  opacity: 0.7;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+.insights-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+}
+
+.insights-empty {
+  color: #9db8a9;
+  font-style: italic;
+  grid-column: 1/-1;
+}
+
+.insights-narrative {
+  background: rgba(0,255,136,0.06);
+  border-left: 3px solid #00ff88;
+  border-radius: 8px;
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #e6f5ec;
+  grid-column: 1/-1;
+}
+
+.insights-narrative strong {
+  color: #00ff88;
+}
+
+.signal-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  align-content: start;
+}
+
+.signal-metric {
+  background: #0f2517;
+  border: 1px solid rgba(0,255,136,0.25);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+
+.signal-metric .value {
+  display: block;
+  color: #00ff88;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.signal-metric .label {
+  display: block;
+  color: #9db8a9;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-top: 4px;
+}
+
+.signal-breakdown h4 {
+  color: #00ff88;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 12px;
+}
+
+.signal-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 40px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.signal-row .signal-name {
+  color: #e6f5ec;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.signal-track {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.signal-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00994d, #00ff88);
+  border-radius: 6px;
+  transition: width .5s ease;
+}
+
+.signal-row .signal-count {
+  color: #9db8a9;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========== STATS SECTION ========== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.stat-card {
+  background: #102417;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #00ff88;
+}
+
+.stat-card h2 {
+  color: #00ff88;
+  font-size: 2rem;
+}
+
+/* ========== FILTERS SECTION ========== */
+.filters {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.filters input,
+.filters select,
+.filters button {
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+}
+
+.filters button {
+  background: #00ff88;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.results-header {
+  padding: 0 30px;
+}
+
+/* ========== COMPANY GRID ========== */
+.company-grid {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap: 20px;
+}
+
+.company-card {
+  background: #102417;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #00ff88;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.company-card h3 {
+  color: #00ff88;
+  margin-bottom: 4px;
+}
+
+.company-card p {
+  color: #dfeee3;
+  line-height: 1.6;
+}
+
+.company-card strong {
+  color: #ecfff3;
+}
+
+.company-description {
+  background: rgba(0,255,136,0.06);
+  border-left: 3px solid #00ff88;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #dbf3e4;
+  font-size: 14px;
+}
+
+.company-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-block;
+  background: #00ff88;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin: 4px 4px 0 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.supplier-highlight {
+  display: inline-block;
+  background: rgba(0,255,136,0.12);
+  border: 1px solid rgba(0,255,136,0.45);
+  color: #b8ffd6;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background: linear-gradient(135deg, #00E676, #00C853);
+  color: #0B172A;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+footer a {
+  color: #00ff88;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
   }
 
-  const [topCatName, topCatCount] = categoryTally[0] || [];
-  const [topEnergyName, topEnergyCount] = energyTally[0] || [];
-  const catShare = topCatCount ? Math.round((topCatCount / total) * 100) : null;
-  const countrySpan = countryTally.length;
-
-  let sentence = `<strong>${total}</strong> ${total === 1 ? "company matches" : "companies match"} <strong>${scope}</strong>.`;
-
-  if (topCatName) {
-    sentence += ` <strong>${topCatName}</strong> is the leading segment (${catShare}% of this view)${(filters.category || filters.country) ? "" : `, spread across <strong>${countrySpan}</strong> ${countrySpan === 1 ? "country" : "countries"}`}.`;
+  .hero-text h1 {
+    font-size: 2rem;
   }
 
-  if (topEnergyName) {
-    sentence += ` Where an energy model is known, <strong>${topEnergyName}</strong> is the dominant approach (${topEnergyCount} of the matching companies).`;
-  } else {
-    sentence += ` Most matching companies haven't disclosed an energy model yet — a gap worth flagging.`;
+  .insights {
+    margin: 10px 15px 20px;
+    padding: 20px;
   }
 
-  return sentence;
-}
-
-// Renders the small horizontal "signal bars" for a breakdown (category/energy/country).
-function renderSignalRows(entries, total) {
-  return entries.slice(0, 5).map(([name, count]) => {
-    const pct = Math.max(4, Math.round((count / total) * 100));
-    return `
-      <div class="signal-row">
-        <span class="signal-name" title="${name}">${name}</span>
-        <div class="signal-track"><div class="signal-fill" style="width:${pct}%"></div></div>
-        <span class="signal-count">${count}</span>
-      </div>
-    `;
-  }).join("");
-}
-
-// Main entry point — called from renderCompanies() with the exact same
-// filtered array and filter values already computed there.
-function renderInsights(filtered, filters) {
-  if (!insightsBody) return;
-
-  const total = filtered.length;
-
-  if (total === 0) {
-    insightsBody.innerHTML = `
-      <p class="insights-narrative">${buildNarrative(filtered, filters, [], [], [])}</p>
-    `;
-    return;
+  .insights-body {
+    grid-template-columns: 1fr;
   }
 
-  const categoryTally = tally(filtered, "categories");
-  const energyTally = tally(filtered, "energyModels", { validate: VALID_ENERGY });
-  const countryTally = tally(filtered, "countries");
-
-  const narrative = buildNarrative(filtered, filters, categoryTally, energyTally, countryTally);
-
-  insightsBody.innerHTML = `
-    <p class="insights-narrative">${narrative}</p>
-
-    <div class="signal-metrics">
-      <div class="signal-metric">
-        <span class="value">${total}</span>
-        <span class="label">Companies in view</span>
-      </div>
-      <div class="signal-metric">
-        <span class="value">${categoryTally.length}</span>
-        <span class="label">Segments represented</span>
-      </div>
-      <div class="signal-metric">
-        <span class="value">${countryTally.length}</span>
-        <span class="label">Countries covered</span>
-      </div>
-      <div class="signal-metric">
-        <span class="value">${energyTally.length}</span>
-        <span class="label">Energy models in play</span>
-      </div>
-    </div>
-
-    <div class="signal-breakdown">
-      <h4>Top segments</h4>
-      ${renderSignalRows(categoryTally, total)}
-    </div>
-
-    <div class="signal-breakdown">
-      <h4>Top energy models</h4>
-      ${energyTally.length ? renderSignalRows(energyTally, total) : '<p style="color:#9db8a9;font-size:13px;">No disclosed energy models in this view.</p>'}
-    </div>
-  `;
-}
-
-searchInput.addEventListener(
-"input",
-renderCompanies
-);
-countryFilter.addEventListener(
-"change",
-renderCompanies
-);
-
-categoryFilter.addEventListener(
-"change",
-renderCompanies
-);
-
-energyFilter.addEventListener(
-"change",
-renderCompanies
-);
-
-document.getElementById("resetBtn")
-.addEventListener("click",()=>{
-
-searchInput.value="";
-countryFilter.value="";
-categoryFilter.value="";
-energyFilter.value="";
-
-renderCompanies();
-
-});
-
-// Initialize everything when DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM loaded, initializing...");
-  populateFilters();
-  renderCompanies();
-});
-
-// Also call in case DOM is already loaded
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    populateFilters();
-    renderCompanies();
-  });
-} else {
-  populateFilters();
-  renderCompanies();
+  .signal-row {
+    grid-template-columns: 90px 1fr 32px;
+  }
 }
