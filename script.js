@@ -13,13 +13,13 @@ categories:["eBikes"],
 energyModels:["Battery Swapping","Home Charging"]
 },
 {
-name:"Yadea",
+name:"belisted 1",
 countries:["China"],
 categories:["Electric Mobility Suppliers"],
 energyModels:["NA"]
 },
   {
-name:"Wylex",
+name:"belisted 2",
 countries:["China"],
 categories:["Electric Mobility Suppliers"],
 energyModels:["NA"]
