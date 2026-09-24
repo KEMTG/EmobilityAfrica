@@ -4,7 +4,7 @@ const companies = [
 name:"Ampersand Energy",
 countries:["Kenya","Rwanda"],
 categories:["Motorcycle"],
-energyModels:["Battery Swapping"],
+energyModels:["Battery Swapping"]
 },
   {
 name:"Wahu Mobility",
@@ -12,7 +12,19 @@ countries:["Ghana","Togo"],
 categories:["eBikes"],
 energyModels:["Battery Swapping","Home Charging"]
 },
+{
+name:"Yadea",
+countries:["China"],
+categories:["Electric Mobility Suppliers"],
+energyModels:["NA"]
+},
   {
+name:"Wylex",
+countries:["China"],
+categories:["Electric Mobility Suppliers"],
+energyModels:["NA"]
+},
+{
 name:"eWAKA",
 countries:["Kenya","Rwanda","DRC","Malawi"],
 categories:["eBikes","Motorcycle"],
