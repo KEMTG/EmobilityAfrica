@@ -809,6 +809,11 @@ document.getElementById(
 "threeCount"
 ).innerText=
 countCategory("3 Wheeler");
+  
+document.getElementById(
+"supplierCount"
+).innerText=
+countCategory("Electric Mobility Suppliers");
 
 document.getElementById(
 "financeCount"
