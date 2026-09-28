@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Intelligence - KEMTG</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Fleet Intelligence specific styles */
+        .fi-hero {
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #07130b, #0a2417);
+            border-bottom: 2px solid #00ff88;
+        }
+
+        .fi-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+
+        .fi-hero p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #c9e8d6;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .fi-cta-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .fi-cta {
+            background: #00ff88;
+            color: black;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .fi-cta:hover {
+            background: #00dd7a;
+            transform: translateY(-2px);
+        }
+
+        .fi-features {
+            padding: 60px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .fi-feature-card {
+            background: #0f2517;
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .fi-feature-card h3 {
+            color: #00ff88;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .fi-feature-card p {
+            color: #c9e8d6;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .fi-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .fi-how-it-works {
+            padding: 60px 30px;
+            background: #0a1c11;
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .fi-how-it-works h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #00ff88;
+            text-align: center;
+        }
+
+        .fi-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .fi-step {
+            background: #0f2517;
+            border: 1px solid rgba(0, 255, 136, 0.25);
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+        }
+
+        .fi-step-number {
+            display: inline-block;
+            background: #00ff88;
+            color: #07130b;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .fi-step h4 {
+            color: #c9e8d6;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .fi-step p {
+            color: #9db8a9;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .fi-benefits {
+            padding: 60px 30px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 255, 136, 0.02));
+        }
+
+        .fi-benefits h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #00ff88;
+            text-align: center;
+        }
+
+        .fi-benefits-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+        }
+
+        .fi-benefit-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .fi-benefit-check {
+            color: #00ff88;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .fi-benefit-text {
+            color: #c9e8d6;
+            line-height: 1.6;
+        }
+
+        .fi-cta-section {
+            padding: 60px 30px;
+            background: #07130b;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .fi-cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+
+        .fi-cta-section p {
+            color: #c9e8d6;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .fi-hero h1 {
+                font-size: 2rem;
+            }
+
+            .fi-how-it-works h2 {
+                font-size: 1.5rem;
+            }
+
+            .fi-benefits h2 {
+                font-size: 1.5rem;
+            }
+
+            .fi-cta-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .fi-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="hero">
+    <nav class="navbar">
+        <div class="logo">
+            ⚡ Electric Mobility Africa
+        </div>
+        <div style="display: flex; gap: 20px;">
+            <a href="index.html" style="color: #c9e8d6; text-decoration: none; font-weight: bold;">
+                Directory
+            </a>
+            <a href="https://forms.gle/2LNfFtyoCbxsjDcj7" class="submit-btn">
+                Get Listed
+            </a>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- Hero Section -->
+    <section class="fi-hero">
+        <h1>🚗 Fleet Intelligence</h1>
+        <p>
+            KEMTG's AI-powered analytics platform built exclusively for electric mobility operators across Africa.
+            Upload your fleet data and unlock deep insights into customer behavior, segments, and churn risk—all with 
+            downloadable, actionable results.
+        </p>
+        <div class="fi-cta-group">
+            <a href="https://kemtgfleetintelligence.streamlit.app/" class="fi-cta" target="_blank">
+                ↗ Characterize Your Fleet
+            </a>
+            <a href="#how-it-works" class="fi-cta" style="background: transparent; color: #00ff88; border: 2px solid #00ff88;">
+                Learn More ↓
+            </a>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section class="fi-features">
+        <div class="fi-feature-card">
+            <div class="fi-feature-icon">👥</div>
+            <h3>4 Customer Archetypes</h3>
+            <p>
+                Automatically segment your riders into distinct behavioral personas. Understand who they are and how they use your fleet.
+            </p>
+        </div>
+
+        <div class="fi-feature-card">
+            <div class="fi-feature-icon">⚠️</div>
+            <h3>Churn Prediction</h3>
+            <p>
+                Identify at-risk customers before they leave. Get early signals and take retention action with confidence.
+            </p>
+        </div>
+
+        <div class="fi-feature-card">
+            <div class="fi-feature-icon">📊</div>
+            <h3>Downloadable Reports</h3>
+            <p>
+                Export comprehensive, branded results instantly. Share with stakeholders, investors, or use for strategic planning.
+            </p>
+        </div>
+
+        <div class="fi-feature-card">
+            <div class="fi-feature-icon">🔒</div>
+            <h3>Operator-Ready</h3>
+            <p>
+                Built for African e-mobility operators. No data science background needed—just upload and get insights.
+            </p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="fi-how-it-works">
+        <h2>How It Works</h2>
+        <div class="fi-steps">
+            <div class="fi-step">
+                <div class="fi-step-number">1</div>
+                <h4>Upload Your Data</h4>
+                <p>
+                    Securely upload your fleet data (CSV or compatible format). Your data is processed in our secure environment.
+                </p>
+            </div>
+
+            <div class="fi-step">
+                <div class="fi-step-number">2</div>
+                <h4>AI Analysis</h4>
+                <p>
+                    Our model processes your fleet, segments riders by behavior, and scores churn risk for each customer.
+                </p>
+            </div>
+
+            <div class="fi-step">
+                <div class="fi-step-number">3</div>
+                <h4>Get Insights</h4>
+                <p>
+                    View segment breakdowns, visualizations, and churn scores all in one dashboard. Drill into the data.
+                </p>
+            </div>
+
+            <div class="fi-step">
+                <div class="fi-step-number">4</div>
+                <h4>Download Results</h4>
+                <p>
+                    Export your customer segmentation and churn scores as downloadable files for further action.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="fi-benefits">
+        <h2>Why Fleet Intelligence?</h2>
+        <div class="fi-benefits-list">
+            <div class="fi-benefit-item">
+                <div class="fi-benefit-check">✓</div>
+                <div class="fi-benefit-text">
+                    <strong>Retention at Scale:</strong> Proactively reduce churn by understanding which customers are likely to leave.
+                </div>
+            </div>
+
+            <div class="fi-benefit-item">
+                <div class="fi-benefit-check">✓</div>
+                <div class="fi-benefit-text">
+                    <strong>Targeted Marketing:</strong> Tailor campaigns and offers based on the 4 customer archetypes—speak to each segment's unique needs.
+                </div>
+            </div>
+
+            <div class="fi-benefit-item">
+                <div class="fi-benefit-check">✓</div>
+                <div class="fi-benefit-text">
+                    <strong>Data-Driven Decisions:</strong> Move beyond gut feeling. Make business decisions backed by real, predictive analytics.
+                </div>
+            </div>
+
+            <div class="fi-benefit-item">
+                <div class="fi-benefit-check">✓</div>
+                <div class="fi-benefit-text">
+                    <strong>Investor Confidence:</strong> Show stakeholders and funders you have deep insights into your customer base and operations.
+                </div>
+            </div>
+
+            <div class="fi-benefit-item">
+                <div class="fi-benefit-check">✓</div>
+                <div class="fi-benefit-text">
+                    <strong>Africa-First Design:</strong> Built by KEMTG with the unique needs of African e-mobility operators in mind.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="fi-cta-section">
+        <h2>Ready to Understand Your Fleet?</h2>
+        <p>Start your free analysis now. No credit card required.</p>
+        <a href="https://kemtgfleetintelligence.streamlit.app/" class="fi-cta" target="_blank" style="font-size: 18px; padding: 16px 32px;">
+            Launch Fleet Intelligence →
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <h3>Fleet Intelligence by KEMTG</h3>
+    <p><i>Part of the Electric Mobility Africa Ecosystem</i></p>
+    <p>Email: evstodayafrica@gmail.com</p>
+    <p>Nairobi, Kenya</p>
+</footer>
+
+</body>
+</html>
