@@ -19,7 +19,7 @@ categories:["eBikes"],
 energyModels:["Battery Swapping"]
 },
 {
-name:"belisted 1",
+name:"YADEA",
 countries:["China"],
 categories:["Electric Mobility Suppliers"],
 energyModels:["NA"]
