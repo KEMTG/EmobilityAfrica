@@ -12,6 +12,12 @@ countries:["Ghana","Togo"],
 categories:["eBikes"],
 energyModels:["Battery Swapping","Home Charging"]
 },
+  {
+name:"Stride EV",
+countries:["Nigeria"],
+categories:["eBikes"],
+energyModels:["Battery Swapping"]
+},
 {
 name:"belisted 1",
 countries:["China"],
