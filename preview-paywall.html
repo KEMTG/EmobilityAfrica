@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Mobility Africa - Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-login, .btn-signup {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-login:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-signup {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-signup:hover {
+            background: #764ba2;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .filters-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filters-header h2 {
+            color: #333;
+            font-size: 20px;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: not-allowed;
+            background: #f5f5f5;
+            opacity: 0.6;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-filter, .btn-reset {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .btn-filter {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-reset {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .preview-overlay-content {
+            text-align: center;
+        }
+
+        .lock-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .preview-overlay h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .preview-overlay p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .btn-unlock {
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-unlock:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .company-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .company-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: white;
+        }
+
+        .company-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .company-type {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .company-body {
+            padding: 20px;
+        }
+
+        .company-info {
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #999;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .company-footer {
+            display: flex;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-small {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed;
+            font-size: 13px;
+            font-weight: 600;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-contact {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .limited-notice {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .limited-notice h4 {
+            color: #856404;
+            margin-bottom: 5px;
+        }
+
+        .limited-notice p {
+            color: #856404;
+            font-size: 14px;
+        }
+
+        .blur-card {
+            filter: blur(3px);
+            opacity: 0.6;
+        }
+
+        .price-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .price-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .pricing-card {
+            border: 2px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .pricing-card.featured {
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        }
+
+        .pricing-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .pricing-period {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: #666;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-pricing:hover {
+            background: #764ba2;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">🚗 E-Mobility Africa</div>
+            <div class="auth-buttons">
+                <button class="btn-login">Login</button>
+                <button class="btn-signup">Get Started</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>E-Mobility Africa Directory</h1>
+            <p>Connect with leading e-mobility companies across Africa</p>
+        </div>
+
+        <div class="limited-notice">
+            <h4>📌 Preview Mode</h4>
+            <p>You're viewing a limited preview with 3 sample companies. Sign in or upgrade to access full filtering, contact details, and our complete database of 500+ companies.</p>
+        </div>
+
+        <div class="filters-section">
+            <div class="filters-header">
+                <h2>Search & Filter</h2>
+            </div>
+
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label>Country</label>
+                    <input type="text" placeholder="Search country..." disabled>
+                </div>
+                <div class="filter-group">
+                    <label>Company Type</label>
+                    <select disabled>
+                        <option>All Types</option>
+                        <option>Manufacturer</option>
+                        <option>Distributor</option>
+                        <option>Service Provider</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Funding Status</label>
+                    <select disabled>
+                        <option>All</option>
+                        <option>Funded</option>
+                        <option>Seeking Funding</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Product Category</label>
+                    <select disabled>
+                        <option>All</option>
+                        <option>E-Bikes</option>
+                        <option>E-Scooters</option>
+                        <option>E-Cars</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label>Year Founded</label>
+                    <input type="text" placeholder="From..." disabled>
+                </div>
+                <div class="filter-group">
+                    <label>Employee Count</label>
+                    <select disabled>
+                        <option>Any</option>
+                        <option>1-10</option>
+                        <option>11-50</option>
+                        <option>50+</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="btn-filter" disabled>🔍 Apply Filters</button>
+                <button class="btn-reset" disabled>↻ Reset</button>
+            </div>
+
+            <div class="preview-overlay">
+                <div class="preview-overlay-content">
+                    <div class="lock-icon">🔒</div>
+                    <h3>Advanced Filters Locked</h3>
+                    <p>Unlock powerful filtering capabilities</p>
+                    <button class="btn-unlock">Upgrade to Pro</button>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="color: white; margin-bottom: 20px;">Featured Companies (Preview)</h2>
+
+        <div class="companies-grid">
+            <!-- Card 1 - Visible -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-name">GreenMove Lagos</div>
+                    <div class="company-type">E-Bike Manufacturer</div>
+                </div>
+                <div class="company-body">
+                    <div class="company-info">
+                        <div class="info-label">Location</div>
+                        <div class="info-value">Lagos, Nigeria</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Founded</div>
+                        <div class="info-value">2019</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Category</div>
+                        <div class="info-value">E-Bikes & E-Scooters</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Employees</div>
+                        <div class="info-value">45</div>
+                    </div>
+                    <div class="company-footer">
+                        <button class="btn-small btn-view" disabled>View Details</button>
+                        <button class="btn-small btn-contact" disabled>Contact</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - Visible -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-name">eMobility Kenya</div>
+                    <div class="company-type">E-Car Distributor</div>
+                </div>
+                <div class="company-body">
+                    <div class="company-info">
+                        <div class="info-label">Location</div>
+                        <div class="info-value">Nairobi, Kenya</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Founded</div>
+                        <div class="info-value">2020</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Category</div>
+                        <div class="info-value">E-Vehicles & Charging</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Employees</div>
+                        <div class="info-value">78</div>
+                    </div>
+                    <div class="company-footer">
+                        <button class="btn-small btn-view" disabled>View Details</button>
+                        <button class="btn-small btn-contact" disabled>Contact</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Visible -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-name">EcoRide Ghana</div>
+                    <div class="company-type">Charging Solutions</div>
+                </div>
+                <div class="company-body">
+                    <div class="company-info">
+                        <div class="info-label">Location</div>
+                        <div class="info-value">Accra, Ghana</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Founded</div>
+                        <div class="info-value">2021</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Category</div>
+                        <div class="info-value">Infrastructure</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Employees</div>
+                        <div class="info-value">32</div>
+                    </div>
+                    <div class="company-footer">
+                        <button class="btn-small btn-view" disabled>View Details</button>
+                        <button class="btn-small btn-contact" disabled>Contact</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - Blurred -->
+            <div class="company-card blur-card">
+                <div class="company-header">
+                    <div class="company-name">MobilityHub Rwanda</div>
+                    <div class="company-type">Platform</div>
+                </div>
+                <div class="company-body">
+                    <div class="company-info">
+                        <div class="info-label">Location</div>
+                        <div class="info-value">Kigali, Rwanda</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Founded</div>
+                        <div class="info-value">2022</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Category</div>
+                        <div class="info-value">Logistics</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 - Blurred -->
+            <div class="company-card blur-card">
+                <div class="company-header">
+                    <div class="company-name">Green Tech Cameroon</div>
+                    <div class="company-type">Tech Provider</div>
+                </div>
+                <div class="company-body">
+                    <div class="company-info">
+                        <div class="info-label">Location</div>
+                        <div class="info-value">Yaoundé, Cameroon</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Founded</div>
+                        <div class="info-value">2021</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Category</div>
+                        <div class="info-value">Software</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 - Blurred -->
+            <div class="company-card blur-card">
+                <div class="company-header">
+                    <div class="company-name">ZimRide Solutions</div>
+                    <div class="company-type">Service Provider</div>
+                </div>
+                <div class="company-body">
+                    <div class="company-info">
+                        <div class="info-label">Location</div>
+                        <div class="info-value">Harare, Zimbabwe</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Founded</div>
+                        <div class="info-value">2020</div>
+                    </div>
+                    <div class="company-info">
+                        <div class="info-label">Category</div>
+                        <div class="info-value">Maintenance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="price-section">
+            <h2>Unlock Full Access</h2>
+            <p style="color: #666; margin-bottom: 30px;">Choose the plan that works best for you</p>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-title">Free</div>
+                    <div class="pricing-price">$0</div>
+                    <div class="pricing-period">Forever free</div>
+                    <ul class="pricing-features">
+                        <li>3 company previews</li>
+                        <li>No filtering</li>
+                        <li>Basic search</li>
+                        <li>No contact info</li>
+                    </ul>
+                    <button class="btn-pricing" disabled>Current Plan</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-title">Pro</div>
+                    <div class="pricing-price">$29</div>
+                    <div class="pricing-period">Per month</div>
+                    <ul class="pricing-features">
+                        <li>500+ companies</li>
+                        <li>Advanced filters</li>
+                        <li>Contact details</li>
+                        <li>Export data</li>
+                        <li>Email support</li>
+                    </ul>
+                    <button class="btn-pricing">Upgrade Now</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-title">Enterprise</div>
+                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-period">Contact us</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Pro</li>
+                        <li>API access</li>
+                        <li>Custom reports</li>
+                        <li>Dedicated support</li>
+                        <li>Integration support</li>
+                    </ul>
+                    <button class="btn-pricing">Get Quote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 E-Mobility Africa. All rights reserved.</p>
+    </footer>
+</body>
+</html>
