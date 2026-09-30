@@ -388,6 +388,12 @@ countries:["Kenya"],
 categories:["Financing","Motorcycle"],
 energyModels:["NA"]
 },
+  {
+name:"Jiwambe",
+countries:["Kenya"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
     {
 name:"Fortune Credit",
 countries:["Kenya"],
