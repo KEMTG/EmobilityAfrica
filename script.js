@@ -54,6 +54,12 @@ countries:["Nigeria"],
 categories:["EV Charging","EV Maintenance"],
 energyModels:["Battery Swapping","Public Charging"]
 },
+   {
+name:"S.U.L E-Mobility",
+countries:["Rwanda"],
+categories:["Assembly Services","EV Maintenance"],
+energyModels:["NA"]
+},
   {
 name:"First Electric",
 countries:["Nigeria"],
