@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KEMTG Fleet Intelligence – 45-second explainer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&display=swap">
+<style>
+:root{--bg:#eef1e9;--ink:#13231f;--mut:#51625d;--teal:#0b7a75;--risk:#e2570e;--card:#fbfcf8;--line:#cdd6cb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a17;--ink:#e9f0ea;--mut:#9db2aa;--teal:#3fc1b8;--risk:#ff8a4c;--card:#15251f;--line:#274038}}
+:root[data-theme="dark"]{--bg:#0e1a17;--ink:#e9f0ea;--mut:#9db2aa;--teal:#3fc1b8;--risk:#ff8a4c;--card:#15251f;--line:#274038}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px}
+.player{width:100%;max-width:960px}
+.stage{position:relative;aspect-ratio:16/9;min-height:340px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.scene{position:absolute;inset:0;padding:clamp(18px,4vw,44px);display:none;flex-direction:column;justify-content:center;gap:14px}
+.scene.on{display:flex}
+h1,h2{margin:0;line-height:1.05;letter-spacing:-.02em}
+h1{font-size:clamp(28px,5.6vw,58px);font-weight:800}
+h2{font-size:clamp(22px,3.8vw,38px);font-weight:700}
+p{margin:0;color:var(--mut);font-size:clamp(14px,1.9vw,20px);max-width:56ch;line-height:1.4}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:10px clamp(14px,3vw,30px);background:color-mix(in srgb,var(--bg) 88%,transparent);border-top:1px solid var(--line);font-size:clamp(12px,1.6vw,16px);color:var(--ink)}
+.scene{padding-bottom:clamp(60px,9vw,84px)}
+.ctrl{display:flex;align-items:center;gap:10px;margin-top:10px}
+button{font:inherit;font-weight:700;background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:8px 16px;cursor:pointer}
+button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.segs{display:flex;gap:4px;flex:1}
+.seg{flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden;cursor:pointer;padding:0;border:0}
+.seg i{display:block;height:100%;width:0;background:var(--teal)}
+.time{font-size:13px;color:var(--mut);min-width:64px;text-align:right}
+/* scene 1 */
+svg{width:100%;height:auto;max-height:40%}
+.route{fill:none;stroke:var(--teal);stroke-width:3;stroke-dasharray:900;stroke-dashoffset:900}
+.on .route{animation:draw 5s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.dot{fill:var(--ink);opacity:0}
+.on .dot{animation:pop .3s forwards}
+@keyframes pop{to{opacity:.75}}
+.bad{fill:var(--risk)}
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.step{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg);opacity:0;transform:translateY(8px)}
+.on .step{animation:in .5s forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.step b{display:block;font-size:clamp(14px,2vw,20px);margin:2px 0 4px}
+.step span{font-size:clamp(11px,1.4vw,14px);color:var(--mut);line-height:1.35;display:block}
+.step em{font-style:normal;font-weight:800;color:var(--teal);font-size:13px}
+/* archetypes */
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.a{border-left:5px solid var(--teal);background:var(--bg);padding:10px 14px;border-radius:0 8px 8px 0;opacity:0}
+.a.d{border-color:var(--risk)}
+.on .a{animation:in .5s forwards}
+.a b{font-size:clamp(14px,2vw,19px)}
+.a span{display:block;color:var(--mut);font-size:clamp(11px,1.4vw,14px)}
+/* risk */
+.rk{display:grid;gap:8px;max-width:640px}
+.r{display:grid;grid-template-columns:110px 1fr 48px;gap:10px;align-items:center;font-size:clamp(12px,1.5vw,15px)}
+.bar{height:14px;background:var(--line);border-radius:7px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--risk);border-radius:7px}
+.on .bar i{animation:w 1.6s ease forwards}
+@keyframes w{to{width:var(--w)}}
+.note{font-size:12px;color:var(--mut)}
+/* who */
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.who div{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg);opacity:0}
+.on .who div{animation:in .5s forwards}
+.who b{display:block;font-size:clamp(14px,1.9vw,18px)}
+.who span{font-size:clamp(11px,1.4vw,14px);color:var(--mut)}
+@media (max-width:640px){.pipe,.who{grid-template-columns:1fr 1fr}.arch{grid-template-columns:1fr}.stage{aspect-ratio:auto;min-height:560px}.r{grid-template-columns:90px 1fr 40px}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important}}
+</style>
+</head>
+<body>
+<main class="player">
+<div class="stage" id="stage" aria-live="off">
+
+<section class="scene">
+<h1>Every vehicle pings.<br>Most of it is noise.</h1>
+<svg viewBox="0 0 700 120" aria-hidden="true">
+<path class="route" d="M10 90 C120 10 200 110 300 60 S480 20 560 70 S660 40 690 30"/>
+<circle class="dot" cx="80" cy="50" r="5" style="animation-delay:.6s"/><circle class="dot" cx="180" cy="80" r="5" style="animation-delay:1.1s"/>
+<circle class="dot bad" cx="260" cy="20" r="6" style="animation-delay:1.6s"/><circle class="dot" cx="380" cy="55" r="5" style="animation-delay:2.1s"/>
+<circle class="dot bad" cx="470" cy="100" r="6" style="animation-delay:2.6s"/><circle class="dot" cx="600" cy="60" r="5" style="animation-delay:3.1s"/>
+</svg>
+<p>KEMTG Fleet Intelligence turns raw GPS pings from Electric Vehicle telemetry into decisions.</p>
+<div class="cap">GPS drift, offline gaps and speed spikes hide what your vehicles are really doing.</div>
+</section>
+
+<section class="scene">
+<h2>The value: spot a dead vehicle<br>before it costs you a week.</h2>
+<p>An idle vehicle earns nothing and hides in the data. Fleet Intelligence separates a rider waiting for a fare from a vehicle that has gone dark, and warns you up to 3 days ahead.</p>
+<div class="cap">Earlier warning means faster repairs, fewer lost riding days and better lease and swap planning.</div>
+</section>
+
+<section class="scene">
+<h2>How it works</h2>
+<div class="pipe">
+<div class="step" style="animation-delay:.2s"><em>Protect</em><b>Anonymise</b><span>vehicle IDs pseudonymised with secure and standard hashing algorithm.</span></div>
+<div class="step" style="animation-delay:1.2s"><em>Clean</em><b>Engineer features</b><span>Speed and distance from GPS. Flags drift, gaps and spikes. Our algorithm finds home bases and stops.</span></div>
+<div class="step" style="animation-delay:2.2s"><em>Understand</em><b>Machine learning</b><span>The Model groups vehicles into behaviour archetypes.</span></div>
+<div class="step" style="animation-delay:3.2s"><em>Predict</em><b>Risk score</b><span>And it scores each vehicle's chance of going dormant for 3 days.</span></div>
+</div>
+<div class="cap">Upload a CSV or Excel file with date, time, latitude, longitude and vehicle ID. The pipeline does the rest.</div>
+</section>
+
+<section class="scene">
+<h2>Know how each vehicle is really used</h2>
+<div class="arch">
+<div class="a" style="animation-delay:.2s"><b>Ride-hailing / on-demand</b><span>Wide-ranging, unpredictable routes</span></div>
+<div class="a" style="animation-delay:1s"><b>Fixed-route commuter</b><span>Repeatable trips, rush-hour peaks</span></div>
+<div class="a" style="animation-delay:1.8s"><b>Stage-based / walk-up</b><span>Short trips, long waits at a known spot</span></div>
+<div class="a d" style="animation-delay:2.6s"><b>Dormant / dropped-out</b><span>5+ days with zero trips. Investigate.</span></div>
+</div>
+<div class="cap">The model picks the number of groups itself and is checked with a silhouette score.</div>
+</section>
+
+<section class="scene">
+<h2>A ranked watchlist, every day</h2>
+<div class="rk">
+<div class="r"><span>vehicle A</span><div class="bar"><i style="--w:88%"></i></div><b>0.88</b></div>
+<div class="r"><span>vehicle B</span><div class="bar"><i style="--w:71%;animation-delay:.2s"></i></div><b>0.71</b></div>
+<div class="r"><span>vehicle C</span><div class="bar"><i style="--w:44%;animation-delay:.4s"></i></div><b>0.44</b></div>
+<div class="r"><span>vehicle D</span><div class="bar"><i style="--w:12%;animation-delay:.6s"></i></div><b>0.12</b></div>
+</div>
+<span class="note">Illustrative example, not real fleet data.</span>
+<div class="cap">Validated on vehicles the model never saw in training, reporting precision, recall, F1 and ROC-AUC.</div>
+</section>
+
+<section class="scene">
+<h2>Who should use it</h2>
+<div class="who">
+<div style="animation-delay:.2s"><b>Battery-swap operators</b><span>Plan swaps and station coverage</span></div>
+<div style="animation-delay:.6s"><b>Fleet and ops managers</b><span>Dispatch mechanics to the right vehicle</span></div>
+<div style="animation-delay:1s"><b>Leasing and financing firms</b><span>Catch drop-offs and defaults early</span></div>
+<div style="animation-delay:1.4s"><b>Ride-hailing operators</b><span>Understand rider behaviour by segment</span></div>
+<div style="animation-delay:1.8s"><b>Investors and partners</b><span>Fleet health without exposing identities</span></div>
+<div style="animation-delay:2.2s"><b>Data and product teams</b><span>A reusable ML pipeline to extend</span></div>
+</div>
+<div class="cap">The risk signal is a proxy from movement data. Confirm it against maintenance and lease records before automating actions.</div>
+</section>
+
+</div>
+<div class="ctrl">
+<button id="pp" aria-label="Play or pause">Pause</button>
+<div class="segs" id="segs"></div>
+<div class="time" id="time">0:00 / 0:45</div>
+</div>
+</main>
+<script>
+(function(){
+var D=[7,7,9,8,7,7],T=D.reduce(function(a,b){return a+b},0);
+var sc=[].slice.call(document.querySelectorAll('.scene')),segs=document.getElementById('segs'),pp=document.getElementById('pp'),tm=document.getElementById('time');
+var fills=[],cur=0,el=0,playing=true,last=performance.now();
+sc.forEach(function(_,i){var b=document.createElement('button');b.className='seg';b.setAttribute('aria-label','Scene '+(i+1));b.innerHTML='<i></i>';b.onclick=function(){go(i)};segs.appendChild(b);fills.push(b.firstChild)});
+function fmt(s){s=Math.floor(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+function show(i){sc.forEach(function(s,k){s.classList.remove('on')});void sc[0].offsetWidth;sc[i].classList.add('on')}
+function go(i){cur=i;el=0;show(i);fills.forEach(function(f,k){f.style.width=k<i?'100%':'0'});if(!playing){playing=true;pp.textContent='Pause'}}
+pp.onclick=function(){if(!playing&&cur===sc.length-1&&el>=D[cur]){go(0);return}playing=!playing;pp.textContent=playing?'Pause':'Play'};
+function tick(n){var dt=(n-last)/1000;last=n;
+if(playing){el+=dt;if(el>=D[cur]){if(cur<sc.length-1){go(cur+1)}else{el=D[cur];playing=false;pp.textContent='Replay'}}}
+fills[cur].style.width=Math.min(100,el/D[cur]*100)+'%';
+var done=0;for(var k=0;k<cur;k++)done+=D[k];tm.textContent=fmt(done+el)+' / '+fmt(T);
+requestAnimationFrame(tick)}
+go(0);requestAnimationFrame(function(n){last=n;tick(n)});
+})();
+</script>
+</body>
+</html>
