@@ -55,6 +55,12 @@ categories:["EV Charging","EV Maintenance"],
 energyModels:["Battery Swapping","Public Charging"]
 },
    {
+name:"EV World Africa",
+countries:["Nigeria"],
+categories:["Training","EV Maintenance"],
+energyModels:["NA"]
+},
+   {
 name:"S.U.L E-Mobility",
 countries:["Rwanda"],
 categories:["Assembly Services","EV Maintenance"],
