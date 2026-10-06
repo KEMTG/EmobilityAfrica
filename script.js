@@ -24,6 +24,12 @@ countries:["Nigeria"],
 categories:["eBikes"],
 energyModels:["Battery Swapping"]
 },
+   {
+name:"Motorhino Malawi EV",
+countries:["Malawi"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
 {
 name:"YADEA",
 countries:["China"],
