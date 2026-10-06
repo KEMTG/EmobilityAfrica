@@ -7,6 +7,12 @@ categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
   {
+name:"SIV Mobility",
+countries:["Kenya","Nigeria"],
+categories:["Motorcycle","3 Wheeler","Retrofitting"],
+energyModels:["Battery Swapping"]
+},
+  {
 name:"Wahu Mobility",
 countries:["Ghana","Togo"],
 categories:["eBikes"],
@@ -392,6 +398,18 @@ energyModels:["NA"]
 name:"M-KOPA",
 countries:["Kenya"],
 categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
+  {
+name:"Platinum Credit Limited",
+countries:["Kenya"],
+categories:["Financing"],
+energyModels:["NA"]
+},
+  {
+name:"Rafiki Microfinance Bank",
+countries:["Kenya"],
+categories:["Financing"],
 energyModels:["NA"]
 },
   {
