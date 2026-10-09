@@ -30,6 +30,12 @@ countries:["Malawi"],
 categories:["Motorcycle"],
 energyModels:["Battery Swapping"]
 },
+  {
+name:"Superpack Technology",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Battery Packs"],
+energyModels:["NA"]
+},
 {
 name:"YADEA",
 countries:["China"],
