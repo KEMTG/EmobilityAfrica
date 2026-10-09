@@ -33,13 +33,25 @@ energyModels:["Battery Swapping"]
 {
 name:"YADEA",
 countries:["China"],
-categories:["Electric Mobility Suppliers"],
+categories:["Electric Mobility Suppliers","Motorcycle","Electric Scooter","eBikes"],
 energyModels:["NA"]
 },
   {
-name:"belisted 2",
+name:"ACEIN New Energy Technology",
+countries:["China","Singapore"],
+categories:["Electric Mobility Suppliers","Battery Packs","Battery Cells"],
+energyModels:["NA"]
+},
+   {
+name:"Wenergy Storage",
+countries:["Singapore"],
+categories:["Electric Mobility Suppliers","BESS"],
+energyModels:["NA"]
+},
+   {
+name:"Power Gogo",
 countries:["China"],
-categories:["Electric Mobility Suppliers"],
+categories:["Electric Mobility Suppliers","Motorcycle","Swap Equipment","Battery Packs"],
 energyModels:["NA"]
 },
 {
