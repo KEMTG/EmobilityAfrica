@@ -36,6 +36,30 @@ countries:["China"],
 categories:["Electric Mobility Suppliers","Battery Packs"],
 energyModels:["NA"]
 },
+    {
+name:"Ampace",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Battery Packs"],
+energyModels:["NA"]
+},
+      {
+name:"Votol",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Motors","Controller"],
+energyModels:["NA"]
+},
+      {
+name:"Shenzhen Anari Energy Co. Ltd",
+countries:["China"],
+categories:["Electric Mobility Suppliers","EV Charging Stations"],
+energyModels:["NA"]
+},
+        {
+name:"Wylex",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Motorcycle"],
+energyModels:["NA"]
+},
 {
 name:"YADEA",
 countries:["China"],
