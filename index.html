@@ -1,163 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Electric Mobility Africa</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>KEMTG | Africa E-Mobility Ecosystem</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="top-note"><span class="live-dot"></span><span>Connecting Africa’s electric mobility ecosystem</span></div>
+      <div class="top-links">
+        <a href="#directory">Explore ecosystem</a>
+        <a href="#jobs">E-mobility jobs</a>
+        <a href="#supplier-introduction">Supplier introduction</a>
+      </div>
+    </div>
+  </div>
 
-<header class="hero">
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="KEMTG home">
+        <span class="brand-mark">K</span>
+        <span>
+          <span class="brand-name">KEMTG</span>
+          <span class="brand-sub">E-Mobility Africa</span>
+        </span>
+      </a>
 
-    <nav class="navbar">
-        <div class="logo">
-            ⚡ Electric Mobility Africa
+      <nav class="navlinks" id="navlinks">
+        <a href="#directory" class="active">Explore ecosystem</a>
+        <a href="#jobs">E-mobility jobs</a>
+        <a href="#supplier-introduction">Supplier introduction</a>
+        <a href="#about">Get listed</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline" data-open="list">Get listed</button>
+        <button class="btn btn-primary" data-open="request">Supplier introduction</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <div class="eyebrow">The technical backbone of Africa’s EV ecosystem</div>
+          <h1>Find the right <em>partners, suppliers and people</em> to move Africa forward.</h1>
+          <p class="hero-copy">Explore the companies, charging networks, financing partners, operators and technical experts building Africa’s electric mobility future — all in one place.</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#directory">Explore the ecosystem <span>↘</span></a>
+            <button class="btn btn-outline" data-open="request">Request a supplier introduction</button>
+          </div>
+
+          <div class="hero-meta">
+            <span>✳ <b>Pan-African</b> ecosystem view</span>
+            <span>⌕ <b>Supplier</b> discovery</span>
+            <span>↗ <b>Talent</b> and partnerships</span>
+          </div>
         </div>
 
-        <div style="display: flex; gap: 20px; align-items: center;">
-            <a href="fleet-intelligence.html" style="color: #c9e8d6; text-decoration: none; font-weight: bold; padding: 8px 14px; border-radius: 6px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0,255,136,0.2)'" onmouseout="this.style.background='transparent'">
-                Fleet Intelligence
-            </a>
-            <a href="https://forms.gle/2LNfFtyoCbxsjDcj7" class="submit-btn">
-                Get Listed
-            </a>
+        <div class="hero-panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Ecosystem snapshot</div>
+              <div class="panel-caption">Live directory summary</div>
+            </div>
+            <span class="pill pill-green">● LIVE DIRECTORY</span>
+          </div>
+
+          <div class="panel-grid">
+            <div class="metric">
+              <div class="metric-label">Mapped companies</div>
+              <div class="metric-number" id="heroCompanies">0</div>
+              <div class="metric-foot">Across the KEMTG directory</div>
+              <div class="mini-bars">
+                <i style="height:35%"></i>
+                <i style="height:52%"></i>
+                <i style="height:43%"></i>
+                <i style="height:67%"></i>
+                <i style="height:58%"></i>
+                <i style="height:82%"></i>
+                <i style="height:100%"></i>
+              </div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-label">Supplier profiles</div>
+              <div class="metric-number" id="heroSuppliers">0</div>
+              <div class="metric-foot">Components and technical systems</div>
+              <div class="mini-bars">
+                <i style="height:45%"></i>
+                <i style="height:36%"></i>
+                <i style="height:65%"></i>
+                <i style="height:58%"></i>
+                <i style="height:80%"></i>
+                <i style="height:70%"></i>
+                <i style="height:100%"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="region-header">
+            <span>Countries represented</span>
+            <span>Directory coverage</span>
+          </div>
+
+          <div class="region-row"><div class="flag">🇰🇪</div><div class="region-info"><strong>Kenya</strong><div class="region-track"><i style="width:82%"></i></div></div><div class="region-num">28</div></div>
+          <div class="region-row"><div class="flag">🇷🇼</div><div class="region-info"><strong>Rwanda</strong><div class="region-track"><i style="width:45%"></i></div></div><div class="region-num">9</div></div>
+          <div class="region-row"><div class="flag">🇳🇬</div><div class="region-info"><strong>Nigeria</strong><div class="region-track"><i style="width:36%"></i></div></div><div class="region-num">7</div></div>
+          <div class="region-row"><div class="flag">🌍</div><div class="region-info"><strong>Other markets</strong><div class="region-track"><i style="width:55%"></i></div></div><div class="region-num">14</div></div>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <div class="hero-content">
+    <section class="section stats-block" style="padding-top:26px;padding-bottom:30px">
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat-card"><div class="stat-icon">▦</div><div><div class="stat-num" id="statCompanies">0</div><div class="stat-label">Companies in directory</div></div></div></div>
+          <div class="stat-card"><div class="stat-icon">⚙</div><div><div class="stat-num" id="statSuppliers">0</div><div class="stat-label">Supplier profiles</div></div></div></div>
+          <div class="stat-card"><div class="stat-icon">◎</div><div class="stat-num" id="statCountries">0</div><div class="stat-label">Countries represented</div></div></div>
+          <div class="stat-card"><div class="stat-icon">↗</div><div><div class="stat-num">4</div><div class="stat-label">Ways to connect and grow</div></div></div>
+        </div>
+      </div>
+    </section>
 
-        <div class="hero-text">
-            <h1>Discover Africa's Electric Mobility Ecosystem</h1>
-
-            <p>
-                Connecting innovators, businesses, investors, policymakers, researchers, and communities accelerating the transition to sustainable transport across Africa.
-            </p>
-
-            <a href="#ai-insights" class="explore-btn">
-                Explore Here 🔎
-            </a>
+    <section class="section section-white" id="directory">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Explore the ecosystem</div>
+            <h2>Find companies. Source solutions. Build partnerships.</h2>
+            <p class="section-desc">Search the directory by company, capability, country or market segment. Narrow the list to the right ecosystem players quickly.</p>
+          </div>
+          <button class="btn btn-outline" data-open="list">＋ Add a company</button>
         </div>
 
-        <div class="hero-image">
-    <img src="hero.png" alt="EV Africa">
-</div>
+        <div class="directory-layout">
+          <aside class="filters" id="filters">
+            <div class="filter-title">
+              <span>Refine results</span>
+              <button class="text-action" id="resetFilters">Reset all</button>
+            </div>
 
+            <div class="filter-group">
+              <label class="filter-label" for="categoryFilter">Company category</label>
+              <select class="field" id="categoryFilter">
+                <option value="">All categories</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label" for="componentFilter">Product / capability</label>
+              <select class="field" id="componentFilter">
+                <option value="">All products & capabilities</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label" for="countryFilter">Country / market</label>
+              <select class="field" id="countryFilter">
+                <option value="">All markets</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Verification status</label>
+              <div class="check-list">
+                <label class="check-option"><input type="checkbox" name="verification" value="Technically verified"> Technically verified</label>
+                <label class="check-option"><input type="checkbox" name="verification" value="KEMTG contacted"> KEMTG contacted</label>
+                <label class="check-option"><input type="checkbox" name="verification" value="Listed"> Listed</label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Vehicle segment</label>
+              <div class="check-list">
+                <label class="check-option"><input type="checkbox" name="segment" value="2W"> 2-wheelers</label>
+                <label class="check-option"><input type="checkbox" name="segment" value="3W"> 3-wheelers</label>
+                <label class="check-option"><input type="checkbox" name="segment" value="4W"> 4-wheelers</label>
+                <label class="check-option"><input type="checkbox" name="segment" value="Commercial"> Commercial / fleet</label>
+              </div>
+            </div>
+
+            <div class="filter-foot">
+              <button class="btn btn-dark" id="applyFilters">Apply filters</button>
+              <button class="btn btn-outline" id="clearFilters">Clear</button>
+            </div>
+          </aside>
+
+          <div class="directory-main">
+            <div class="searchbar">
+              <span class="search-symbol">⌕</span>
+              <input id="searchInput" type="search" placeholder="Search companies, capabilities, countries..." aria-label="Search directory">
+              <button class="btn btn-dark" id="searchBtn">Search <span>↗</span></button>
+            </div>
+
+            <div class="toolbar">
+              <div class="result-count">Showing <strong id="resultCount">0 companies</strong> <span id="filterSummary">in the directory</span></div>
+              <div class="toolbar-right">
+                <select class="field sort-select" id="sortSelect" aria-label="Sort results">
+                  <option value="featured">Sort: Featured</option>
+                  <option value="name">Name: A–Z</option>
+                  <option value="country">Country: A–Z</option>
+                </select>
+                <div class="view-toggle">
+                  <button class="selected" id="gridViewBtn">▦ Cards</button>
+                  <button id="listViewBtn">☷ List</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="company-grid" id="companyGrid" aria-live="polite"></div>
+            <div class="directory-note">Demo content is illustrative and should be replaced with verified market data before public launch.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jobs">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">E-mobility jobs</div>
+            <h2>Build the next generation of clean transport.</h2>
+            <p class="section-desc">From product and operations to battery innovation and charging infrastructure, the sector needs skilled people across the value chain.</p>
+          </div>
+          <button class="btn btn-outline" data-open="request">Post a role</button>
+        </div>
+
+        <div class="jobs-grid">
+          <article class="job-card">
+            <div class="job-badge">Operations</div>
+            <h3>Fleet Operations Manager</h3>
+            <p>Lead rider support, service uptime and dispatch performance for growing electric fleets.</p>
+            <ul>
+              <li>Nairobi / Remote</li>
+              <li>Commercial fleet operations</li>
+            </ul>
+          </article>
+
+          <article class="job-card">
+            <div class="job-badge">Battery & Energy</div>
+            <h3>Battery Pack Engineer</h3>
+            <p>Design and validate safe, serviceable battery systems for African operating conditions.</p>
+            <ul>
+              <li>Kenya / Rwanda</li>
+              <li>Battery systems + BMS</li>
+            </ul>
+          </article>
+
+          <article class="job-card">
+            <div class="job-badge">Charging</div>
+            <h3>EV Infrastructure Planner</h3>
+            <p>Map charging demand, site selection and deployment models for commercial and public charging.</p>
+            <ul>
+              <li>Regional / hybrid</li>
+              <li>Network strategy</li>
+            </ul>
+          </article>
+
+          <article class="job-card">
+            <div class="job-badge">Commercial</div>
+            <h3>Partnerships & Growth Lead</h3>
+            <p>Source financing, strategic partnerships and route-to-market opportunities across key countries.</p>
+            <ul>
+              <li>Pan-Africa</li>
+              <li>Business development</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="supplier-introduction">
+      <div class="wrap">
+        <div class="supplier-layout">
+          <div>
+            <div class="section-kicker">Supplier introduction</div>
+            <h2>Introduce the right supplier to your next project.</h2>
+            <p class="section-desc">Whether you are sourcing battery packs, charging hardware, fleet software or financing partners, KEMTG can help you find a credible fit faster.</p>
+            <div class="feature-stack">
+              <div class="feature-item"><span>✓</span><div><strong>Shortlist relevant suppliers</strong><small>Match the right providers to your exact market and needs.</small></div></div>
+              <div class="feature-item"><span>✓</span><div><strong>Reduce sourcing friction</strong><small>Connect with operators, installers and technical specialists.</small></div></div>
+              <div class="feature-item"><span>✓</span><div><strong>Support product-market fit</strong><small>Filter for local context, compliance and deployment requirements.</small></div></div>
+            </div>
+          </div>
+
+          <div class="intro-panel">
+            <div class="intro-panel-head">
+              <span class="pill pill-green">Quick request</span>
+              <h3>Tell us what you need</h3>
+            </div>
+            <div class="intro-points">
+              <p><strong>Need:</strong> Battery cells, packs, charging hardware, financing or engineering support.</p>
+              <p><strong>Region:</strong> Kenya, Rwanda, Nigeria, Uganda, Tanzania, Ghana or broader Africa.</p>
+              <p><strong>Timing:</strong> Pilot deployment, scale-up or strategic partner search.</p>
+            </div>
+            <button class="btn btn-primary" data-open="request">Start a supplier introduction</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Have a company, product or expertise to share?</h2>
+            <p>Get your business listed, connect with relevant partners and help grow the African e-mobility ecosystem.</p>
+          </div>
+          <button class="btn" data-open="list">Get listed <span>↗</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="#home">
+            <span class="brand-mark">K</span>
+            <span>
+              <span class="brand-name">KEMTG</span>
+              <span class="brand-sub">E-Mobility Africa</span>
+            </span>
+          </a>
+          <p class="footer-about">Connecting companies, components, talent and projects across Africa’s e-mobility ecosystem.</p>
+        </div>
+
+        <div class="footer-col">
+          <strong>Explore</strong>
+          <a href="#directory">Company directory</a>
+          <a href="#jobs">E-mobility jobs</a>
+          <a href="#supplier-introduction">Supplier introduction</a>
+        </div>
+
+        <div class="footer-col">
+          <strong>Participate</strong>
+          <a href="#" data-open="list">Get your company listed</a>
+          <a href="#" data-open="request">Request an introduction</a>
+          <a href="#">Partner with KEMTG</a>
+        </div>
+
+        <div class="footer-col">
+          <strong>About</strong>
+          <a href="#about">About KEMTG</a>
+          <a href="https://kemtg.github.io/EmobilityAfrica/" target="_blank" rel="noopener">Live platform ↗</a>
+          <a href="mailto:evstodayafrica@gmail.com">Contact KEMTG</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> KEMTG · Kenya Electric Mobility Technical Group</span>
+        <span>Built to connect Africa’s e-mobility ecosystem.</span>
+      </div>
     </div>
+  </footer>
 
-</header>
+  <div class="modal-backdrop" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <h3 id="requestTitle">Request a supplier introduction</h3>
+          <p>Tell us what you need. This is a front-end prototype.</p>
+        </div>
+        <button class="modal-close" data-close aria-label="Close dialog">×</button>
+      </div>
 
-<main>
+      <form class="modal-body" id="requestForm">
+        <div class="form-grid">
+          <div class="form-field"><label for="reqName">Your name *</label><input class="field" id="reqName" required placeholder="Full name"></div>
+          <div class="form-field"><label for="reqOrg">Company / organization *</label><input class="field" id="reqOrg" required placeholder="Organization name"></div>
+          <div class="form-field"><label for="reqEmail">Work email *</label><input class="field" id="reqEmail" type="email" required placeholder="name@company.com"></div>
+          <div class="form-field"><label for="reqCountry">Target market *</label><select class="field" id="reqCountry" required><option value="">Select country</option><option>Kenya</option><option>Rwanda</option><option>Uganda</option><option>Tanzania</option><option>Nigeria</option><option>Ghana</option><option>South Africa</option><option>Other / multiple markets</option></select></div>
+          <div class="form-field"><label for="reqNeed">What are you looking for? *</label><select class="field" id="reqNeed" required><option value="">Select requirement</option><option>Battery cells</option><option>Battery packs / BMS</option><option>Motors / controllers</option><option>Chargers / charging infrastructure</option><option>Testing equipment</option><option>Electric motorcycles / vehicles</option><option>Engineering / technical services</option><option>Financing / strategic partner</option><option>Other</option></select></div>
+          <div class="form-field"><label for="reqQuantity">Estimated quantity / scale</label><input class="field" id="reqQuantity" placeholder="e.g. 500 packs, fleet pilot, 3 sites"></div>
+          <div class="form-field full"><label for="reqDetails">Technical requirements and timeline *</label><textarea class="field" id="reqDetails" required placeholder="Voltage, capacity, chemistry, certifications, target price, delivery timeline, or other requirements..."></textarea></div>
+        </div>
 
-<section class="stats">
-
-<div class="stat-card">
-<h2 id="totalCompanies">0</h2>
-<p>Total Companies</p>
-</div>
-
-<div class="stat-card">
-<h2 id="motorcycleCount">0</h2>
-<p>EV TwoWheeler Companies</p>
-</div>
-
-<div class="stat-card">
-<h2 id="busCount">0</h2>
-<p>EV Bus Companies</p>
-</div>
-
-<div class="stat-card">
-<h2 id="carCount">0</h2>
-<p>EV Car Companies</p>
-</div>
-
-<div class="stat-card">
-<h2 id="threeCount">0</h2>
-<p>EV Three Wheeler Companies</p>
-</div>
-
-<div class="stat-card">
-<h2 id="financeCount">0</h2>
-<p>EV Financing Companies</p>
-</div>
-<div class="stat-card">
-<h2 id="chargingCount">0</h2>
-<p>EV Charging Companies</p>
-</div>
-<div class="stat-card">
-<h2 id="supplierCount">0</h2>
-<p>Electric Mobility Suppliers</p>
-</div>
-<div class="stat-card">
-<h2 id="commercialCount">0</h2>
-<p>Commercial EV Vehicle Companies</p>
-</div>
-
-</section>
-
-<section id="filters" class="filters">
-
-<input
-type="text"
-id="searchInput"
-placeholder="Search Company">
-
-<select id="countryFilter"></select>
-
-<select id="categoryFilter"></select>
-
-<select id="energyFilter"></select>
-
-<button id="resetBtn">
-Reset
-</button>
-
-</section>
-
-<section id="ai-insights" class="insights">
-
-    <div class="insights-head">
-        <span class="insights-eyebrow">Live Market Read</span>
-        <h2>AI Insights on Your Filtered View</h2>
-        <p>Click a segment for its own intelligence, or filter above — either way this updates instantly.</p>
+        <div class="form-help">In a production version, connect this form to a secure backend, CRM or designated KEMTG email. Do not collect sensitive commercial information without appropriate safeguards.</div>
+        <div class="form-submit"><button type="button" class="btn btn-outline" data-close>Cancel</button><button type="submit" class="btn btn-primary">Preview request <span>↗</span></button></div>
+      </form>
     </div>
+  </div>
 
-    <div id="segmentChips" class="segment-chips">
-        <!-- populated by script.js -->
+  <div class="modal-backdrop" id="listModal" role="dialog" aria-modal="true" aria-labelledby="listTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <h3 id="listTitle">Get your company listed</h3>
+          <p>Help the right partners discover what you do.</p>
+        </div>
+        <button class="modal-close" data-close aria-label="Close dialog">×</button>
+      </div>
+
+      <form class="modal-body" id="listForm">
+        <div class="form-grid">
+          <div class="form-field"><label for="listCompany">Company name *</label><input class="field" id="listCompany" required placeholder="Registered / trading name"></div>
+          <div class="form-field"><label for="listWebsite">Website or LinkedIn</label><input class="field" id="listWebsite" type="url" placeholder="https://"></div>
+          <div class="form-field"><label for="listCategory">Company category *</label><select class="field" id="listCategory" required><option value="">Choose category</option><option>Electric Mobility Supplier</option><option>Vehicle Manufacturer</option><option>Fleet Operator</option><option>Charging & Swapping</option><option>Finance & Investment</option><option>Technical Services</option><option>Policy & Ecosystem</option></select></div>
+          <div class="form-field"><label for="listCountry">Primary country *</label><input class="field" id="listCountry" required placeholder="e.g. Kenya"></div>
+          <div class="form-field full"><label for="listProducts">Products, services or capabilities *</label><textarea class="field" id="listProducts" required placeholder="List key products, components, technical capabilities and target markets..."></textarea></div>
+          <div class="form-field full"><label for="listContact">Contact email *</label><input class="field" id="listContact" type="email" required placeholder="business@company.com"></div>
+        </div>
+
+        <div class="form-help">Submitting a listing should trigger review before publication. A listing is not an endorsement or verification by KEMTG.</div>
+        <div class="form-submit"><button type="button" class="btn btn-outline" data-close>Cancel</button><button type="submit" class="btn btn-primary">Preview listing <span>↗</span></button></div>
+      </form>
     </div>
+  </div>
 
-    <div id="insightsBody" class="insights-body">
-        <!-- populated by script.js -->
-    </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-</section>
-
-<section class="results-header">
-<h2 id="resultsCount"></h2>
-</section>
-
-<section id="companyContainer" class="company-grid">
-
-</section>
-
-</main>
-
-<footer>
-
-<h3>Electric Mobility Africa</h3>
-
-<p><i>Powered by KEMTG</i></p>
-
-<p>Email: evstodayafrica@gmail.com</p>
-
-<!-- <p>Phone: +254700000000</p> -->
-
-<p>Nairobi, Kenya</p>
-
-</footer>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
