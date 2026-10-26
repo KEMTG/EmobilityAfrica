@@ -1,353 +1,1089 @@
 const companies = [
-  { id: 1, name: "Ampersand Energy", category: "Fleet Operator", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Battery swapping", "Fleet operations"], desc: "Commercial electric motorcycle fleet operator focused on uptime, rider support and service reliability.", featured: true, logo: "logo-lime" },
-  { id: 2, name: "SIV Mobility", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "Technically verified", segments: ["2W", "3W", "Commercial"], products: ["Electric motorcycles", "Battery swapping"], desc: "Electric mobility brand building practical two- and three-wheeler vehicles for African transport use cases.", featured: true, logo: "logo-dark" },
-  { id: 3, name: "Wahu Mobility", category: "Vehicle Manufacturer", country: "Ghana", city: "Accra", status: "Listed", segments: ["2W", "Commercial"], products: ["Electric bikes", "Battery swapping"], desc: "Urban micro-mobility company supporting electric bikes and rider networks across West Africa.", featured: true, logo: "logo-blue" },
-  { id: 4, name: "Kifaru E-Mobility", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "KEMTG contacted", segments: ["2W", "Commercial"], products: ["Electric motorcycles", "Vehicle assembly"], desc: "Local manufacturer bridging vehicle assembly, service readiness and commercial deployment support.", featured: true, logo: "logo-cyan" },
-  { id: 5, name: "eWAKA", category: "Fleet Operator", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Fleet operations", "Battery swapping"], desc: "Fleet and infrastructure operator building delivery-focused EV networks and last-mile mobility systems.", featured: false, logo: "logo-orange" },
-  { id: 6, name: "BasiGo", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["Commercial", "4W"], products: ["Electric buses", "Charging infrastructure"], desc: "Electric bus manufacturer and ecosystem partner supporting public transport electrification in East Africa.", featured: true, logo: "logo-lime" },
-  { id: 7, name: "Roam", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "Technically verified", segments: ["2W", "3W", "Commercial"], products: ["Electric motorcycles", "Public charging"], desc: "EV manufacturer focused on high-uptime battery-electric mobility for commercial riders and urban logistics.", featured: true, logo: "logo-purple" },
-  { id: 8, name: "Spiro", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "3W", "Commercial"], products: ["Battery swapping", "Charging services"], desc: "Regional battery-swapping and EV infrastructure provider expanding the charging layer for mobility ecosystems.", featured: true, logo: "logo-cyan" },
-  { id: 9, name: "SUN Mobility", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "KEMTG contacted", segments: ["2W", "3W", "Commercial"], products: ["Battery swapping", "Energy services"], desc: "Battery-as-a-service platform helping operators transition to electric mobility with flexible energy access.", featured: false, logo: "logo-blue" },
-  { id: 10, name: "ChargeNet", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["Commercial", "4W"], products: ["Public charging", "Fleet charging"], desc: "Public and commercial charging operator serving private and fleet EV demand across growing markets.", featured: false, logo: "logo-orange" },
-  { id: 11, name: "E-Safiri", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Charging stations", "Battery swapping"], desc: "Infrastructure-focused player enabling dependable charge access for riders and operators.", featured: false, logo: "logo-lime" },
-  { id: 12, name: "M-KOPA", category: "Finance & Investment", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Financing", "Asset finance"], desc: "Digital financing partner enabling uptake of electric mobility through flexible repayment structures.", featured: true, logo: "logo-dark" },
-  { id: 13, name: "MOGO Financing", category: "Finance & Investment", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Financing", "EV lending"], desc: "Consumer and business finance platform supporting electric vehicle purchase and usage transitions.", featured: false, logo: "logo-purple" },
-  { id: 14, name: "Watu Credit", category: "Finance & Investment", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Financing", "Lease-to-own"], desc: "Asset financing provider supporting access to EVs and mobility-enabled businesses across Africa.", featured: false, logo: "logo-blue" },
-  { id: 15, name: "Kazi", category: "Technical Services", country: "Kenya", city: "Nairobi", status: "KEMTG contacted", segments: ["2W", "Commercial"], products: ["EV servicing", "Maintenance"], desc: "Technical service provider supporting fleet maintenance, diagnostics and long-term EV uptime.", featured: false, logo: "logo-orange" },
-  { id: 16, name: "Powerhive", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["Commercial"], products: ["Public charging", "Off-grid energy"], desc: "Energy and charging partner supporting distributed infrastructure for underserved transport communities.", featured: false, logo: "logo-cyan" },
-  { id: 17, name: "Zimi Charge", category: "Charging & Swapping", country: "South Africa", city: "Johannesburg", status: "Listed", segments: ["4W", "Commercial"], products: ["Charging infrastructure", "Energy access"], desc: "Charging infrastructural provider helping support the electric mobility rollout across Southern Africa.", featured: false, logo: "logo-lime" },
-  { id: 18, name: "Kenya Power", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Technically verified", segments: ["4W", "Commercial"], products: ["Grid charging", "EV infrastructure"], desc: "Utilities partner enabling the wider power network required for increased e-mobility adoption.", featured: false, logo: "logo-dark" },
-  { id: 19, name: "Schneider Electric", category: "Electric Mobility Supplier", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["Commercial", "4W"], products: ["Energy management", "Charging systems"], desc: "Global energy company supporting EV-ready infrastructure design and grid-integrated power solutions.", featured: false, logo: "logo-blue" },
-  { id: 20, name: "Stride EV", category: "Vehicle Manufacturer", country: "Nigeria", city: "Lagos", status: "Listed", segments: ["2W", "Commercial"], products: ["Electric bikes", "Assembly"], desc: "Nigeria-based EV brand focused on affordable mobility and simple, durable urban transport products.", featured: false, logo: "logo-orange" },
-  { id: 21, name: "S.U.L E-Mobility", category: "Technical Services", country: "Rwanda", city: "Kigali", status: "KEMTG contacted", segments: ["3W", "Commercial"], products: ["EV maintenance", "Assembly services"], desc: "Technical services provider supporting vehicle maintenance, local assembly and operational support.", featured: false, logo: "logo-cyan" },
-  { id: 22, name: "Go-Electric / UTU Cars", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["4W", "Commercial"], products: ["Electric cars", "Leasing"], desc: "Passenger and commercial EV distribution platform creating access to electric cars for African markets.", featured: false, logo: "logo-lime" },
-  { id: 23, name: "Kabisa EV", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "Technically verified", segments: ["4W", "Commercial"], products: ["Electric cars", "Charging"], desc: "EV vehicle and charging partner supporting the development of low-emission mobility solutions.", featured: false, logo: "logo-purple" },
-  { id: 24, name: "EcoTrify", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["Commercial", "4W"], products: ["Charging solutions", "Leasing"], desc: "Commercial EV charging and ecosystem support provider helping customers integrate zero-emission transport.", featured: false, logo: "logo-blue" },
-  { id: 25, name: "Power Governors Ltd", category: "Electric Mobility Supplier", country: "Kenya", city: "Nairobi", status: "KEMTG contacted", segments: ["Commercial"], products: ["EV charging", "Power systems"], desc: "Power and infrastructure company supporting charging and system deployment for growing EV fleets.", featured: false, logo: "logo-dark" },
-  { id: 26, name: "Mazi Mobility", category: "Fleet Operator", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Battery swapping", "Fleet services"], desc: "Operator-focused mobility provider supporting clean transport deployment and mobile charging access.", featured: false, logo: "logo-orange" },
-  { id: 27, name: "eBee Africa", category: "Charging & Swapping", country: "Uganda", city: "Kampala", status: "Listed", segments: ["2W", "Commercial"], products: ["Charging", "Battery swapping"], desc: "African EV operator enabling electric transport through charging and ride-ready infrastructure.", featured: false, logo: "logo-cyan" },
-  { id: 28, name: "TankVolt", category: "Electric Mobility Supplier", country: "Kenya", city: "Nairobi", status: "KEMTG contacted", segments: ["2W", "3W", "Commercial"], products: ["Battery packs", "Energy systems"], desc: "Battery systems company providing emerging mobility markets with practical energy solutions and support.", featured: false, logo: "logo-purple" },
-  { id: 29, name: "ChargeCraft Engineering", category: "Technical Services", country: "Uganda", city: "Kampala", status: "Technically verified", segments: ["2W", "3W", "Commercial"], products: ["Engineering services", "Testing equipment"], desc: "Technical services partner helping validate EV systems, prototypes and in-field deployment quality.", featured: false, logo: "logo-lime" },
-  { id: 30, name: "Africa E-Mobility Alliance (AfEMA)", category: "Policy & Ecosystem", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "3W", "4W", "Commercial"], products: ["Research", "Ecosystem support"], desc: "Policy and ecosystem convenor connecting public, private and research stakeholders across Africa.", featured: false, logo: "logo-blue" }
+
+{
+name:"Ampersand Energy",
+countries:["Kenya","Rwanda"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"SIV Mobility",
+countries:["Kenya","Nigeria"],
+categories:["Motorcycle","3 Wheeler","Retrofitting"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Wahu Mobility",
+countries:["Ghana","Togo"],
+categories:["eBikes"],
+energyModels:["Battery Swapping","Home Charging"]
+},
+  {
+name:"Stride EV",
+countries:["Nigeria"],
+categories:["eBikes"],
+energyModels:["Battery Swapping"]
+},
+   {
+name:"Motorhino Malawi EV",
+countries:["Malawi"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Superpack Technology",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Battery Packs"],
+energyModels:["NA"]
+},
+    {
+name:"Ampace",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Battery Packs"],
+energyModels:["NA"]
+},
+      {
+name:"Votol",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Motors","Controller"],
+energyModels:["NA"]
+},
+      {
+name:"Shenzhen Anari Energy Co. Ltd",
+countries:["China"],
+categories:["Electric Mobility Suppliers","EV Charging Stations"],
+energyModels:["NA"]
+},
+        {
+name:"Wylex",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Motorcycle"],
+energyModels:["NA"]
+},
+{
+name:"YADEA",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Motorcycle","Electric Scooter","eBikes"],
+energyModels:["NA"]
+},
+  {
+name:"ACEIN New Energy Technology",
+countries:["China","Singapore"],
+categories:["Electric Mobility Suppliers","Battery Packs","Battery Cells"],
+energyModels:["NA"]
+},
+   {
+name:"Wenergy Storage",
+countries:["Singapore"],
+categories:["Electric Mobility Suppliers","BESS"],
+energyModels:["NA"]
+},
+   {
+name:"Power Gogo",
+countries:["China"],
+categories:["Electric Mobility Suppliers","Motorcycle","Swap Equipment","Battery Packs"],
+energyModels:["NA"]
+},
+{
+name:"eWAKA",
+countries:["Kenya","Rwanda","DRC","Malawi"],
+categories:["eBikes","Motorcycle"],
+energyModels:["tbc"]
+},
+  {
+name:"Kazzi",
+countries:["Kenya"],
+categories:["eBikes"],
+energyModels:["Home Charging"]
+},
+  {
+name:"Vine Mobility",
+countries:["Nigeria"],
+categories:["Software Platform"],
+energyModels:["tbc"]
+},
+  {
+name:"Yourrider Energies",
+countries:["Nigeria"],
+categories:["EV Charging","EV Maintenance"],
+energyModels:["Battery Swapping","Public Charging"]
+},
+   {
+name:"EV World Africa",
+countries:["Nigeria"],
+categories:["Training","EV Maintenance"],
+energyModels:["NA"]
+},
+   {
+name:"S.U.L E-Mobility",
+countries:["Rwanda"],
+categories:["Assembly Services","EV Maintenance"],
+energyModels:["NA"]
+},
+  {
+name:"First Electric",
+countries:["Nigeria"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"Zimi Charge",
+countries:["South Africa"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+  
+  {
+name:"BEV Ltd",
+countries:["Kenya"],
+categories:["All EVs","Distributor"],
+energyModels:["tbc"]
+},
+   {
+name:"Car and General",
+countries:["Kenya","Tanzania","Uganda"],
+categories:["3 Wheeler"],
+energyModels:["tbc"]
+},
+  {
+name:"PlugNRide",
+countries:["Tanzania"],
+categories:["3 Wheeler","Motorcycle"],
+energyModels:["tbc"]
+},
+    {
+name:"SGV Electric Mobility",
+countries:["Malawi"],
+categories:["Motorcycle","Commercial Vehicles","3 Wheeler"],
+energyModels:["tbc"]
+},
+  {
+name:"eBee Africa",
+countries:["Kenya","Rwanda","Uganda"],
+categories:["eBikes"],
+energyModels:["Home Charging"]
+},
+
+{
+name:"Roam",
+countries:["Kenya"],
+categories:["Motorcycle","Bus"],
+energyModels:["Public Charging","Battery Swapping","Home Charging"]
+},
+  {
+name:"SUN Mobility",
+countries:["Kenya"],
+categories:["Motorcycle","3 Wheeler"],
+energyModels:["tbc"]
+},
+  {
+name:"TankVolt",
+countries:["Kenya","Nigeria","Tanzania","Ethiopia","Uganda"],
+categories:["Motorcycle","3 Wheeler"],
+energyModels:["tbc"]
+},
+   {
+name:"STIMA Mobility",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+   {
+name:"Transboda",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["tbc"]
+},
+  {
+name:"Yna Kenya",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Kenya Vehicle Manufacturers(KVM)",
+countries:["Kenya"],
+categories:["Car","Bus","Assembly Services"],
+energyModels:["NA"]
+},
+  {
+name:"Kiri EV",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+    {
+name:"WeTu",
+countries:["Kenya"],
+categories:["Motorcycle","3 Wheeler"],
+energyModels:["Battery Swapping","Home Charging"]
+},
+  {
+name:"Dodai",
+countries:["Ethiopia"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+
+{
+name:"Spiro",
+countries:["Kenya","Rwanda","Benin","Togo","Uganda","Tanzania","Nigeria","Cameroon"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Fleevigo",
+countries:["Nigeria"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Zembo",
+countries:["Uganda"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+{
+name:"Orbit Electric",
+countries:["Nigeria"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Revoo",
+countries:["Nigeria"],
+categories:["Electric Scooter"],
+energyModels:["Home Charging"]
+},
+  {
+name:"Gogo Electric",
+countries:["Uganda"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+   {
+name:"Mazi Mobility",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+     {
+name:"Kibo",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+    {
+name:"Fika Mobility",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+      {
+name:"Frontier Links",
+countries:["Kenya"],
+categories:["Logistics Services"],
+energyModels:["NA"]
+},
+    {
+name:"GECSS INVESTMENT",
+countries:["Kenya"],
+categories:["Retrofitting","Motorcycle"],
+energyModels:["NA"]
+},
+      {
+name:"QTRON Industries",
+countries:["Kenya"],
+categories:["Retrofitting","EV Maintenance"],
+energyModels:["NA"]
+},
+  {
+name:"Silent Savannah",
+countries:["Kenya"],
+categories:["Retrofitting"],
+energyModels:["Offgrid Solar Charging"]
+},
+   {
+name:"Ecowaka",
+countries:["Nigeria"],
+categories:["Retrofitting","3 Wheeler"],
+energyModels:["Offgrid Solar Charging"]
+},
+   {
+name:"Makasi Swapping",
+countries:["Tanzania"],
+categories:["Retrofitting","3 Wheeler","Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+   {
+name:"Ecomobilus Technologies",
+countries:["Kenya"],
+categories:["Retrofitting"],
+energyModels:["NA"]
+},
+  {
+name:"Enviroserve Kenya",
+countries:["Kenya"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
+  {
+name:"REVLOG",
+countries:["Kenya"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
+  {
+name:"SLS Energy",
+countries:["Rwanda"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
+   {
+name:"AceleAfrica",
+countries:["Kenya","Uganda"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
+   {
+name:"WEEE Centre",
+countries:["Kenya","Uganda"],
+categories:["Circularity"],
+energyModels:["NA"]
+},
+     {
+name:"Go-Electric/UTU Cars",
+countries:["Kenya"],
+categories:["Leasing","Distributor","Car","3 Wheeler"],
+energyModels:["NA"]
+},
+   {
+name:"ecobodaa",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+{
+name:"Songa Mobility",
+countries:["Kenya"],
+categories:["3 Wheeler","EV Charging"],
+energyModels:["Public Charging"]
+},
+{
+name:"Emergi",
+countries:["Liberia"],
+categories:["3 Wheeler"],
+energyModels:[""]
+},
+{
+name:"BasiGo",
+countries:["Kenya","Rwanda"],
+categories:["Bus"],
+energyModels:["Public Charging"]
+},
+  {
+name:"BYD/Loxea",
+countries:["Kenya"],
+categories:["Bus","Distributor"],
+energyModels:["Public Charging","Home Charging"]
+},
+  {
+name:"Kabisa EV",
+countries:["Kenya","Rwanda"],
+categories:["Car","Commercial Vehicles","EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"EcoTrify",
+countries:["Kenya"],
+categories:["Leasing","EV Charging"],
+energyModels:["Public Charging"]
+},
+  {
+name:"Caetano",
+countries:["Kenya"],
+categories:["Car","EV Charging","Distributor"],
+energyModels:["Public Charging"]
+},
+    {
+name:"Autopax",
+countries:["Kenya"],
+categories:["Car","EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"ChargeNet",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"SupaChaja",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+
+   {
+name:"GIZ Kenya",
+countries:["Kenya"],
+categories:["Development Partners & Foundations"],
+energyModels:["NA"]
+},
+   {
+name:"Siemens Stiftung",
+countries:["Kenya"],
+categories:["Development Partners & Foundations"],
+energyModels:["NA"]
+},
+  {
+name:"United Nations Environment Programme",
+countries:["Kenya"],
+categories:["Development Partners & Foundations"],
+energyModels:["NA"]
+},
+  {
+name:"M-KOPA",
+countries:["Kenya"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
+  {
+name:"Platinum Credit Limited",
+countries:["Kenya"],
+categories:["Financing"],
+energyModels:["NA"]
+},
+  {
+name:"Rafiki Microfinance Bank",
+countries:["Kenya"],
+categories:["Financing"],
+energyModels:["NA"]
+},
+  {
+name:"MOGO Financing",
+countries:["Kenya"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
+  {
+name:"Jiwambe",
+countries:["Kenya"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
+    {
+name:"Fortune Credit",
+countries:["Kenya"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
+  {
+name:"Power Governors Ltd",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+    {
+name:"Equator Mobility",
+countries:["Kenya"],
+categories:["Leasing","Car","EV Maintenance"],
+energyModels:["Public Charging"]
+},
+  {
+name:"ePure Rides",
+countries:["Kenya"],
+categories:["Leasing"],
+energyModels:["Public Charging"]
+},
+    {
+name:"Drivelectric",
+countries:["Kenya"],
+categories:["Leasing","Financing","Car","EV Charging","Research","Circularity"],
+energyModels:["Public Charging"]
+},
+   {
+name:"Strathmore Energy Research Centre (SERC)",
+countries:["Kenya"],
+categories:["Research","Training"],
+energyModels:["NA"]
+},
+     {
+name:"University of Nairobi",
+countries:["Kenya"],
+categories:["Research"],
+energyModels:["NA"]
+},
+  {
+name:"Africa E-Mobility Alliance (AfEMA)",
+countries:["Kenya"],
+categories:["Research"],
+energyModels:["NA"]
+},
+    {
+name:"E-Safiri",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging","Battery Swapping"]
+},
+    {
+name:"Schneider Electric",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["tbc"]
+},
+  {
+name:"Eaton",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["tbc"]
+},
+   {
+name:"Kenya Power",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["tbc"]
+},
+     {
+name:"Izi Electric",
+countries:["Rwanda"],
+categories:["Leasing","Bus"],
+energyModels:["Public Charging"]
+},
+    {
+name:"EMAK",
+countries:["Kenya"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+  {
+name:"TAEMA",
+countries:["Tanzania"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+  {
+name:"ZEMIA",
+countries:["Zambia"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+   {
+name:"UEA",
+countries:["Uganda"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+     {
+name:"EOA",
+countries:["Ethiopia"],
+categories:["Industry Associations"],
+energyModels:["NA"]
+},
+  {
+name:"Advance Mobility Centre",
+countries:["Kenya"],
+categories:["Training"],
+energyModels:["NA"]
+},
+   {
+name:"NITA",
+countries:["Kenya"],
+categories:["Training"],
+energyModels:["NA"]
+},
+  {name:"WTS",
+countries:["Kenya"],
+categories:["Training"],
+energyModels:["NA"]
+},
+   {
+name:"MAX",
+countries:["Nigeria"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
+    {
+name:"Watu Credit",
+countries:["Kenya","Sierra Leone","Nigeria","Uganda","Rwanda","Tanzania","DRC","South Africa"],
+categories:["Financing","Motorcycle"],
+energyModels:["NA"]
+},
+  {
+name:"Enzi",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Arc Ride",
+countries:["Kenya","South Africa","Ghana"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Zeno",
+countries:["Kenya"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping","Public Charging"]
+},
+  {
+name:"Kofa",
+countries:["Kenya","Ghana"],
+categories:["Motorcycle"],
+energyModels:["Battery Swapping"]
+},
+  {
+name:"Alpha Mobility",
+countries:["Kenya"],
+categories:["3 Wheeler"],
+energyModels:["Battery Swapping"]
+},
+    {
+name:"Moja EV",
+countries:["Kenya"],
+categories:["Car"],
+energyModels:["Public Charging","Home Charging"]
+},
+    {
+name:"Simba Corp",
+countries:["Kenya"],
+categories:["Car","Bus","Assembly Services","Distributor"],
+energyModels:["Public Charging","Home Charging"]
+},
+  {
+name:"Rideence Africa Limited",
+countries:["Kenya"],
+categories:["Car"],
+energyModels:["tbc"]
+},
+  {
+name:"Neo Motors",
+countries:["Morocco"],
+categories:["Car"],
+energyModels:["tbc"]
+},
+   {
+name:"EVChaja",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Public Charging"]
+},
+   {
+name:"Powerhive",
+countries:["Kenya"],
+categories:["EV Charging"],
+energyModels:["Battery Swapping"]
+}
 ];
 
-const countryFilter = document.getElementById("countryFilter");
 const categoryFilter = document.getElementById("categoryFilter");
-const componentFilter = document.getElementById("componentFilter");
+const countryFilter = document.getElementById("countryFilter");
+const energyFilter = document.getElementById("energyFilter");
 const searchInput = document.getElementById("searchInput");
-const companyGrid = document.getElementById("companyGrid");
-const resultCount = document.getElementById("resultCount");
-const filterSummary = document.getElementById("filterSummary");
+const container = document.getElementById("companyContainer");
+const resultsCount = document.getElementById("resultsCount");
 
-function populateFilters() {
-  const countries = [...new Set(companies.map((company) => company.country))].sort();
-  const categories = [...new Set(companies.map((company) => company.category))].sort();
-  const products = [...new Set(companies.flatMap((company) => company.products))].sort();
+// AI Insights Elements
+const insightsBody = document.getElementById("insightsBody");
+const segmentChips = document.getElementById("segmentChips");
 
-  countryFilter.innerHTML = '<option value="">All markets</option>' + countries.map((country) => `<option value="${country}">${country}</option>`).join("");
-  categoryFilter.innerHTML = '<option value="">All categories</option>' + categories.map((cat) => `<option value="${cat}">${cat}</option>`).join("");
-  componentFilter.innerHTML = '<option value="">All products & capabilities</option>' + products.map((prod) => `<option value="${prod}">${prod}</option>`).join("");
+function populateFilters(){
+
+const countries =
+[...new Set(companies.flatMap(c=>c.countries))]
+.sort();
+
+countryFilter.innerHTML=
+'<option value="">All Countries</option>';
+
+countries.forEach(country=>{
+countryFilter.innerHTML+=
+`<option>${country}</option>`;
+});
+
+const categories =
+[...new Set(companies.flatMap(c=>c.categories))]
+.sort();
+
+categoryFilter.innerHTML=
+'<option value="">All Categories</option>';
+
+categories.forEach(cat=>{
+categoryFilter.innerHTML+=
+`<option>${cat}</option>`;
+});
+
+renderSegmentChips(categories);
+
+const energies =
+[...new Set(companies.flatMap(c=>c.energyModels))]
+.sort();
+
+energyFilter.innerHTML=
+'<option value="">All Energy Models</option>';
+
+energies.forEach(model=>{
+energyFilter.innerHTML+=
+`<option>${model}</option>`;
+});
+
 }
 
-function statusClass(status) {
-  if (status === "Technically verified") return "verified";
-  if (status === "KEMTG contacted") return "contacted";
-  return "listed";
+// Builds the "Cars / Motorcycles / EV Charging / ..." clickable chip row.
+// Counts shown are against the full directory (a stable reference number for
+// browsing), independent of whatever the search/country/energy filters are
+// currently doing — clicking a chip always sets categoryFilter and re-renders.
+function renderSegmentChips(categories){
+
+  const chipsHtml = ['<button type="button" class="segment-chip" data-category="">All</button>']
+    .concat(categories.map(cat => {
+      const count = countCategory(cat);
+      return `<button type="button" class="segment-chip" data-category="${cat}">${cat} <span class="chip-count">${count}</span></button>`;
+    }));
+
+  segmentChips.innerHTML = chipsHtml.join("");
+
+  syncSegmentChips();
 }
 
-function esc(value) {
-  return String(value).replace(/[&<>\"']/g, (char) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    "\"": "&quot;",
-    "'": "&#39;"
-  }[char]));
-}
-
-function getFilters() {
-  return {
-    q: searchInput.value.trim().toLowerCase(),
-    category: categoryFilter.value,
-    product: componentFilter.value,
-    country: countryFilter.value,
-    statusFilters: [...document.querySelectorAll('input[name="verification"]:checked')].map((input) => input.value),
-    segmentFilters: [...document.querySelectorAll('input[name="segment"]:checked')].map((input) => input.value),
-    sort: document.getElementById("sortSelect").value
-  };
-}
-
-function filteredCompanies() {
-  const filters = getFilters();
-
-  let filtered = companies.filter((company) => {
-    const haystack = [
-      company.name,
-      company.category,
-      company.country,
-      company.city,
-      company.desc,
-      ...company.products,
-      ...company.segments
-    ].join(" ").toLowerCase();
-
-    const qMatch = !filters.q || haystack.includes(filters.q);
-    const categoryMatch = !filters.category || company.category === filters.category;
-    const productMatch = !filters.product || company.products.includes(filters.product);
-    const countryMatch = !filters.country || company.country === filters.country;
-    const statusMatch = !filters.statusFilters.length || filters.statusFilters.includes(company.status);
-    const segmentMatch = !filters.segmentFilters.length || filters.segmentFilters.some((segment) => company.segments.includes(segment));
-
-    return qMatch && categoryMatch && productMatch && countryMatch && statusMatch && segmentMatch;
+// Keeps the chip row's highlighted state in sync with categoryFilter,
+// whether it was changed by a chip click or the dropdown itself.
+function syncSegmentChips(){
+  if (!segmentChips) return;
+  const active = categoryFilter.value;
+  segmentChips.querySelectorAll(".segment-chip").forEach(chip => {
+    chip.classList.toggle("active", chip.dataset.category === active);
   });
+}
 
-  if (filters.sort === "name") {
-    filtered.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (filters.sort === "country") {
-    filtered.sort((a, b) => a.country.localeCompare(b.country) || a.name.localeCompare(b.name));
-  } else {
-    filtered.sort((a, b) => Number(b.featured) - Number(a.featured) || a.name.localeCompare(b.name));
+if (segmentChips) {
+  segmentChips.addEventListener("click", (e) => {
+    const chip = e.target.closest(".segment-chip");
+    if (!chip) return;
+    categoryFilter.value = chip.dataset.category;
+    renderCompanies();
+    document.getElementById("ai-insights")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+function renderCompanies(){
+
+const search =
+searchInput.value.toLowerCase();
+
+const country =
+countryFilter.value;
+
+const category =
+categoryFilter.value;
+
+const energy =
+energyFilter.value;
+
+const filtered =
+companies.filter(company=>{
+
+const searchMatch =
+company.name.toLowerCase()
+.includes(search);
+
+const countryMatch =
+!country ||
+company.countries.includes(country);
+
+const categoryMatch =
+!category ||
+company.categories.includes(category);
+
+const energyMatch =
+!energy ||
+company.energyModels.includes(energy);
+
+return searchMatch &&
+countryMatch &&
+categoryMatch &&
+energyMatch;
+
+});
+
+container.innerHTML="";
+
+filtered.forEach(company=>{
+
+const card =
+document.createElement("div");
+
+card.className =
+"company-card";
+
+card.innerHTML=`
+
+<h3>${company.name}</h3>
+
+<p>
+<strong>Countries:</strong>
+${company.countries.join(", ")}
+</p>
+
+<p>
+<strong>Categories:</strong>
+</p>
+
+${company.categories.map(cat=>
+`<span class="badge">${cat}</span>`
+).join("")}
+
+<p style="margin-top:15px;">
+<strong>Energy Model:</strong>
+${company.energyModels.join(", ")}
+</p>
+
+`;
+
+container.appendChild(card);
+
+});
+
+resultsCount.innerText =
+`${filtered.length} Companies Found`;
+
+updateStats();
+
+renderInsights(filtered, { search, country, category, energy });
+syncSegmentChips();
+}
+
+function countCategory(name){
+
+return companies.filter(
+c=>c.categories.includes(name)
+).length;
+
+}
+
+function updateStats(){
+
+document.getElementById(
+"totalCompanies"
+).innerText=
+companies.length;
+
+document.getElementById(
+"motorcycleCount"
+).innerText=
+countCategory("Motorcycle");
+
+document.getElementById(
+"busCount"
+).innerText=
+countCategory("Bus");
+
+document.getElementById(
+"carCount"
+).innerText=
+countCategory("Car");
+  
+document.getElementById(
+"commercialCount"
+).innerText=
+countCategory("Commercial Vehicles");
+  
+document.getElementById(
+"chargingCount"
+).innerText=
+countCategory("EV Charging");
+
+document.getElementById(
+"threeCount"
+).innerText=
+countCategory("3 Wheeler");
+  
+document.getElementById(
+"supplierCount"
+).innerText=
+countCategory("Electric Mobility Suppliers");
+
+document.getElementById(
+"financeCount"
+).innerText=
+countCategory("Financing");
+}
+
+// ============= AI INSIGHTS PANEL =============
+// Pure client-side "intelligence": no chatbot, no query box, no network calls.
+// It reads whatever renderCompanies() already filtered and turns that array
+// into a plain-language read plus a couple of live distribution bars.
+// This runs on every filter/search change, always describing exactly what's
+// on screen right now.
+
+const VALID_ENERGY = m => m && m !== "tbc" && m !== "NA" && m !== "";
+
+// Tally occurrences of every value in a field (categories / energyModels / countries)
+// across a list of companies, sorted highest first.
+function tally(list, field, { validate } = {}) {
+  const counts = {};
+  list.forEach(company => {
+    company[field].forEach(value => {
+      if (validate && !validate(value)) return;
+      counts[value] = (counts[value] || 0) + 1;
+    });
+  });
+  return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+}
+
+function describeActiveFilters({ search, country, category, energy }) {
+  const parts = [];
+  if (country) parts.push(country);
+  if (category) parts.push(category.toLowerCase());
+  if (energy) parts.push(energy.toLowerCase());
+  if (search) parts.push(`matching "${search}"`);
+  return parts.length ? parts.join(", ") : "the full directory";
+}
+
+// Builds the plain-language narrative for whatever is currently filtered.
+function buildNarrative(filtered, filters, categoryTally, energyTally, countryTally) {
+  const scope = describeActiveFilters(filters);
+  const total = filtered.length;
+
+  if (total === 0) {
+    return `No companies match <strong>${scope}</strong>. Try loosening a filter — there may be an adjacent segment worth a look.`;
   }
 
-  return filtered;
+  const [topCatName, topCatCount] = categoryTally[0] || [];
+  const [topEnergyName, topEnergyCount] = energyTally[0] || [];
+  const catShare = topCatCount ? Math.round((topCatCount / total) * 100) : null;
+  const countrySpan = countryTally.length;
+
+  let sentence = `<strong>${total}</strong> ${total === 1 ? "company matches" : "companies match"} <strong>${scope}</strong>.`;
+
+  if (topCatName) {
+    sentence += ` <strong>${topCatName}</strong> is the leading segment (${catShare}% of this view)${(filters.category || filters.country) ? "" : `, spread across <strong>${countrySpan}</strong> ${countrySpan === 1 ? "country" : "countries"}`}.`;
+  }
+
+  if (topEnergyName) {
+    sentence += ` Where an energy model is known, <strong>${topEnergyName}</strong> is the dominant approach (${topEnergyCount} of the matching companies).`;
+  } else {
+    sentence += ` Most matching companies haven't disclosed an energy model yet — a gap worth flagging.`;
+  }
+
+  return sentence;
 }
 
-function cardHTML(company) {
-  return `
-    <article class="company-card">
-      <div class="company-top">
-        <div class="company-logo ${company.logo}">${esc(company.name.slice(0, 2).toUpperCase())}</div>
-        <div style="min-width:0;flex:1;">
-          <div class="company-name">${esc(company.name)}</div>
-          <div class="company-meta">${esc(company.category)} <span class=\"dot\"></span> ${esc(company.country)}</div>
-        </div>
-        <span class="verify ${statusClass(company.status)}">${esc(company.status)}</span>
+// Renders the small horizontal "signal bars" for a breakdown (category/energy/country).
+function renderSignalRows(entries, total) {
+  return entries.slice(0, 5).map(([name, count]) => {
+    const pct = Math.max(4, Math.round((count / total) * 100));
+    return `
+      <div class="signal-row">
+        <span class="signal-name" title="${name}">${name}</span>
+        <div class="signal-track"><div class="signal-fill" style="width:${pct}%"></div></div>
+        <span class="signal-count">${count}</span>
       </div>
+    `;
+  }).join("");
+}
 
-      <p class="company-desc">${esc(company.desc)}</p>
-      <div class="tag-row">
-        ${company.products.slice(0, 3).map((product) => `<span class=\"tag\">${esc(product)}</span>`).join("")}
-      </div>
+// Main entry point — called from renderCompanies() with the exact same
+// filtered array and filter values already computed there.
+function renderInsights(filtered, filters) {
+  if (!insightsBody) return;
 
-      <div class="company-bottom">
-        <span class="company-location">⌖ ${esc(company.city)}, ${esc(company.country)}</span>
-        <button class="text-action" data-company="${company.id}">View profile ↗</button>
+  const total = filtered.length;
+
+  if (total === 0) {
+    insightsBody.innerHTML = `
+      <p class="insights-narrative">${buildNarrative(filtered, filters, [], [], [])}</p>
+    `;
+    return;
+  }
+
+  const categoryTally = tally(filtered, "categories");
+  const energyTally = tally(filtered, "energyModels", { validate: VALID_ENERGY });
+  const countryTally = tally(filtered, "countries");
+
+  const narrative = buildNarrative(filtered, filters, categoryTally, energyTally, countryTally);
+
+  insightsBody.innerHTML = `
+    <p class="insights-narrative">${narrative}</p>
+
+    <div class="signal-metrics">
+      <div class="signal-metric">
+        <span class="value">${total}</span>
+        <span class="label">Companies in view</span>
       </div>
-    </article>
+      <div class="signal-metric">
+        <span class="value">${categoryTally.length}</span>
+        <span class="label">Segments represented</span>
+      </div>
+      <div class="signal-metric">
+        <span class="value">${countryTally.length}</span>
+        <span class="label">Countries covered</span>
+      </div>
+      <div class="signal-metric">
+        <span class="value">${energyTally.length}</span>
+        <span class="label">Energy models in play</span>
+      </div>
+    </div>
+
+    <div class="signal-breakdown">
+      <h4>Top segments</h4>
+      ${renderSignalRows(categoryTally, total)}
+    </div>
+
+    <div class="signal-breakdown">
+      <h4>Top energy models</h4>
+      ${energyTally.length ? renderSignalRows(energyTally, total) : '<p style="color:#9db8a9;font-size:13px;">No disclosed energy models in this view.</p>'}
+    </div>
   `;
 }
 
-function render() {
-  const filtered = filteredCompanies();
+searchInput.addEventListener(
+"input",
+renderCompanies
+);
+countryFilter.addEventListener(
+"change",
+renderCompanies
+);
 
-  companyGrid.innerHTML = filtered.length
-    ? filtered.map((company) => cardHTML(company)).join("")
-    : `<div class="empty-state"><div style="font-size:30px">⌕</div><strong>No matching companies found</strong><span>Try a broader search or clear one or more filters.</span><div style="margin-top:16px"><button class="btn btn-outline" id="emptyReset">Clear filters</button></div></div>`;
+categoryFilter.addEventListener(
+"change",
+renderCompanies
+);
 
-  resultCount.textContent = `${filtered.length} compan${filtered.length === 1 ? "y" : "ies"}`;
-  const activeFilters = !!(
-    searchInput.value.trim() ||
-    categoryFilter.value ||
-    componentFilter.value ||
-    countryFilter.value ||
-    document.querySelectorAll('input[name="verification"]:checked').length ||
-    document.querySelectorAll('input[name="segment"]:checked').length
-  );
-  filterSummary.textContent = activeFilters ? "matching your filters" : "in the directory";
+energyFilter.addEventListener(
+"change",
+renderCompanies
+);
 
-  const gridView = document.getElementById("gridViewBtn");
-  const listView = document.getElementById("listViewBtn");
-  const viewMode = document.body.dataset.view || "grid";
-  companyGrid.style.gridTemplateColumns = viewMode === "list" ? "1fr" : "";
+document.getElementById("resetBtn")
+.addEventListener("click",()=>{
 
-  if (viewMode === "list") {
-    [...document.querySelectorAll(".company-card")].forEach((card) => {
-      card.style.flexDirection = "row";
-      card.style.alignItems = "center";
-      card.style.gap = "18px";
-      card.style.flexWrap = "wrap";
-      const desc = card.querySelector(".company-desc");
-      if (desc) {
-        desc.style.flex = "1 1 240px";
-        desc.style.minHeight = "0";
-      }
-      const bottom = card.querySelector(".company-bottom");
-      if (bottom) {
-        bottom.style.borderTop = "0";
-        bottom.style.paddingTop = "0";
-        bottom.style.marginTop = "0";
-      }
-    });
-  }
+searchInput.value="";
+countryFilter.value="";
+categoryFilter.value="";
+energyFilter.value="";
 
-  gridView.classList.toggle("selected", viewMode === "grid");
-  listView.classList.toggle("selected", viewMode === "list");
+renderCompanies();
 
-  const emptyReset = document.getElementById("emptyReset");
-  if (emptyReset) {
-    emptyReset.addEventListener("click", resetAll);
-  }
+});
 
-  [...document.querySelectorAll("[data-company]")].forEach((button) => {
-    button.addEventListener("click", () => showCompany(Number(button.dataset.company)));
+// Initialize everything when DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM loaded, initializing...");
+  populateFilters();
+  renderCompanies();
+});
+
+// Also call in case DOM is already loaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    populateFilters();
+    renderCompanies();
   });
+} else {
+  populateFilters();
+  renderCompanies();
 }
-
-function resetAll() {
-  searchInput.value = "";
-  categoryFilter.value = "";
-  componentFilter.value = "";
-  countryFilter.value = "";
-  document.getElementById("sortSelect").value = "featured";
-  document.querySelectorAll('input[type="checkbox"]').forEach((input) => {
-    input.checked = false;
-  });
-  render();
-}
-
-function clearFilterChecks() {
-  document.querySelectorAll('input[type="checkbox"]').forEach((input) => {
-    input.checked = false;
-  });
-}
-
-function toast(message) {
-  const toastEl = document.getElementById("toast");
-  toastEl.textContent = message;
-  toastEl.classList.add("show");
-  clearTimeout(toastEl.timer);
-  toastEl.timer = setTimeout(() => toastEl.classList.remove("show"), 3600);
-}
-
-function openModal(which) {
-  const modal = document.getElementById(`${which}Modal`);
-  modal.classList.add("open");
-  document.body.style.overflow = "hidden";
-  const firstInput = modal.querySelector("input");
-  if (firstInput) {
-    setTimeout(() => firstInput.focus(), 50);
-  }
-}
-
-function closeModals() {
-  document.querySelectorAll(".modal-backdrop").forEach((modal) => modal.classList.remove("open"));
-  document.body.style.overflow = "";
-}
-
-function showCompany(id) {
-  const company = companies.find((item) => item.id === id);
-  if (!company) return;
-
-  document.getElementById("requestTitle").textContent = "Connect with " + company.name;
-  document.querySelector("#requestModal .modal-head p").textContent = "This is a demo profile. Submit a request to explore a potential introduction.";
-  document.getElementById("reqNeed").value = company.products[0] || "";
-  document.getElementById("reqDetails").value = `I would like to learn more about ${company.name} and its capabilities in ${company.products.join(", ")}. Please confirm relevant specifications, market availability and next steps.`;
-  openModal("request");
-}
-
-function applyQuickFilter(category, product) {
-  if (category) categoryFilter.value = category;
-  if (product) componentFilter.value = product;
-  render();
-  document.getElementById("directory").scrollIntoView({ behavior: "smooth" });
-}
-
-searchInput.addEventListener("input", render);
-["categoryFilter", "componentFilter", "countryFilter"].forEach((id) => {
-  document.getElementById(id).addEventListener("change", render);
-});
-
-document.getElementById("sortSelect").addEventListener("change", render);
-document.querySelectorAll('input[name="verification"], input[name="segment"]').forEach((input) => input.addEventListener("change", render));
-document.getElementById("applyFilters").addEventListener("click", render);
-document.getElementById("clearFilters").addEventListener("click", () => {
-  clearFilterChecks();
-  render();
-});
-document.getElementById("resetFilters").addEventListener("click", resetAll);
-document.getElementById("searchBtn").addEventListener("click", render);
-
-const gridViewBtn = document.getElementById("gridViewBtn");
-const listViewBtn = document.getElementById("listViewBtn");
-
-gridViewBtn.addEventListener("click", () => {
-  document.body.dataset.view = "grid";
-  render();
-});
-
-listViewBtn.addEventListener("click", () => {
-  document.body.dataset.view = "list";
-  render();
-});
-
-["list", "request"].forEach((type) => {
-  document.querySelectorAll(`[data-open="${type}"]`).forEach((el) => {
-    el.addEventListener("click", (event) => {
-      event.preventDefault();
-      openModal(type);
-    });
-  });
-});
-
-document.querySelectorAll("[data-close]").forEach((button) => button.addEventListener("click", closeModals));
-document.querySelectorAll(".modal-backdrop").forEach((modal) => {
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) closeModals();
-  });
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeModals();
-});
-
-document.querySelector("#requestForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const summary = `Supplier introduction request preview\nName: ${document.getElementById("reqName").value}\nOrganization: ${document.getElementById("reqOrg").value}\nEmail: ${document.getElementById("reqEmail").value}\nMarket: ${document.getElementById("reqCountry").value}\nNeed: ${document.getElementById("reqNeed").value}\nScale: ${document.getElementById("reqQuantity").value || "Not specified"}\nRequirements: ${document.getElementById("reqDetails").value}`;
-  closeModals();
-  toast("Request preview created. Connect a backend to submit it securely.");
-  const blob = new Blob([summary], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = "kemtg-supplier-request-preview.txt";
-  anchor.click();
-  URL.revokeObjectURL(url);
-  event.target.reset();
-  document.getElementById("requestTitle").textContent = "Request a supplier introduction";
-  document.querySelector("#requestModal .modal-head p").textContent = "Tell us what you need. This is a front-end prototype.";
-});
-
-document.querySelector("#listForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const summary = `KEMTG company listing preview\nCompany: ${document.getElementById("listCompany").value}\nWebsite: ${document.getElementById("listWebsite").value || "Not supplied"}\nCategory: ${document.getElementById("listCategory").value}\nCountry: ${document.getElementById("listCountry").value}\nCapabilities: ${document.getElementById("listProducts").value}\nContact: ${document.getElementById("listContact").value}\n\nReview before publication. This is demo data and has not been submitted to KEMTG.`;
-  closeModals();
-  toast("Listing preview created. Connect a backend for real submissions.");
-  const blob = new Blob([summary], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = "kemtg-company-listing-preview.txt";
-  anchor.click();
-  URL.revokeObjectURL(url);
-  event.target.reset();
-});
-
-document.getElementById("menuToggle").addEventListener("click", () => {
-  document.getElementById("navlinks").classList.toggle("mobile-open");
-});
-
-document.querySelectorAll(".navlinks a").forEach((link) => {
-  link.addEventListener("click", () => document.getElementById("navlinks").classList.remove("mobile-open"));
-});
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-document.getElementById("heroCompanies").textContent = companies.length;
-document.getElementById("heroSuppliers").textContent = companies.filter((company) => company.category === "Electric Mobility Supplier").length;
-document.getElementById("statCompanies").textContent = companies.length;
-document.getElementById("statSuppliers").textContent = companies.filter((company) => company.category === "Electric Mobility Supplier").length;
-document.getElementById("statCountries").textContent = [...new Set(companies.map((company) => company.country))].length;
-
-document.body.dataset.view = "grid";
-populateFilters();
-render();
