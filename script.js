@@ -5,10 +5,10 @@ const companies = [
   { id: 4, name: "Kifaru E-Mobility", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "KEMTG contacted", segments: ["2W", "Commercial"], products: ["Electric motorcycles", "Vehicle assembly"], desc: "Local manufacturer bridging vehicle assembly, service readiness and commercial deployment support.", featured: true, logo: "logo-cyan" },
   { id: 5, name: "eWAKA", category: "Fleet Operator", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Fleet operations", "Battery swapping"], desc: "Fleet and infrastructure operator building delivery-focused EV networks and last-mile mobility systems.", featured: false, logo: "logo-orange" },
   { id: 6, name: "BasiGo", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["Commercial", "4W"], products: ["Electric buses", "Charging infrastructure"], desc: "Electric bus manufacturer and ecosystem partner supporting public transport electrification in East Africa.", featured: true, logo: "logo-lime" },
-  { id: 7, name: "Roam", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "Technically verified", segments: ["2W", "Commercial"], products: ["Electric motorcycles", "Public charging"], desc: "EV manufacturer focused on high-uptime battery-electric mobility for commercial riders and urban logistics.", featured: true, logo: "logo-purple" },
+  { id: 7, name: "Roam", category: "Vehicle Manufacturer", country: "Kenya", city: "Nairobi", status: "Technically verified", segments: ["2W", "3W", "Commercial"], products: ["Electric motorcycles", "Public charging"], desc: "EV manufacturer focused on high-uptime battery-electric mobility for commercial riders and urban logistics.", featured: true, logo: "logo-purple" },
   { id: 8, name: "Spiro", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "3W", "Commercial"], products: ["Battery swapping", "Charging services"], desc: "Regional battery-swapping and EV infrastructure provider expanding the charging layer for mobility ecosystems.", featured: true, logo: "logo-cyan" },
   { id: 9, name: "SUN Mobility", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "KEMTG contacted", segments: ["2W", "3W", "Commercial"], products: ["Battery swapping", "Energy services"], desc: "Battery-as-a-service platform helping operators transition to electric mobility with flexible energy access.", featured: false, logo: "logo-blue" },
-  { id: 10, name: "ChargeNet", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["4W", "Commercial"], products: ["Public charging", "Fleet charging"], desc: "Public and commercial charging operator serving private and fleet EV demand across growing markets.", featured: false, logo: "logo-orange" },
+  { id: 10, name: "ChargeNet", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["Commercial", "4W"], products: ["Public charging", "Fleet charging"], desc: "Public and commercial charging operator serving private and fleet EV demand across growing markets.", featured: false, logo: "logo-orange" },
   { id: 11, name: "E-Safiri", category: "Charging & Swapping", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Charging stations", "Battery swapping"], desc: "Infrastructure-focused player enabling dependable charge access for riders and operators.", featured: false, logo: "logo-lime" },
   { id: 12, name: "M-KOPA", category: "Finance & Investment", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Financing", "Asset finance"], desc: "Digital financing partner enabling uptake of electric mobility through flexible repayment structures.", featured: true, logo: "logo-dark" },
   { id: 13, name: "MOGO Financing", category: "Finance & Investment", country: "Kenya", city: "Nairobi", status: "Listed", segments: ["2W", "Commercial"], products: ["Financing", "EV lending"], desc: "Consumer and business finance platform supporting electric vehicle purchase and usage transitions.", featured: false, logo: "logo-purple" },
@@ -56,11 +56,11 @@ function statusClass(status) {
 }
 
 function esc(value) {
-  return String(value).replace(/[&<>"']/g, (char) => ({
+  return String(value).replace(/[&<>\"']/g, (char) => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
-    '"': "&quot;",
+    "\"": "&quot;",
     "'": "&#39;"
   }[char]));
 }
@@ -79,6 +79,7 @@ function getFilters() {
 
 function filteredCompanies() {
   const filters = getFilters();
+
   let filtered = companies.filter((company) => {
     const haystack = [
       company.name,
@@ -118,14 +119,14 @@ function cardHTML(company) {
         <div class="company-logo ${company.logo}">${esc(company.name.slice(0, 2).toUpperCase())}</div>
         <div style="min-width:0;flex:1;">
           <div class="company-name">${esc(company.name)}</div>
-          <div class="company-meta">${esc(company.category)} <span class="dot"></span> ${esc(company.country)}</div>
+          <div class="company-meta">${esc(company.category)} <span class=\"dot\"></span> ${esc(company.country)}</div>
         </div>
         <span class="verify ${statusClass(company.status)}">${esc(company.status)}</span>
       </div>
 
       <p class="company-desc">${esc(company.desc)}</p>
       <div class="tag-row">
-        ${company.products.slice(0, 3).map((product) => `<span class="tag">${esc(product)}</span>`).join("")}
+        ${company.products.slice(0, 3).map((product) => `<span class=\"tag\">${esc(product)}</span>`).join("")}
       </div>
 
       <div class="company-bottom">
@@ -158,6 +159,7 @@ function render() {
   const listView = document.getElementById("listViewBtn");
   const viewMode = document.body.dataset.view || "grid";
   companyGrid.style.gridTemplateColumns = viewMode === "list" ? "1fr" : "";
+
   if (viewMode === "list") {
     [...document.querySelectorAll(".company-card")].forEach((card) => {
       card.style.flexDirection = "row";
@@ -293,6 +295,7 @@ document.querySelectorAll(".modal-backdrop").forEach((modal) => {
     if (event.target === modal) closeModals();
   });
 });
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeModals();
 });
